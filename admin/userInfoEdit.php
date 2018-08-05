@@ -33,9 +33,11 @@ include('updateUserInfo.php');
 
 <div class="container ml-6 py-5 col-5">
     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
-        <h1>用户信息</h1>
+        <div class="page-title mb-5">
+            <h1>用户信息</h1>
+        </div>
         <div class="form-group">
-            <div class="avatar">
+            <div class="avatar text-center">
                 <img src="<?php echo $user['avatarurl']; ?>" alt="<?php echo $user["name"] ?>"  class="img-thumbnail col-5">
             </div>
             <div class="custom-file mt-3">
@@ -60,7 +62,5 @@ include('updateUserInfo.php');
         <button class="btn btn-outline-primary">提交修改</button>
     </form>
 </div>
-<!--<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>-->
-<!--<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>-->
 </body>
 </html>

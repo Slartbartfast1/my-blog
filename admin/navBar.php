@@ -12,12 +12,12 @@
         </li>
         <li class="nav-item dropdown <?php echo $_SERVER['PHP_SELF'] === '/Myblog/admin/articleUpdate.php' ? "active" : '' ?>">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                文章编辑
+                文章管理
             </a>
             <div class="dropdown-menu ">
-                <a class="dropdown-item" href="articleUpdate.php">创建文章</a>
-                <a class="dropdown-item" href="#">编辑文章</a>
-                <a class="dropdown-item" href="categories.php">分类目录</a>
+                <a class="dropdown-item" href="articleUpdate.php">文章发布</a>
+                <a class="dropdown-item" href="#">文章编辑</a>
+                <a class="dropdown-item" href="categories.php">分类管理</a>
             </div>
         </li>
         <li class="nav-item dropdown">
@@ -46,4 +46,14 @@
 ">
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="../static/assets/js/wangEditor.min.js"></script>
+<script src="https://cdn.bootcss.com/wangEditor/10.0.13/wangEditor.js"></script>
+<script src="https://cdn.bootcss.com/nprogress/0.2.0/nprogress.js"></script>
+<script>$(document)
+        .ajaxStart(function () {
+            NProgress.start()
+        })
+        .ajaxStop(function () {
+            NProgress.done()
+        })
+</script>
+<link href="https://cdn.bootcss.com/nprogress/0.2.0/nprogress.css" rel="stylesheet">

@@ -9596,7 +9596,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 
 })( window );
 
-nprogress
+// nprogress
 $(document)
 	.ajaxStart(function () {
 		NProgress.start()
