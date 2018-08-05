@@ -1,5 +1,8 @@
 <?php
-
+include('navBar.php');
+require_once '../static/function.php';
+myGetCurrentUser();
+//var_dump($_SERVER['PHP_SELF']);
 $conn = mysqli_connect('localhost', 'root', '12345678', 'blog', '3306');
 if (!$conn) {
     exit('<h1>连接失败</h1>');
@@ -20,23 +23,27 @@ include('updateUserInfo.php');
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+    </style>
+
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.css
 ">
-    <style>
-
-    </style>
 </head>
 <body>
+
 <div class="container ml-6 py-5 col-5">
     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
-        <h1>编辑信息</h1>
+        <h1>用户信息</h1>
         <div class="form-group">
             <div class="avatar">
-                <img src="<?php echo $user['avatarurl']; ?>" alt="<?php echo $user["name"] ?>">
+                <img src="<?php echo $user['avatarurl']; ?>" alt="<?php echo $user["name"] ?>"  class="img-thumbnail col-5">
             </div>
-            <label for="avatar">头像</label>
-            <input type="file" class="form-control" id="avatar" name="avatar" accept="image/*">
+            <div class="custom-file mt-3">
+                <input type="file" class="custom-file-input form-control" id="avatar" name="avatar" accept="image/*">
+                <label class="custom-file-label" for="avatar">选择头像</label>
+            </div>
         </div>
+
         <div class="form-group">
             <label for="name">昵称</label>
             <input type="text" class="form-control" id="name" name="name" value="<?php echo $user["name"] ?>">
@@ -53,5 +60,7 @@ include('updateUserInfo.php');
         <button class="btn btn-outline-primary">提交修改</button>
     </form>
 </div>
+<!--<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>-->
+<!--<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>-->
 </body>
 </html>
