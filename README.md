@@ -1,2 +1,2 @@
 # Myblog
-基于lamp的个人博客搭建
+LAMP+Bootstrap+jQuery个人博客搭建
