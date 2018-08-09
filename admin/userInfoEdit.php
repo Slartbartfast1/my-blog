@@ -1,19 +1,9 @@
 <?php
 include('navBar.php');
+include('updateUserInfo.php');
 require_once '../static/function.php';
 myGetCurrentUser();
-//var_dump($_SERVER['PHP_SELF']);
-$conn = mysqli_connect('localhost', 'root', '12345678', 'blog', '3306');
-if (!$conn) {
-    exit('<h1>连接失败</h1>');
-}
-$query = mysqli_query($conn, 'select * from user');
-if (!$query) {
-    exit('<h1>查询失败</h1>');
-}
-$user = mysqli_fetch_assoc($query);
-include('updateUserInfo.php');
-
+$user =myFetchOne('select * from user');
 ?>
 <!doctype html>
 <html lang="en">
@@ -42,10 +32,9 @@ include('updateUserInfo.php');
             </div>
             <div class="custom-file mt-3">
                 <input type="file" class="custom-file-input form-control" id="avatar" name="avatar" accept="image/*">
-                <label class="custom-file-label" for="avatar">选择头像</label>
+                <label class="custom-file-label" for="avatar">上传头像</label>
             </div>
         </div>
-
         <div class="form-group">
             <label for="name">昵称</label>
             <input type="text" class="form-control" id="name" name="name" value="<?php echo $user["name"] ?>">
@@ -61,6 +50,28 @@ include('updateUserInfo.php');
         </div>
         <button class="btn btn-outline-primary">提交修改</button>
     </form>
+    <script>
+        $("#avatar").on('change', function () {
+
+            if (typeof (FileReader) != "undefined") {
+
+                var image_holder = $(".avatar");
+                image_holder.empty();
+
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $("<img />", {
+                        "src": e.target.result,
+                        "class": "img-thumbnail col-5",
+                    }).appendTo(image_holder);
+                };
+                image_holder.show();
+                reader.readAsDataURL($(this)[0].files[0]);
+            } else {
+                alert("你的浏览器不支持FileReader.");
+            }
+        });
+    </script>
 </div>
 </body>
 </html>

@@ -1,13 +1,10 @@
 <?php
+require_once '../static/function.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     edit();
 }
 function edit()
 {
-    $conn = mysqli_connect('localhost', 'root', '12345678', 'blog', '3306');
-    if (!$conn) {
-        exit('<h1>连接失败</h1>');
-    }
     $username = $_POST['name'];
     $email = $_POST['email'];
     $intro = $_POST['intro'];
@@ -23,12 +20,14 @@ function edit()
     if (empty($intro)) {
         exit('个人简介不能为空');
     }
-    move_uploaded_file($avatarFile['tmp_name'], $dest);
+    if(!move_uploaded_file($avatarFile['tmp_name'], $dest)){
+        exit('上传失败');
+    }
     //TODO: 如果上传头像为空,头像路径不变;
     if ($_FILES['avatar']["name"] == "") {
-        mysqli_query($conn, "update user set name='$username',introduction='$intro',email='$email'");
+        myExecute("update user set name='$username',introduction='$intro',email='$email'");
     } else {
-        mysqli_query($conn, "update user set avatarurl='$dest',name='$username',introduction='$intro',email='$email'");
+        myExecute( "update user set avatarurl='$dest',name='$username',introduction='$intro',email='$email'");
     }
 }
 
