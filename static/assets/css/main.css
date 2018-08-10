@@ -1,3 +1,18 @@
+::-webkit-scrollbar{
+   width:12px;
+    height:200px;
+}
+
+::-webkit-scrollbar-track-piece{
+    background-color: #F5FAF9;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #D9EBF6;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover{
+    border-radius: 0;
+}
 body{
     background-color: #F4EFE9;
 }
@@ -30,17 +45,21 @@ body{
 
 .contentBox {
     /*position: absolute;*/
-    height: 300px;
-    box-shadow: 3px 3px 20px 1px rgba(0, 0, 0, .1);
+    height: 40%;
+    box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, .1);
     margin-top: 2%;
     transition: .2s ease;
     padding: 0;
     width: 70%;
 
 }
+.content:first-child{
+    margin-top:-8%;
+}
+
 
 .contentBox:hover {
-    box-shadow: 0 0 20px 10px rgba(0, 0, 0, .1)
+    box-shadow: 1px 1px 20px 10px rgba(0, 0, 0, .1);
 }
 
 .navbar {
@@ -63,8 +82,8 @@ body{
     height: 40px;
     width: 40px;
     position: absolute;
-    left: -60px;
-    top: 70px;
+    left: -16%;
+    top: 1%;
     cursor: pointer;
     z-index: 9999;
 }
@@ -121,17 +140,18 @@ body{
     left: 4px;
 }
 .sideNav{
-    position: absolute;
-    height:850px;
-    width:300px;
-    top:-60px;
-    right:0px;
+    position: fixed;
+    height:100%;
+    width:22%;
+    /*top:-60px;*/
+    right:0;
     background-color: #F5FAF9;
     transition: .3s ease 0s;
     box-shadow: 0 0 5px 1px rgba(0,0,0,.11);
+    z-index: 9999;
 }
 .sideNavSlide{
-    right:-300px;
+    right:-22%;
 
 }
 
@@ -149,12 +169,13 @@ body{
     margin-left: -25%;
 
 }
-.gist{
+.quote{
     position:absolute;
-    bottom:30px;
+    bottom:1%;
     width:70%;
     left:50%;
     margin-left: -35%;
+    top:80%;
 }
 .btns{
 
@@ -165,7 +186,7 @@ body{
     width:100%;
     height:12%;
     /*background-color: pink;*/
-    font-size: 26px;
+    font-size: 160%;
     position: relative;
 }
 .buttonWarp a{
@@ -195,12 +216,15 @@ body{
     height: 55px;
 }
 
-
+.categories{
+    background-color: #F4F3EE;
+}
 .categoriey1,.categoriey2,.categoriey3{
     position:relative;
     height: 300px;
-    top:-20px;
+    top:-5px;
     width:30%;
+    /*border-radius: 1%;*/
 }
 .categoriey1{
     background-color:#F5EEEC;
@@ -209,8 +233,9 @@ body{
     background-color: #E7F1ED;
 }
 .categoriey3{
-    background-color: #F4F3EE;
+    background-color: #F7F7F7;
 }
+
 
 .titleImg {
     width: 100%;

@@ -59,34 +59,31 @@ include 'navBar.php';
         .titleTree{
             position:absolute;
             top:480px;
-            left:0px;
             display: block;
-            z-index: 2;
+            z-index: 1;
             transition: .1s ease-in 0s;
         }
         .titleTree ul{
-            /*list-style: inherit;*/
         }
         .fixed{
             position:fixed;
             top:65px;
-            /*left:100px;*/
+
         }
 
         .active{
             border-left: 2px solid darkseagreen;
             background-color: rgba(0,0,0,.1);
         }
+
         .titleTree a{
             color:grey;
             box-sizing:content-box!important;
             display: block;
             width:130px;
-
-
         }
         .titleTreeLeft{
-            left:100px;
+            left:7%;
         }
         .commentBox{
             min-height: 200px;
@@ -160,6 +157,9 @@ include 'navBar.php';
         .goTopLeft{
             right:25%;
         }
+        .articleContent img{
+            max-width: 100%;
+        }
 
 
 
@@ -171,7 +171,7 @@ include 'navBar.php';
 <script src="https://cdn.bootcss.com/wow/1.1.2/wow.js"></script>
 <script src="static/assets/js/navBar.js"></script>
 
-<nav class="titleTree col-sm-2 col-2 titleTreeLeft animated">
+<nav class="titleTree col-sm-1 col-2 titleTreeLeft animated">
     <ul class="nav ">
     </ul>
 </nav>
@@ -195,8 +195,9 @@ include 'navBar.php';
             <p>我曾想过做设计，后来发现画画就跟写字一样，上十年才能达到一定的境界。</p>
             <p>我向往德国、日本的教育，德国是以专科为主，学好了技术就能找到不错的工作；日本则是高中毕业就能工作。在中国专科或者高中毕业想找到好的工作基本不可能。</p>
             <p>在GitHub上看到过一个97年的日本小兄弟已经600+个follower了，满是羡慕。</p>
+            <img src="https://img-blog.csdn.net/20180701152611176?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1NsYXJ0aWJhcnRmYXN0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="">
             <p>我是强迫症患者，早上起不来会把闹钟放在离床头很远的地方；看见写乱的代码会忍不住去改。</p>
-            <h2 >一年的收获</h2>
+            <h2 >收获为什么要清楚他妈的</h2>
             <ol>
                 <li>做了这个博客</li>
                 <li>黄冈半年游，北京三月游</li>

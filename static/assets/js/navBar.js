@@ -23,20 +23,12 @@ new WOW().init();
 //侧边栏按钮
 //侧边栏按钮
 $('.openNav').on('click',function () {
-    $('.iconAfter').toggleClass('afterDeg');
-    $('.iconBefore').toggleClass('beforeDeg');
-    $('.icon').toggleClass('opacity0');
-    $('.sideNav').toggleClass('sideNavSlide');
-    $('.page').toggleClass('pageScale');
-    $('.avatarBox').toggleClass('bounceInRight');
-    $('.navWrap').toggleClass('text-center');
-    $('.navbar-brand').toggleClass('navbarBrandLeft')
-
+    $('.iconAfter').toggleClass('afterDeg');            //旋转45度
+    $('.iconBefore').toggleClass('beforeDeg');          //旋转45度
+    $('.icon').toggleClass('opacity0');                 //透明
+    $('.sideNav').toggleClass('sideNavSlide')     ;     //侧边栏移动
+    $('.page').toggleClass('pageScale');                //页面移动
+    $('.avatarBox').toggleClass('bounceInRight');       //头像晃动
+    $('.navWrap').toggleClass('text-center');           //宽时logo居中
+    $('.navbar-brand').toggleClass('navbarBrandLeft')   //窄时logo居中
 });
-
-
-// $('.contentBox:odd').css({left: '20%'});
-// $('.contentBox:even').css({left: '10%'});
-// console.log($('.contentBox').offset().top); 获取相对文档的高度
-// var windowHeight=$(window).height();
-// $('.sideNav').css({height:windowHeight+80});

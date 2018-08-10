@@ -23,13 +23,13 @@ include 'navBar.php'
 <div class="page">
 <div id="demo" class="carousel slide" data-ride="carousel">
     <!-- 指示符 -->
-    <ul class="carousel-indicators pb-3">
-        <li data-target="#demo" data-slide-to="0" class="active"></li>
-        <li data-target="#demo" data-slide-to="1"></li>
-        <li data-target="#demo" data-slide-to="2"></li>
-        <li data-target="#demo" data-slide-to="3"></li>
-        <li data-target="#demo" data-slide-to="4"></li>
-    </ul>
+<!--    <ul class="carousel-indicators pb-3">-->
+<!--        <li data-target="#demo" data-slide-to="0" class="active"></li>-->
+<!--        <li data-target="#demo" data-slide-to="1"></li>-->
+<!--        <li data-target="#demo" data-slide-to="2"></li>-->
+<!--        <li data-target="#demo" data-slide-to="3"></li>-->
+<!--        <li data-target="#demo" data-slide-to="4"></li>-->
+<!--    </ul>-->
 
     <!-- 轮播图片 -->
     <div class="carousel-inner">
@@ -60,11 +60,6 @@ include 'navBar.php'
 </div>
 <main>
 
-        <div class="d-flex justify-content-around">
-            <div class=" categoriey1"></div>
-            <div class=" categoriey2"></div>
-            <div class=" categoriey3"></div>
-        </div>
 
     <!--        <div class="row">-->
     <div class="content">
@@ -105,6 +100,13 @@ include 'navBar.php'
             </div>
 
         </div>
+    </div>
+
+
+    <div class="d-flex justify-content-around categories">
+        <div class=" categoriey1"></div>
+        <div class=" categoriey2"></div>
+        <div class=" categoriey3"></div>
     </div>
     <div class="footer">
     </div>
