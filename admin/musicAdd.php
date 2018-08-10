@@ -1,4 +1,7 @@
 <?php
+include('navBar.php');
+require_once '../static/function.php';
+myGetCurrentUser();
 ?>
 
 <!doctype html>
@@ -11,17 +14,20 @@
     <title>Document</title>
 </head>
 <body>
-<div class="comtainer">
+<div class="container">
+    <div class="page-title my-5">
+        <h1>资源管理</h1>
+    </div>
     <div class="row">
         <div class="col-8">
-            <table>
+            <table class="table table-striped table-bordered table-hover">
                 <thead>
               <tr>
                   <th>歌名</th>
                   <th>歌手</th>
                   <th>海报</th>
-                  <th>位置</th>
                   <th></th>
+                  <th>操作</th>
               </tr>
                 </thead>
             </table>

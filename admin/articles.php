@@ -6,7 +6,7 @@ myGetCurrentUser();
 
 //分页参数
 $page = empty($_GET['page']) ? 1 : (int)$_GET['page'];
-$size = 2;
+$size = 5;
 $offset = ($page - 1) * $size;
 
 
@@ -102,6 +102,7 @@ $categories=myFetchAll('select * from categories');
     </style>
 </head>
 <body>
+<script>NProgress.start();</script>
 <div class="container">
     <div class="page-title my-5">
         <h1>文章管理</h1>
@@ -112,7 +113,8 @@ $categories=myFetchAll('select * from categories');
             <select name="category" class="form-control input-sm" >
                 <option value="all">所有分类</option>
                 <?php foreach ($categories as $item) :?>
-                <option value="<?php echo $item['id'];?>" <?php echo isset($_GET['category'])&&$_GET['category']===$item['id']?'selected':'' ?>
+                <option value="<?php echo $item['id'];?>"
+                    <?php echo isset($_GET['category'])&&$_GET['category']===$item['id']?'selected':'' ?>
                 >
                     <?php echo $item['categories'];?>
                 </option>
@@ -128,14 +130,20 @@ $categories=myFetchAll('select * from categories');
         </form>
         <div class="page">
             <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="?page=<?php echo $page - 1; ?>">上一页</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="?page=<?php echo ($page - 1).$search; ?>">
+                        上一页</a>
+                </li>
                 <?php for ($i = $begin; $i < $end; $i++): ?>
                     <li class="page-item<?php echo $i === $page ? ' active' : ''; ?>">
                         <a class="page-link" href="?page=<?php echo $i.$search; ?>"><?php echo $i; ?></a>
                     </li>
                 <?php endfor ?>
-                <li class="page-item"><a class="page-link"
-                                         href="?page=<?php echo $page == $totalPages ? $page : $page + 1; ?>">下一页</a>
+                <li class="page-item">
+                    <a class="page-link"
+                       href="?page=<?php echo $page == $totalPages ? ($page).$search : ($page + 1).$search; ?>">
+                        下一页
+                    </a>
                 </li>
             </ul>
         </div>
@@ -164,8 +172,11 @@ $categories=myFetchAll('select * from categories');
                 <td class="text-center"><?php echo $item['createTime']; ?></td>
                 <td class="text-center"><?php echo convertTop($item['top']); ?></td>
                 <td class="text-center">
-                    <a href="javascript:;" class="btn  btn-primary btn-xs">编辑</a>
-                    <a href="articleDelete.php?articleid=<?php echo $articles['articleid']?>" class="btn btn-danger btn-xs">删除</a>
+                    <a href="articleUpdate.php?articleid=<?php echo $item['articleid'] ?>" class="btn  btn-primary btn-xs">编辑</a>
+                    <a href="articleDelete.php?articleid=<?php echo $articles['articleid']?>"
+                       class="btn btn-danger btn-xs">
+                        删除
+                    </a>
                 </td>
             </tr>
         <?php endforeach ?>
@@ -173,6 +184,6 @@ $categories=myFetchAll('select * from categories');
     </table>
 </div>
 
-
+<script>NProgress.done();</script>
 </body>
 </html>

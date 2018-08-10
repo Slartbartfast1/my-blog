@@ -3,7 +3,7 @@
 require_once 'config.php';
 
 /**
- * 封装大家公用的函数
+ * 封装公用的函数
  */
 session_start();
 
@@ -13,7 +13,6 @@ session_start();
 
 /**
  * 获取当前登录用户信息，如果没有获取到则自动跳转到登录页面
- * @return [type] [description]
  */
 function myGetCurrentUser () {
     if (empty($_SESSION['currentLoginUser'])) {
@@ -39,11 +38,11 @@ function myFetchAll ($sql) {
         // 查询失败
         return false;
     }
-
+    $result=[];
     while ($row = mysqli_fetch_assoc($query)) {
         $result[] = $row;
     }
-
+        //释放并关闭
     mysqli_free_result($query);
     mysqli_close($conn);
 
@@ -73,8 +72,7 @@ function myExecute ($sql) {
         // 查询失败
         return false;
     }
-
-    // 对于增删修改类的操作都是获取受影响行数
+        //返回受影响行数
     $affected_rows = mysqli_affected_rows($conn);
 
     mysqli_close($conn);

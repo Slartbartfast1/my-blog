@@ -3,15 +3,19 @@ include('navBar.php');
 require_once '../static/function.php';
 myGetCurrentUser();
 
-//连接数据库 填充标签
+//链接数据库 填充标签
 $categories = myFetchAll('select id from categories;');
-if($_SERVER['REQUEST_METHOD']==='GET'){
-    $articleid=$_GET['articleid'];
-    $article=myFetchOne("select * from article where articleid ='{$articleid}'");
-}
+$defultAuthor = myFetchOne('select name from user');
 
-//表单提交
+
+
+//验证不为空
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    addArticle();
+
+}
+function addArticle()
+{
     if (empty($_POST['title'])) {
         $GLOBALS['errorMessage'] = '标题不能为空';
         return;
@@ -24,10 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $GLOBALS['errorMessage'] = '创建时间不能为空';
         return;
     }
-//    if (empty($_POST['imgTitle'])) {
-//        $GLOBALS['errorMessage'] = '标题图片不能为空';
-//        return;
-//    }
+    if (empty($_POST['imgTitle'])) {
+        $GLOBALS['errorMessage'] = '标题图片不能为空';
+        return;
+    }
     if (empty($_POST['content'])) {
         $GLOBALS['errorMessage'] = '内容不能为空';
         return;
@@ -35,7 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     //变量声明
-    $articleid1=$_POST['articleid'];
     $title = $_POST['title'];
     $author = $_POST['author'];
     $createTime = $_POST['createTime'];
@@ -55,10 +58,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!move_uploaded_file($imgTitle['tmp_name'], $dest)) {
         exit('上传失败');
     }
+
+
     //将数据存入数据库
-    if (myExecute("update article set title='{$title}',createTime='{$createTime}'
-,author='{$author}',content='{$content}',top={$top},imgurl='{$dest}',category='{$category}' where articleid='{$articleid1}';")) {
-        exit('更新成功');
+    if (myExecute("insert into article values(null,'{$createTime}','{$title}','{$author}','{$content}',{$top},'{$dest}','{$category}');")) {
+        exit('上传成功');
     }
 }
 
@@ -81,35 +85,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="container ml-6 py-5 ">
     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
         <div class="page-title">
-            <h1>文章编辑</h1>
+            <h1>文章发布</h1>
             <?php if (isset($errorMessage)): ?>
                 <div class="alert alert-warning text-center">
                     <?php echo $errorMessage; ?>
                 </div>
             <?php endif ?>
         </div>
-        <div class="form-group" style="display: none">
-            <label for="id">id</label>
-            <input type="text" class="form-control" name="articleid" id="articleid" accept="multipart/form-data"
-                   value="<?php echo $articleid ?>">
-        </div>
         <div class="form-group">
             <label for="标题">标题</label>
-            <input type="text" class="form-control" name="title" id="title" accept="multipart/form-data"
-                   value="<?php echo $_SERVER['REQUEST_METHOD']==='GET'? $article['title']:''; ?>">
+            <input type="text" class="form-control" name="title" id="title" accept="multipart/form-data">
         </div>
         <div class="form-group">
             <label for="作者">作者</label>
             <input type="text" class="form-control" name="author" id="author" accept="multipart/form-data"
-                   value="<?php echo $article['title']; ?>">
+                   value="<?php echo $defultAuthor['name']; ?>">
         </div>
         <div class="form-group">
             <label for="创建时间">创建时间</label>
             <input type="text" class="form-control" name="createTime" id="createTime"
-                   accept="multipart/form-data" value="<?php echo $article['createTime']; ?>">
+                   accept="multipart/form-data" value="<?php echo date('y-m-d h:i:s',time()); ?>">
         </div>
         <div class="form-group">
-            <div id="image-holder"></div>
+            <div id="imageHolder"></div>
             <label for="imgTitle">标题图片</label>
             <input type="file" class="form-control" name="imgTitle" accept="image/*" id="fileUpload">
         </div>
@@ -119,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="tag">分类</label>
                 <select class="form-control" name="category" accept="multipart/form-data">
                     <?php foreach ($categories as $item): ?>
-                        <option <?php echo $item['id']==$article['category']? ' selected':''?>><?php echo $item['id'] ?></option>
+                        <option><?php echo $item['id'] ?></option>
                     <?php endforeach ?>
                     <option value="other">其它</option>
                 </select>
@@ -127,22 +125,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <div class="form-group">
             <label for="置顶">置顶</label>
-            <input type="checkbox" name="top" id="top" accept="multipart/form-data" <?php echo $article['top']==2? ' checked':''?>>
+            <input type="checkbox" name="top" id="top" accept="multipart/form-data">
         </div>
         <div class="form-group">
             <label for="articl">文章</label>
 
 
             <div id="div1">
-                <?php echo $article['content']?>
             </div>
-            <!--            将富文本编辑器的内容同步到表单的文本域;-->
+<!--            将富文本编辑器的内容同步到表单的文本域;-->
             <div style="display:none">
-                <textarea id="text1" name="content" class="form-control" value=""></textarea>
+                <textarea id="text1" name="content" class="form-control"></textarea>
             </div>
         </div>
         <button class="btn btn-outline-success" type="submit">发布文章</button>
-        <button class="btn btn-outline-warning" type="submit" id="btn2">保存草稿</button>
+        <button class="btn btn-outline-warning" type="submit">保存草稿</button>
     </form>
     <script src="https://cdn.bootcss.com/wangEditor/10.0.13/wangEditor.js"></script>
     <script type="text/javascript">
@@ -153,16 +150,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $text1.val(html)
         };
         editor.create();
-        $text1.val(editor.txt.html());
-
-
+        $text1.val(editor.txt.html())
     </script>
     <script>
         $("#fileUpload").on('change', function () {
 
             if (typeof (FileReader) != "undefined") {
 
-                var image_holder = $("#image-holder");
+                var image_holder = $("#imageHolder");
                 image_holder.empty();
 
                 var reader = new FileReader();
@@ -173,7 +168,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         "width": 400,
                         "height": 200
                     }).appendTo(image_holder);
-
                 };
                 image_holder.show();
                 reader.readAsDataURL($(this)[0].files[0]);
@@ -183,5 +177,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         });
 
     </script>
+
 </body>
 </html>
