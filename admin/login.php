@@ -79,7 +79,6 @@ if($_SERVER['REQUEST_METHOD']==='GET'&& isset($_GET['action'])&&$_GET['action']=
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
 <script>
     $(function($){
-        //单独作用域;
         //输入用户名之后能显示头像;
         //时机:用户名文本框失去焦点
         //事件:获取用户名对应的头像地址;

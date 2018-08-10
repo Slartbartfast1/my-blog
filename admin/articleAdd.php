@@ -28,10 +28,10 @@ function addArticle()
         $GLOBALS['errorMessage'] = '创建时间不能为空';
         return;
     }
-    if (empty($_POST['imgTitle'])) {
-        $GLOBALS['errorMessage'] = '标题图片不能为空';
-        return;
-    }
+//    if (empty($_POST['imgTitle'])) {
+//        $GLOBALS['errorMessage'] = '标题图片不能为空';
+//        return;
+//    }
     if (empty($_POST['content'])) {
         $GLOBALS['errorMessage'] = '内容不能为空';
         return;
@@ -45,6 +45,7 @@ function addArticle()
     $imgTitle = $_FILES['imgTitle'];
     $category = $_POST['category'];
     $content = $_POST['content'];
+    $gist=$_POST['gist'];
     $dest = '../static/assets/img/' . $title . $imgTitle['name'];
 
 
@@ -61,7 +62,7 @@ function addArticle()
 
 
     //将数据存入数据库
-    if (myExecute("insert into article values(null,'{$createTime}','{$title}','{$author}','{$content}',{$top},'{$dest}','{$category}');")) {
+    if (myExecute("insert into article values(null,'{$createTime}','{$title}', '{$gist}','{$author}','{$content}',{$top},'{$dest}','{$category}');")) {
         exit('上传成功');
     }
 }
@@ -100,6 +101,10 @@ function addArticle()
             <label for="作者">作者</label>
             <input type="text" class="form-control" name="author" id="author" accept="multipart/form-data"
                    value="<?php echo $defultAuthor['name']; ?>">
+        </div>
+        <div class="form-group">
+            <label for="摘要">摘要</label>
+            <textarea type="text" class="form-control" name="gist" id="gist" cols="30" rows="5"></textarea>
         </div>
         <div class="form-group">
             <label for="创建时间">创建时间</label>

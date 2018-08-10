@@ -1,25 +1,24 @@
-body {
+body{
     background-color: #F4EFE9;
 }
 .page{
     transition: .3s ease 0s;
+    transform: translateX(0);
     width:100%;
-
 }
-
 
 .pageScale{
-    transform: translateX(-10%);
-
-
+    transform:translateX(-10%);
 }
 .navbar-brand{
+    /*left:0px;*/
     top:10%;
     color:rgba(0,0,0,.5)!important;
     display: block;
     position:relative;
-    left:40%;
-
+}
+.navbarBrandLeft{
+    left:34%;
 }
 
 
@@ -30,12 +29,14 @@ body {
 }
 
 .contentBox {
-    height: 400px;
+    /*position: absolute;*/
+    height: 300px;
     box-shadow: 3px 3px 20px 1px rgba(0, 0, 0, .1);
-    margin-top: 30px;
+    margin-top: 2%;
     transition: .2s ease;
     padding: 0;
     width: 70%;
+
 }
 
 .contentBox:hover {
@@ -68,16 +69,19 @@ body {
     z-index: 9999;
 }
 
-.icon {
+.iconBefore {
+    z-index: 1;
     height: 3px;
     width: 32px;
     background-color: #fff;
     position: absolute;
-    top: 18px;
-    left: 4px;
-    transition: .6s ease 0s;
-}
+    top: 8px;
 
+    transition: .6s ease 0s;
+    transform-origin: left top;
+    transform: rotate(41deg);
+    left: 4px;
+}
 .iconAfter {
     z-index: 1;
     height: 3px;
@@ -88,56 +92,69 @@ body {
     left: 4px;
     transition: .6s ease 0s;
     transform-origin: left bottom;
+    transform: rotate(-40deg);
 }
-
-.iconBefore {
-    z-index: 1;
+.grey{
+    background-color:#7C7C7D!important;
+}
+.opacity0{
+    background-color: rgba(0,0,0,0)!important;
+}
+.icon {
     height: 3px;
     width: 32px;
     background-color: #fff;
     position: absolute;
-    top: 8px;
+    top: 18px;
     left: 4px;
     transition: .6s ease 0s;
-    transform-origin: left top;
 }
 
 .beforeDeg {
-    transform: rotate(41deg);
-    left: 8px;
+    transform: rotate(0deg);
+    left: 4px;
 }
 
 
 .afterDeg {
-    transform: rotate(-40deg);
-    left: 8px;
+    transform: rotate(0deg);
+    left: 4px;
 }
 .sideNav{
     position: absolute;
-    height:100%;
+    height:850px;
     width:300px;
     top:-60px;
-    right:-300px;
+    right:0px;
     background-color: #F5FAF9;
     transition: .3s ease 0s;
     box-shadow: 0 0 5px 1px rgba(0,0,0,.11);
 }
 .sideNavSlide{
-    right:0px;
+    right:-300px;
+
 }
 
 .avatarBox{
-
+    position:relative;
     height:40%;
     width:100%;
 }
 .avatar{
-    height:100px;
+    height:150px;
     width:50%;
     position:absolute;
     top:100px;
-    right:15%;
+    left:50%;
+    margin-left: -25%;
 
+}
+.gist{
+    position:absolute;
+    bottom:30px;
+    width:70%;
+    left:50%;
+    margin-left: -35%;
 }
 .btns{
 
@@ -168,6 +185,7 @@ body {
 
 
 .buttonWarp:hover{
+    border-left: 2px solid darkseagreen;
     background-color: rgba(0,0,0,.1);
 }
 
@@ -176,13 +194,13 @@ body {
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, .1);
     height: 55px;
 }
-.opacity0{
-    background-color: rgba(0,0,0,0)!important;
-}
+
 
 .categoriey1,.categoriey2,.categoriey3{
-    height: 30px;
-    border: 10px #F4EFE9 solid;
+    position:relative;
+    height: 300px;
+    top:-20px;
+    width:30%;
 }
 .categoriey1{
     background-color:#F5EEEC;
@@ -205,16 +223,23 @@ body {
 }
 
 .title {
-    position: absolute;
+    position:absolute;
     width: 100%;
     height: 100px;
     background-color: rgba(0, 0, 0, .3);
-    top: 300px;
+    bottom:0px;
     color: whitesmoke;
 }
+
 
 .footer {
     width: 100%;
     height: 200px;
     background-color: darkgrey;
 }
+
+/*#demo{*/
+    /*position:fixed!important;*/
+    /*top:0;*/
+    /*wi;*/
+/*}*/

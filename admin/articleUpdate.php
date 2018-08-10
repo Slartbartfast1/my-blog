@@ -42,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $imgTitle = $_FILES['imgTitle'];
     $category = $_POST['category'];
     $content = $_POST['content'];
+    $gist=$_POST['gist'];
     $dest = '../static/assets/img/' . $title . $imgTitle['name'];
 
 
@@ -57,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     //将数据存入数据库
     if (myExecute("update article set title='{$title}',createTime='{$createTime}'
-,author='{$author}',content='{$content}',top={$top},imgurl='{$dest}',category='{$category}' where articleid='{$articleid1}';")) {
+,author='{$author}',content='{$content}',top={$top},gist='{$gist}',imgurl='{$dest}',category='{$category}' where articleid='{$articleid1}';")) {
         exit('更新成功');
     }
 }
@@ -104,6 +105,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                    value="<?php echo $article['title']; ?>">
         </div>
         <div class="form-group">
+            <label for="摘要">摘要</label>
+            <textarea type="text" class="form-control" name="gist" id="gist" cols="30" rows="5"><?php echo $article['gist']?></textarea>
+        </div>
+        <div class="form-group">
             <label for="创建时间">创建时间</label>
             <input type="text" class="form-control" name="createTime" id="createTime"
                    accept="multipart/form-data" value="<?php echo $article['createTime']; ?>">
@@ -142,7 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
         <button class="btn btn-outline-success" type="submit">发布文章</button>
-        <button class="btn btn-outline-warning" type="submit" id="btn2">保存草稿</button>
+<!--        <button class="btn btn-outline-warning" type="submit" id="btn2">保存草稿</button>-->
     </form>
     <script src="https://cdn.bootcss.com/wangEditor/10.0.13/wangEditor.js"></script>
     <script type="text/javascript">
