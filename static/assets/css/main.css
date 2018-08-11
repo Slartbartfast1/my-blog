@@ -1,6 +1,6 @@
 ::-webkit-scrollbar{
    width:12px;
-    height:200px;
+    /*height:200px;*/
 }
 
 ::-webkit-scrollbar-track-piece{
@@ -176,6 +176,7 @@ body{
     left:50%;
     margin-left: -35%;
     top:80%;
+    cursor:default;
 }
 .btns{
 

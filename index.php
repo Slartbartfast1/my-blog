@@ -22,16 +22,16 @@ include 'navBar.php'
 
 <div class="page">
 <div id="demo" class="carousel slide" data-ride="carousel">
-    <!-- 指示符 -->
-<!--    <ul class="carousel-indicators pb-3">-->
-<!--        <li data-target="#demo" data-slide-to="0" class="active"></li>-->
-<!--        <li data-target="#demo" data-slide-to="1"></li>-->
-<!--        <li data-target="#demo" data-slide-to="2"></li>-->
-<!--        <li data-target="#demo" data-slide-to="3"></li>-->
-<!--        <li data-target="#demo" data-slide-to="4"></li>-->
-<!--    </ul>-->
+<!--     指示符-->
+    <ul class="carousel-indicators pb-3">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+        <li data-target="#demo" data-slide-to="3"></li>
+        <li data-target="#demo" data-slide-to="4"></li>
+    </ul>
 
-    <!-- 轮播图片 -->
+<!--     轮播图片-->
     <div class="carousel-inner">
         <div class="carousel-item active">
             <img src="static/assets/img/wallhaven-671087.jpg" class="img-fluid">
@@ -115,7 +115,7 @@ include 'navBar.php'
 <!--TODO:优化布局    分页系统   头像点击显示信息   文章阅读界面-->
 <script>
     //轮播图定时
-    $('.carousel').carousel({interval: 3000});
+    $('.carousel').carousel({interval: 5000});
 
     //页面布局
     // $('.contentBox:odd').css({left: '20%'});

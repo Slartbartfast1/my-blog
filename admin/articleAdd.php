@@ -28,10 +28,10 @@ function addArticle()
         $GLOBALS['errorMessage'] = '创建时间不能为空';
         return;
     }
-//    if (empty($_POST['imgTitle'])) {
-//        $GLOBALS['errorMessage'] = '标题图片不能为空';
-//        return;
-//    }
+    if (empty($_FILES['imgTitle']['name'])) {
+        $GLOBALS['errorMessage'] = '标题图片不能为空';
+        return;
+    }
     if (empty($_POST['content'])) {
         $GLOBALS['errorMessage'] = '内容不能为空';
         return;
@@ -62,7 +62,7 @@ function addArticle()
 
 
     //将数据存入数据库
-    if (myExecute("insert into article values(null,'{$createTime}','{$title}', '{$gist}','{$author}','{$content}',{$top},'{$dest}','{$category}');")) {
+    if (myExecute("insert into article values(null,'{$createTime}','{$title}', '{$gist}','{$author}','{$content}',{$top},'{$dest}','{$category}',null);")) {
         exit('上传成功');
     }
 }

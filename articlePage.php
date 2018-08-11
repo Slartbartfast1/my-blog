@@ -21,102 +21,117 @@ include 'navBar.php';
     <link rel="stylesheet" href="static/assets/css/main.css">
     <style>
 
-        .page{
+        .page {
             z-index: 1;
             /*height:4000px;*/
-            width:100%;
+            width: 100%;
             /*position: absolute;*/
             background: url("static/assets/img/wallhaven-671087.jpg") no-repeat fixed;
-            background-size:100% 400px;
+            background-size: 100% 400px;
+
         }
-        .articleBox{
+
+        .articleBox {
             position: relative;
-            top:400px;
-            width:100%;
+            top: 400px;
+            width: 100%;
             height: 100%;
             z-index: 2;
             background-color: #F4EFE9;
         }
-        .titleBox{
-            position:absolute;
-            height:130px;
+
+        .titleBox {
+            position: absolute;
+            height: 130px;
             background-color: #FFF;
-            left:50%;
-            transform: translate(-50%,-50%);
-            box-shadow: 0 0 1px 1px rgba(0,0,0,.1);
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, .1);
             text-align: center;
         }
-        .articleContent{
-            position:relative;
-            transform:translateX(-50%);
-            left:50%;
+
+        .articleContent {
+            position: relative;
+            transform: translateX(-50%);
+            left: 50%;
             /*height:2000px;*/
-            background-color:#FFF;
-            margin-top:75px;
-            box-shadow: 0 0 1px 1px rgba(0,0,0,.1);
+            background-color: #FFF;
+            margin-top: 75px;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, .1);
             text-indent: 1em
         }
-        .titleTree{
-            position:absolute;
-            top:480px;
+
+        .titleTree {
+            position: absolute;
+            top: 480px;
             display: block;
             z-index: 1;
             transition: .1s ease-in 0s;
         }
-        .titleTree ul{
+
+        .titleTree ul {
         }
-        .fixed{
-            position:fixed;
-            top:65px;
+
+        .fixed {
+            position: fixed;
+            top: 65px;
 
         }
 
-        .active{
+        .active {
             border-left: 2px solid darkseagreen;
-            background-color: rgba(0,0,0,.1);
+            background-color: rgba(0, 0, 0, .1);
         }
 
-        .titleTree a{
-            color:grey;
-            box-sizing:content-box!important;
+        .titleTree a {
+            color: grey;
+            box-sizing: content-box !important;
             display: block;
-            width:130px;
+            width: 130px;
         }
-        .titleTreeLeft{
-            left:7%;
+
+        .titleTreeLeft {
+            left: 7%;
         }
-        .commentBox{
+
+        .commentBox {
             min-height: 200px;
             background-color: whitesmoke;
-            left:50%;
+            left: 50%;
             transform: translateX(-50%);
             margin-top: 1%;
-            box-shadow: 0 0 1px 1px rgba(0,0,0,.1);
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, .1);
         }
-        .comments{
+
+        .comments {
             min-height: 200px;
             background-color: whitesmoke;
-            left:50%;
+            left: 50%;
             transform: translateX(-50%);
             margin-top: 10%;
-            box-shadow: 0 0 1px 1px rgba(0,0,0,.1);
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, .1);
         }
-        .row{
-            margin-left:0;
+
+        .row {
+            margin-left: 0;
         }
-        .comments p{
+
+        .comments p {
             text-indent: 2em;
         }
-        .comments a{
-            position:absolute;
-            right:10px;
-            bottom:10px;
+
+        .comments a {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
         }
-        .commentTime{
-            position:absolute;
-            left:10px;
-            bottom:10px;
+
+        .commentTime {
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
         }
+
         @font-face {
             font-family: 'iconfont';
             src: url('static/assets/fonts/iconfont.eot');
@@ -125,42 +140,47 @@ include 'navBar.php';
             url('static/assets/fonts/iconfont.ttf') format('truetype'),
             url('static/assets/fonts/iconfont.svg#iconfont') format('svg');
         }
-        .iconfont{
-            font-family:"iconfont" !important;
-            font-size:28px;font-style:normal;
+
+        .iconfont {
+            font-family: "iconfont" !important;
+            font-size: 28px;
+            font-style: normal;
             -webkit-font-smoothing: antialiased;
             -webkit-text-stroke-width: 0.2px;
             -moz-osx-font-smoothing: grayscale;
-            position:absolute;
+            position: absolute;
             display: block;
-            left:50%;
+            left: 50%;
             margin-left: -14px;
             top: 50%;
-            margin-top:-40%;
-            color:#F4EFE9;
+            margin-top: -40%;
+            color: #F4EFE9;
         }
-        .goTop{
-            position:fixed;
-            bottom:5%;
-            right:10%;
-            background-color:rgba(0,0,0,.1);
-            width:50px;
-            height:30px;
+
+        .goTop {
+            position: fixed;
+            bottom: 5%;
+            right: 10%;
+            background-color: rgba(0, 0, 0, .1);
+            width: 50px;
+            height: 30px;
             cursor: pointer;
             display: none;
             border-radius: 5%;
             transition: .1s ease-in 0s;
         }
-        .goTop:hover{
-            background-color:rgba(0,0,0,.2)
-        }
-        .goTopLeft{
-            right:25%;
-        }
-        .articleContent img{
-            max-width: 100%;
+
+        .goTop:hover {
+            background-color: rgba(0, 0, 0, .2)
         }
 
+        .goTopLeft {
+            right: 25%;
+        }
+
+        .articleContent img {
+            max-width: 100%;
+        }
 
 
     </style>
@@ -185,7 +205,7 @@ include 'navBar.php';
                 <small>泛银河系含漱爆破液</small>
                 <small>创建于:2018-08-10 09:59:13</small>
                 <small>阅读数:99</small>
-        </div>
+            </div>
         </div>
         <div class="articleContent col-7 py-4">
 
@@ -195,9 +215,10 @@ include 'navBar.php';
             <p>我曾想过做设计，后来发现画画就跟写字一样，上十年才能达到一定的境界。</p>
             <p>我向往德国、日本的教育，德国是以专科为主，学好了技术就能找到不错的工作；日本则是高中毕业就能工作。在中国专科或者高中毕业想找到好的工作基本不可能。</p>
             <p>在GitHub上看到过一个97年的日本小兄弟已经600+个follower了，满是羡慕。</p>
-            <img src="https://img-blog.csdn.net/20180701152611176?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1NsYXJ0aWJhcnRmYXN0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="">
+            <img src="https://img-blog.csdn.net/20180701152611176?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1NsYXJ0aWJhcnRmYXN0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"
+                 alt="">
             <p>我是强迫症患者，早上起不来会把闹钟放在离床头很远的地方；看见写乱的代码会忍不住去改。</p>
-            <h2 >收获为什么要清楚他妈的</h2>
+            <h2>收获为什么要清楚他妈的</h2>
             <ol>
                 <li>做了这个博客</li>
                 <li>黄冈半年游，北京三月游</li>
@@ -208,7 +229,7 @@ include 'navBar.php';
                 <li>多做无益</li>
                 <li>眼界</li>
             </ol>
-            <h2 >未来的建议</h2>
+            <h2>未来的建议</h2>
             <ol>
                 <li>坐自动扶梯不要站着不动</li>
                 <li>坐车的时候看掘金</li>
@@ -229,11 +250,12 @@ include 'navBar.php';
             <form action="" method="post" enctype="multipart/form-data"></form>
             <div class="form-group ">
                 <label for="name"></label>
-                <input type="text" class="form-control" id="nickName" name="nickName" autocomplete="off" placeholder="昵称">
+                <input type="text" class="form-control" id="nickName" name="nickName" autocomplete="off"
+                       placeholder="昵称">
             </div>
             <div class="form-group">
                 <label for="comment"></label>
-            <textarea  class="form-control " rows="5" name="comment" id="comment" placeholder="说点什么吧"></textarea>
+                <textarea class="form-control " rows="5" name="comment" id="comment" placeholder="说点什么吧"></textarea>
             </div>
 
         </div>
@@ -241,7 +263,8 @@ include 'navBar.php';
             <span class="text-right">#1  </span> <span>name:</span>
             <hr>
             <p>我喜欢干实事，喜欢学学了就能产出东西的知识，讨厌长篇大论的理论知识。这也是为什么我不喜欢化学了。</p>
-            <small class="commentTime font-weight-light text-muted">2018-08-10 09:59:13</small><a href="#">回复</a>
+            <small class="commentTime font-weight-light text-muted">2018-08-10 09:59:13</small>
+            <a href="#">回复</a>
         </div>
         <div class="comments col-7 mt-3 py-3">
             <span class="text-right">#1  </span> <span>name:</span>
@@ -251,37 +274,38 @@ include 'navBar.php';
             <p>我喜欢干实事，喜欢学学了就能产出东西的知识，讨厌长篇大论的理论知识。这也是为什么我不喜欢化学了。</p>
             <p>我喜欢干实事，喜欢学学了就能产出东西的知识，讨厌长篇大论的理论知识。这也是为什么我不喜欢化学了。</p>
             <p>我喜欢干实事，喜欢学学了就能产出东西的知识，讨厌长篇大论的理论知识。这也是为什么我不喜欢化学了。</p>
-            <small class="commentTime font-weight-light text-muted">2018-08-10 09:59:13</small><a href="#">回复</a>
+            <small class="commentTime font-weight-light text-muted">2018-08-10 09:59:13</small>
+            <a href="#">回复</a>
         </div>
         <div class="comments col-7 mt-3 py-3">
             <span class="text-right">#1  </span> <span>name:</span>
             <hr>
             <p>我喜欢干实事，喜欢学学了就能产出东西的知识，讨厌长篇大论的理论知识。这也是为什么我不喜欢化学了。</p>
-            <small class="commentTime font-weight-light text-muted">2018-08-10 09:59:13</small><a href="#">回复</a>
+            <small class="commentTime font-weight-light text-muted">2018-08-10 09:59:13</small>
+            <a href="#">回复</a>
 
 
         </div>
 
 
-        </div>
-
+    </div>
 
 
 </div>
-<div  class='goTop'>
+<div class='goTop'>
     <span class="iconfont"></span>
 </div>
 
 <script>
     //创建锚点
-    for(var count=0;count<$(':header').length;count++){
-        var count2=count+1;
-        $(':header').eq(count).attr('id','section'+count2);
-        href='#'+'section'+count2,
-            inner=$(':header').eq(count).text();
+    for (var count = 0; count < $(':header').length; count++) {
+        var count2 = count + 1;
+        $(':header').eq(count).attr('id', 'section' + count2);
+        href = '#' + 'section' + count2,
+            inner = $(':header').eq(count).text();
         $('.titleTree ul').append("<li class='nav-item'><a class='nav-link'></a></li>");
-        var that=$('.titleTree ul a');
-        that.eq(count).attr('href',href);
+        var that = $('.titleTree ul a');
+        that.eq(count).attr('href', href);
         that.eq(count).text(inner);
     }
 
@@ -293,13 +317,14 @@ include 'navBar.php';
                 $('.titleTree').addClass('fixed fadeInUp')
             }
 
-        else {
-            $('.navbar-brand').text("Slartbartfast's Blog").removeClass('fixed fadeIn');
-            $('.titleTree').removeClass('fixed fadeInUp');
-        }if(winTop>600){
-            $('.goTop').fadeIn(300);
+            else {
+                $('.navbar-brand').text("Slartbartfast's Blog").removeClass('fixed fadeIn');
+                $('.titleTree').removeClass('fixed fadeInUp');
             }
-            else{
+            if (winTop > 600) {
+                $('.goTop').fadeIn(300);
+            }
+            else {
                 $('.goTop').fadeOut();
             }
 
@@ -307,13 +332,13 @@ include 'navBar.php';
         });
     });
 
-//点击回到顶部
+    //点击回到顶部
 
-    $('.goTop').on('click',function(){
-       $(' body').animate({'scrollTop':0},200);
+    $('.goTop').on('click', function () {
+        $(' body').animate({'scrollTop': 0}, 200);
     });
 
-    $('.openNav').on('click',(function () {
+    $('.openNav').on('click', (function () {
         $('.titleTree').toggleClass('titleTreeLeft');
         $('.goTop').toggleClass('goTopLeft');
     }));

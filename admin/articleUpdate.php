@@ -24,10 +24,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $GLOBALS['errorMessage'] = '创建时间不能为空';
         return;
     }
-//    if (empty($_POST['imgTitle'])) {
-//        $GLOBALS['errorMessage'] = '标题图片不能为空';
-//        return;
-//    }
+
+
+
     if (empty($_POST['content'])) {
         $GLOBALS['errorMessage'] = '内容不能为空';
         return;
@@ -35,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     //变量声明
+
     $articleid1=$_POST['articleid'];
     $title = $_POST['title'];
     $author = $_POST['author'];
@@ -43,19 +43,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $category = $_POST['category'];
     $content = $_POST['content'];
     $gist=$_POST['gist'];
-    $dest = '../static/assets/img/' . $title . $imgTitle['name'];
+
+    $article1=myFetchOne("select * from article where articleid ='{$articleid1}'");
+    if (empty($_FILES['imgTitle']["name"])) {
+        $dest=$article1['imgurl'];  //保留原来路径
+    }else{
+      $dest= '../static/assets/img/' . $title . $imgTitle['name'];//更新路径
+    };
+
 
 
     //转换为插入语句
     if (isset($_POST['top'])) {
-        $top = 1;
+        $top = 1;//置顶
     } else {
-        $top = 2;
+        $top = 2;//不置顶
     }
 
-    if (!move_uploaded_file($imgTitle['tmp_name'], $dest)) {
-        exit('上传失败');
-    }
+if(isset($_FILES['imgTitle']["name"])){
+    move_uploaded_file($imgTitle['tmp_name'], $dest)? var_dump('上传成功') : exit('上传失败') ;
+};
     //将数据存入数据库
     if (myExecute("update article set title='{$title}',createTime='{$createTime}'
 ,author='{$author}',content='{$content}',top={$top},gist='{$gist}',imgurl='{$dest}',category='{$category}' where articleid='{$articleid1}';")) {
@@ -106,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <div class="form-group">
             <label for="摘要">摘要</label>
-            <textarea type="text" class="form-control" name="gist" id="gist" cols="30" rows="5"><?php echo $article['gist']?></textarea>
+            <textarea type="text" class="form-control" name="gist" id="gist" cols="30" rows="5" ><?php echo $article['gist']?></textarea>
         </div>
         <div class="form-group">
             <label for="创建时间">创建时间</label>

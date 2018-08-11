@@ -16,7 +16,7 @@
     </div>
 </header>
 <div class="sideNav sideNavSlide">
-    <div class="avatarBox animated bounceInRight">
+    <div class="avatarBox animated">
         <div class="avatar text-center">
             <img src="static/assets/img/3123avatar1.png" alt="" class="img-thumbnail rounded-circle">
 
@@ -31,7 +31,7 @@
         <div class="buttonWarp"><a href="#">分类</a></div>
         <div class="buttonWarp"><a href="#">音乐台</a></div>
         <div class="buttonWarp"><a href="#">资源</a></div>
-        <div class="buttonWarp"><a href="https://github.com/Slartbartfast1">Github</a></div>
+        <div class="buttonWarp"><a href="#">影院</a></div>
     </div>
 
     <div class="openNav">
