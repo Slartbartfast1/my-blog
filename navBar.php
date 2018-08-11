@@ -26,12 +26,12 @@
         </div>
     </div>
     <div class="btns text-center">
-        <div class="buttonWarp"><a href="#" class="myActive">首页
+        <div class="buttonWarp"><a href="index.php" class="myActive">首页
             </a></div>
         <div class="buttonWarp"><a href="#">分类</a></div>
-        <div class="buttonWarp"><a href="#">音乐台</a></div>
+        <div class="buttonWarp"><a href="music.php">音乐盒</a></div>
         <div class="buttonWarp"><a href="#">资源</a></div>
-        <div class="buttonWarp"><a href="#">影院</a></div>
+        <div class="buttonWarp"><a href="theater.php">影院</a></div>
     </div>
 
     <div class="openNav">
