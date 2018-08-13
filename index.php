@@ -1,5 +1,6 @@
 <?php
-include 'navBar.php'
+include 'navBar.php';
+
 ?>
 
 <!doctype html>

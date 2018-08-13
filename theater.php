@@ -159,7 +159,7 @@
     <main>
         <h1 class="display-4">正在热映:</h1>
         <hr>
-        <div class="inTheaterSlide">
+        <div class="inTheaterSlide wow animated fadeInRight">
             <div class="iTSlideBox">
 <!--                插入正在热映-->
             </div>
@@ -174,8 +174,8 @@
         <hr>
         <div class="container">
             <div class="row">
-                <div class=" newMovies col-lg-6 col-xs-12">
-                    <h5>新片榜</h5>
+                <div class=" newMovies col-lg-6 col-xs-12 wow animated fadeIn">
+                    <h4>新片榜</h4>
                     <table class="table table-hover">
                         <thead>
                         <th>海报</th>
@@ -192,8 +192,8 @@
 
                 </div>
 
-                <div class=" usBox col-lg-6 col-xs-12">
-                    <h5>北美票房榜</h5>
+                <div class=" usBox col-lg-6 col-xs-12 wow animated fadeIn">
+                    <h4>北美票房榜</h4>
                     <table class="table table-hover">
                         <thead>
                         <th>海报</th>
@@ -205,6 +205,42 @@
                         </thead>
                         <tbody>
 <!--                        插入北美票房榜-->
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class=" weekly col-lg-12 col-xs-12 wow animated fadeIn">
+                    <h4>一周口碑榜</h4>
+                    <table class="table table-hover">
+                        <thead>
+                        <th>海报</th>
+                        <th class="text-center">名称</th>
+                        <th>时间</th>
+                        <th>导演</th>
+                        <th class="text-center">卡司</th>
+                        <th class="text-center">评分</th>
+                        </thead>
+                        <tbody>
+                        <!--                        插入口碑榜-->
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class=" top10 col-lg-12 col-xs-12 wow animated fadeIn">
+                    <h4>TOP10</h4>
+                    <table class="table table-hover">
+                        <thead>
+                        <th>海报</th>
+                        <th class="text-center">名称</th>
+                        <th>时间</th>
+                        <th>导演</th>
+                        <th class="text-center">卡司</th>
+                        <th class="text-center">评分</th>
+                        </thead>
+                        <tbody>
+                        <!--                        插入TOP10-->
                         </tbody>
                     </table>
 
@@ -333,6 +369,70 @@
     {{/for}}
 
 </script>
+
+<script id="weekly" type="text/myjsRender">
+    {{for weekly}}
+    <tr>
+                       <td><img src="{{:subject.images.small}}" alt=""></td>
+                    <td><a href="{{:subject.alt}}">{{:subject.title}}</a></td>
+                    <td>{{:subject.pubdates}}</td>
+                    <td>
+                    {{for subject.directors}}
+                    {{:name}}
+                    {{/for}}
+                    </td>
+                    <td>
+                    {{for subject.casts}}
+                    {{:name}}
+                    {{/for}}
+                    </td>
+                    <td  class="text-center">{{:subject.rating.average}}</td>
+     </tr>
+    {{/for}}
+
+</script>
+<script id="newMovies" type="text/myjsRender">
+    {{for newMovies}}
+    <tr>
+                       <td><img src="{{:images.small}}" alt=""></td>
+                    <td><a href="{{:alt}}">{{:title}}</a></td>
+                    <td>{{:pubdates}}</td>
+                    <td>
+                    {{for directors}}
+                    {{:name}}
+                    {{/for}}
+                    </td>
+                    <td>
+                    {{for casts}}
+                    {{:name}}
+                    {{/for}}
+                    </td>
+                    <td  class="text-center">{{:rating.average}}</td>
+     </tr>
+    {{/for}}
+
+
+</script>
+<script id="top10" type="text/myjsRender">
+    {{for top10}}
+    <tr>
+                       <td><img src="{{:images.small}}" alt=""></td>
+                    <td><a href="{{:alt}}">{{:title}}</a></td>
+                    <td>{{:pubdates}}</td>
+                    <td>
+                    {{for directors}}
+                    {{:name}}
+                    {{/for}}
+                    </td>
+                    <td>
+                    {{for casts}}
+                    {{:name}}
+                    {{/for}}
+                    </td>
+                    <td  class="text-center">{{:rating.average}}</td>
+     </tr>
+    {{/for}}
+</script>
 //模板结束=====================================================================
 
 
@@ -356,9 +456,22 @@
         $('.usBox tbody').html(html);
     }
 
+    //一周口碑榜
+    function weekly(res){
+        var html = $('#weekly').render({weekly: res.subjects});
+        $('.weekly tbody').html(html);
+    }
+
+    function top10(res){
+        var html = $('#top10').render({top10: res.subjects});
+        $('.top10 tbody').html(html);
+    }
+
 </script>
 <script src="https://cdn.bootcss.com/jsrender/1.0.0-rc.70/jsrender.min.js"></script>
 <script src="https://douban.uieee.com/v2/movie/in_theaters?callback=inTheaterMovies"></script>
 <script src="https://douban.uieee.com/v2/movie/new_movies?callback=newMovies"></script>
 <script src="https://douban.uieee.com/v2/movie/us_box?callback=usBox"></script>
+<script src="https://douban.uieee.com/v2/movie/weekly?callback=weekly"></script>
+<script src="https://douban.uieee.com/v2/movie/top250?count=10&callback=top10"></script>
 </html>
