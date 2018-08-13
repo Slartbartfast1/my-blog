@@ -2,8 +2,68 @@
 include('navBar.php');
 require_once '../static/function.php';
 myGetCurrentUser();
-?>
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    addMusic();
+}
+function addMusic()
+{
+    if (empty($_POST['title'])) {
+        $GLOBALS['errorMessage'] = '请输入标题';
+        return;
+    }
+    if (empty($_POST['author'])) {
+        $GLOBALS['errorMessage'] = '请输入歌手';
+        return;
+    }
+    if (empty($_FILES['music']['name'])) {
+        $GLOBALS['errorMessage'] = '请上传音乐';
+        return;
+    }
+    if (empty($_FILES['poster']['name'])) {
+        $GLOBALS['errorMessage'] = '请上传海报';
+        return;
+    }
+    if (empty($_POST['desc'])) {
+        $GLOBALS['errorMessage'] = '请输入描述';
+        return;
+    }
+    if (empty($_POST['album'])) {
+        $GLOBALS['errorMessage'] = '请输入合集';
+        return;
+    }
+    $title = $_POST['title'];
+    $author = $_POST['author'];
+    $music = $_FILES['music'];
+    $poster = $_FILES['poster'];
+    $desc = $_POST['desc'];
+    $album=$_POST['album'];
+    $musicDest = '../static/assets/music/' . $title . $music['name'];
+    $posterDest='../static/assets/music/poster' . $title . $music['name'];
 
+
+    if (!move_uploaded_file($poster['tmp_name'],$posterDest)) {
+        exit('上传海报失败');
+    }
+
+    if (!move_uploaded_file($music['tmp_name'],$musicDest)) {
+        exit('上传音乐失败');
+    }
+
+
+
+if(!myExecute("insert into music values(null,'{$title}','{$musicDest}','{$author}','{$posterDest}','{$desc}','{$album}')")){
+    exit('更新数据库失败');
+}else{
+    header('Location:articleAdd.php');
+}
+
+
+
+
+}
+
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,27 +75,43 @@ myGetCurrentUser();
 </head>
 <body>
 <div class="container">
-    <div class="page-title my-5">
-        <h1>资源管理</h1>
-    </div>
-    <div class="row">
-        <div class="col-8">
-            <table class="table table-striped table-bordered table-hover">
-                <thead>
-              <tr>
-                  <th>歌名</th>
-                  <th>歌手</th>
-                  <th>海报</th>
-                  <th></th>
-                  <th>操作</th>
-              </tr>
-                </thead>
-            </table>
+    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
+        <div class="page-title py-5">
+            <h1>音乐上传</h1>
+            <?php if (isset($errorMessage)): ?>
+                <div class="alert alert-warning text-center">
+                    <?php echo $errorMessage; ?>
+                </div>
+            <?php endif ?>
         </div>
-        <div class="col-4">
+        <div class="form-group">
+            <label for="title">歌名</label>
+            <input type="text" class="form-control" name="title" id="title" accept="multipart/form-data">
+        </div>
+        <div class="form-group">
+            <label for="music">音乐</label>
+            <input type="file" class="form-control" name="music" accept="mp3/*" id="fileUpload">
+        </div>
+        <div class="form-group">
+            <label for="author">歌手</label>
+            <input type="text" class="form-control" name="author" id="author" accept="multipart/form-data"">
+        </div>
+        <div class="form-group">
+            <label for="album">唱片集</label>
+            <input type="text" class="form-control" name="album" id="album" accept="multipart/form-data"">
+        </div>
+        <div class="form-group">
+            <div id="imageHolder"></div>
+            <label for="poster">海报</label>
+            <input type="file" class="form-control" name="poster" accept="image/*" id="fileUpload">
+        </div>
+        <div class="form-group">
+            <label for="desc">描述</label>
+            <textarea type="text" class="form-control" name="desc" id="desc" cols="30" rows="5"></textarea>
+        </div>
+        <button class="btn btn-outline-success" type="submit">上传</button>
 
-        </div>
-    </div>
+    </form>
 </div>
 </body>
 </html>

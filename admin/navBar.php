@@ -8,8 +8,14 @@
         <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                资源管理
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="musicAdd.php">音乐上传</a>
+                <a class="dropdown-item" href="musicEdit.php">音乐编辑</a>
+            </div>
         </li>
         <li class="nav-item dropdown
 <?php echo $_SERVER['PHP_SELF'] === '/Myblog/admin/articleAdd.php' ? "active" : '' ?>
