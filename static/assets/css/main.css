@@ -82,7 +82,7 @@ body{
     height: 40px;
     width: 40px;
     position: absolute;
-    left: -16%;
+    left: -30%;
     top: 1%;
     cursor: pointer;
     z-index: 9999;
@@ -161,10 +161,10 @@ body{
     width:100%;
 }
 .avatar{
-    height:150px;
+    height:50vw;
     width:50%;
     position:absolute;
-    top:100px;
+    top:30%;
     left:50%;
     margin-left: -25%;
 
@@ -187,7 +187,7 @@ body{
     width:100%;
     height:12%;
     /*background-color: pink;*/
-    font-size: 160%;
+    /*font-size: 160%;*/
     position: relative;
 }
 .buttonWarp a{
