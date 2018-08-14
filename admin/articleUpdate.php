@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($_FILES['imgTitle']["name"])) {
         $dest=$article1['imgurl'];  //保留原来路径
     }else{
-      $dest= '../static/assets/img/' . $title . $imgTitle['name'];//更新路径
+      $dest= '/Myblog/static/assets/img/' . $title . $imgTitle['name'];//更新路径
     };
 
 

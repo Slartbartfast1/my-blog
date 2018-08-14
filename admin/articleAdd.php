@@ -46,7 +46,7 @@ function addArticle()
     $category = $_POST['category'];
     $content = $_POST['content'];
     $gist=$_POST['gist'];
-    $dest = '../static/assets/img/' . $title . $imgTitle['name'];
+    $dest = '/Myblog/static/assets/img/' . $title . $imgTitle['name'];
 
 
     //转换为插入语句
