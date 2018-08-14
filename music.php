@@ -11,10 +11,10 @@
     <meta charset="UTF-8">
     <title>2</title>
 </head>
-<link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="static/assets/vendors/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link href="static/assets/vendors/animate/animate.min.css" rel="stylesheet">
 <link rel="stylesheet" href="static/assets/css/main.css">
-<link href="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css" rel="stylesheet">
+<link href="static/assets/vendors/aplayer/APlayer.min.css" rel="stylesheet">
 <style>
     /*html, body{ margin:0; height:100%; }*/
     body {
@@ -432,11 +432,11 @@
 <!--//php待渲染-->
 
 
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.js"></script>
-<script src="https://cdn.bootcss.com/wow/1.1.2/wow.js"></script>
+<script src="static/assets/vendors/jQuery/jQuery.js"></script>
+<script src="static/assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="static/assets/vendors/wow/wow.min.js"></script>
 <script src="static/assets/js/navBar.js"></script>
-<script src="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js"></script>
+<script src="static/assets/vendors/aplayer/APlayer.min.js"></script>
 <script src="static/assets/vendors/waterwheelCarousel/jquery.waterwheelCarousel.min.js"></script>
 <script>
 

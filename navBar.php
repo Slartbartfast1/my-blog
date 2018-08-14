@@ -28,7 +28,7 @@
     <div class="btns text-center">
         <div class="buttonWarp"><a href="index.php" class="myActive">首页
             </a></div>
-        <div class="buttonWarp"><a href="#">分类</a></div>
+        <div class="buttonWarp"><a href="categories.php">分类</a></div>
         <div class="buttonWarp"><a href="music.php">音乐盒</a></div>
         <div class="buttonWarp"><a href="#">资源</a></div>
         <div class="buttonWarp"><a href="theater.php">影院</a></div>

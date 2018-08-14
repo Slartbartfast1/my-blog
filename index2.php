@@ -13,14 +13,11 @@ if(!empty($_GET['category'])){
     $where.=' and category= '.$_GET['category'];
     $search.='&category=' . $_GET['category'];
 }
-//总页数计算
+
 $totalCount=(int)myFetchOne("select count(1) as num from article where {$where};")['num'];
-
+var_dump($totalCount);
 $totalPages=(int)ceil($totalCount/$size);
-
-
 //分页参数
-
 $visiables = 3;
 $region = ($visiables - 1) / 2;
 
@@ -31,12 +28,12 @@ $end = $begin + $visiables;
 $page>$totalPages? header('Location: ?page=' . $totalPages . $serach):$page;
 
 if($begin<1){
-    $begin = 1;
-    $end = $begin + $visiables;
+        $begin = 1;
+        $end = $begin + $visiables;
 }
 if($end>$totalPages+1){
     $end = $totalPages+1;
-    $begin=$end-$visiables;
+    $begin=$end-$region;
     if ($begin < 1) {
         $begin = 1;
     }
@@ -55,7 +52,7 @@ article.category,
 categories.id,
 categories.categories as categoryName
 from article 
-inner join categories on article.category=categories.id where {$where} order by top asc, createTime asc limit {$offset},{$size} ;");
+inner join categories on article.category=categories.id where {$where} limit {$offset},{$size};");
 
 ?>
 
@@ -68,8 +65,7 @@ inner join categories on article.category=categories.id where {$where} order by 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
-<link href="static/assets/vendors/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <link href="static/assets/vendors/animate/animate.min.css" rel="stylesheet">
+<link href="static/assets/vendors/bootstrap/bootstrap.min.css" rel="stylesheet">    <link href="static/assets/vendors/animate/animate.min.css" rel="stylesheet">
     <style>
 
         ::-webkit-scrollbar{
@@ -117,7 +113,8 @@ inner join categories on article.category=categories.id where {$where} order by 
         }
 
         .contentBox {
-
+            /*position: absolute;*/
+            /*height: 40%;*/
             box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, .1);
             margin-top: 60px ;
             transition: .2s ease;
@@ -328,7 +325,7 @@ inner join categories on article.category=categories.id where {$where} order by 
 
             width: 100%;
             height: 80px;
-            transition:.3s ease 0s;
+           transition:.3s ease 0s;
             /*margin-top:-70px;*/;
             bottom:60px;
             /*color: rgba(0,0,0,.1);*/
@@ -359,6 +356,7 @@ inner join categories on article.category=categories.id where {$where} order by 
             left:10px;
             height:50px;
             width:50px;
+            background-color: pink;
             border-radius: 50%;
             overflow: hidden;
         }
@@ -407,7 +405,7 @@ inner join categories on article.category=categories.id where {$where} order by 
         .paging{
             position:relative;
             left:15%;
-            margin-top:30px;
+           margin-top:30px;
 
         }
 
@@ -473,41 +471,41 @@ inner join categories on article.category=categories.id where {$where} order by 
                 $name=$item['author'];
                 $user=myFetchOne("select avatarurl from user  where name='{$name}'")
                 ?>
-                <div class="col-12 contentBox wow  animated fadeIn">
-                    <a href="/Myblog/articlepage.php?articleid=<?php echo $item['articleid'] ?>"><div class="titleImg">
-                            <img src="<?php echo $item['imgurl'] ?>" alt="" class="img-fluid">
-                            <div class="title px-3">
-                                <p class="font-weight-light"><?php echo $item['title'] ?></p>
-                            </div>
-                        </div></a>
-                    <div class="info">
-                        <div class="authorAvatar">
-                            <img src="<?php echo $user['avatarurl'] ?>" alt="">
-                        </div>
-                        <div class="date">
-                            <p><?php echo $item['author']?></p>
-                            <small><?php echo $item['createTime']?></small>
-                        </div>
-                        <span class="iconfont"><?php echo $item['view']?></span>
+            <div class="col-12 contentBox wow  animated fadeIn">
+                <a href="/Myblog/articlepage.php?articleid=<?php echo $item['articleid'] ?>"><div class="titleImg">
+                    <img src="<?php echo $item['imgurl'] ?>" alt="" class="img-fluid">
+                    <div class="title px-3">
+                        <p class="font-weight-light"><?php echo $item['title'] ?></p>
                     </div>
+                </div></a>
+                <div class="info">
+                    <div class="authorAvatar">
+                        <img src="<?php echo $user['avatarurl'] ?>" alt="">
+                    </div>
+                    <div class="date">
+                        <p><?php echo $item['author']?></p>
+                        <small><?php echo $item['createTime']?></small>
+                    </div>
+                    <span class="iconfont"><?php echo $item['view']?></span>
                 </div>
-            <?php endforeach; ?>
+            </div>
+<?php endforeach; ?>
         </div>
 
-        <div class="paging">
+            <div class="paging">
 
-            <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($page - 1).$search; ?>">上一页</a></li>
-                <?php for($i=$begin;$i<$end;$i++): ?>
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="?page=<?php echo ($page - 1).$search; ?>">上一页</a></li>
+                    <?php for($i=$begin;$i<$end;$i++): ?>
                     <li class="page-item <?php echo $i === $page ? ' active' : ''; ?>">
                         <a class="page-link" href="?page=<?php echo $i.$search; ?>"><?php echo $i; ?></a>
                     </li>
-                <?php endfor ?>
+                    <?php endfor ?>
 
 
-                <li class="page-item"><a class="page-link" href="?page=<?php echo $page == $totalPages ?$page.$search:($page + 1).$search; ?>">下一页</a></li>
-            </ul>
-        </div>
+                    <li class="page-item"><a class="page-link" href="?page=<?php echo $page == $totalPages ?$page.$search:($page + 1).$search; ?>">下一页</a></li>
+                </ul>
+            </div>
 
 
         <div class="footer">

@@ -46,9 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $article1=myFetchOne("select * from article where articleid ='{$articleid1}'");
     if (empty($_FILES['imgTitle']["name"])) {
-        $dest=$article1['imgurl'];  //保留原来路径
+        $dest2=$article1['imgurl'];  //保留原来路径
     }else{
-      $dest= '/Myblog/static/assets/img/' . $title . $imgTitle['name'];//更新路径
+      $dest= '../static/assets/img/' . $title . $imgTitle['name'];//更新路径
+        $dest2=substr($dest,3);
     };
 
 
@@ -65,7 +66,7 @@ if(isset($_FILES['imgTitle']["name"])){
 };
     //将数据存入数据库
     if (myExecute("update article set title='{$title}',createTime='{$createTime}'
-,author='{$author}',content='{$content}',top={$top},gist='{$gist}',imgurl='{$dest}',category='{$category}' where articleid='{$articleid1}';")) {
+,author='{$author}',content='{$content}',top={$top},gist='{$gist}',imgurl='{$dest2}',category='{$category}' where articleid='{$articleid1}';")) {
         exit('更新成功');
     }
 }

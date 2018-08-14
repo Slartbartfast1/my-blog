@@ -10,6 +10,7 @@ function edit()
     $intro = $_POST['intro'];
     $avatarFile = $_FILES['avatar'];
     $dest = 'avatar/' . $avatarFile['name'];
+$dest2='admin/' . $dest;
     //TODO:验证昵称 邮箱 个人简介 不能为空
     if (empty($username)) {
         exit('昵称不能为空');
@@ -27,7 +28,7 @@ function edit()
     if ($_FILES['avatar']["name"] == "") {
         myExecute("update user set name='$username',introduction='$intro',email='$email'");
     } else {
-        myExecute( "update user set avatarurl='$dest',name='$username',introduction='$intro',email='$email'");
+        myExecute( "update user set avatarurl='$dest2',name='$username',introduction='$intro',email='$email'");
     }
 }
 

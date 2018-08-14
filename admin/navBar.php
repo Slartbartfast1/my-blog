@@ -55,7 +55,7 @@
 </nav>
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.css
 ">
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="https://cdn.bootcss.com/nprogress/0.2.0/nprogress.js"></script>
-<link href="https://cdn.bootcss.com/nprogress/0.2.0/nprogress.css" rel="stylesheet">
+<script src="../static/assets/vendors/jQuery/jQuery.js"></script>
+<script src="../static/assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="../static/assets/vendors/nprogress/nprogress.js"></script>
+<link href="../static/assets/vendors/nprogress/nprogress.css" rel="stylesheet">

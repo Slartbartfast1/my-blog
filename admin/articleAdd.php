@@ -42,12 +42,12 @@ function addArticle()
     $title = $_POST['title'];
     $author = $_POST['author'];
     $createTime = $_POST['createTime'];
-    $imgTitle = $_FILES['imgTitle'];
+   $imgTitle = $_FILES['imgTitle'];
     $category = $_POST['category'];
     $content = $_POST['content'];
     $gist=$_POST['gist'];
-    $dest = '/Myblog/static/assets/img/' . $title . $imgTitle['name'];
-
+    $dest = '../static/assets/img/' . $title . $imgTitle['name'];
+    $imgTitle2=substr($dest,3) ;
 
     //转换为插入语句
     if (isset($_POST['top'])) {
@@ -62,7 +62,7 @@ function addArticle()
 
 
     //将数据存入数据库
-    if (myExecute("insert into article values(null,'{$createTime}','{$title}', '{$gist}','{$author}','{$content}',{$top},'{$dest}','{$category}',null);")) {
+    if (myExecute("insert into article values(null,'{$createTime}','{$title}', '{$gist}','{$author}','{$content}',{$top},'{$imgTitle2}','{$category}',null);")) {
         exit('上传成功');
     }
 }

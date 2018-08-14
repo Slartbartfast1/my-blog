@@ -1,11 +1,49 @@
 <?php
 include 'navBar.php';
-/**
- * Created by PhpStorm.
- * User: huangrui10191180
- * Date: 2018/8/10
- * Time: 14:05
- */
+require_once 'static/function.php';
+//        var_dump(date('Y-m-d H:m:s',time()));
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $articleid = $_GET['articleid'];
+    $article = myFetchOne("select * from article where articleid={$articleid}");
+    $commentFather = myFetchAll("select * from commentfather where articleid={$articleid}");
+    $articleView = (int)$article['view'] + 1;
+    myExecute("update article set view={$articleView} where articleid={$articleid}");
+
+
+};
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (empty($_POST['nickName'])) {
+        $GLOBALS['errorMessage'] = '请输入昵称';
+        return;
+    }
+    if (empty($_POST['comment'])) {
+
+        $GLOBALS['errorMessage'] = '请输入评论内容';
+        return;
+
+    }
+    if (empty($_POST['fatherid'])) {
+        $articleid1 = $_POST['articleid'];
+        $commentName = $_POST['nickName'];
+        $fatherComment = $_POST['comment'];
+        $commentTime = date('Y-m-d H:m:s', time());
+        myExecute("insert into commentfather values('{$articleid1}',null,'{$commentTime}','{$commentName}','{$fatherComment}');");
+
+    } else {
+        $articleid1 = $_POST['articleid'];
+        $fatherid = $_POST['fatherid'];
+        $applyTo=$_POST['appltTo'];
+        $fatherComment= $_POST['applyTo'] . $_POST['comment'];
+        $commentName = $_POST['nickName'];
+        $commentTime = date('Y-m-d H:m:s', time());
+        myExecute("insert into commentchild values('{$articleid1}',null,'{$commentTime}','{$commentName}','{$fatherComment}','{$fatherid}');");
+    }
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+
+
+}
+
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -16,8 +54,7 @@ include 'navBar.php';
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
-    <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="static/assets/vendors/bootstrap/bootstrap.min.css" rel="stylesheet">    <link href="static/assets/vendors/animate/animate.min.css" rel="stylesheet">
     <link rel="stylesheet" href="static/assets/css/main.css">
     <style>
 
@@ -27,7 +64,7 @@ include 'navBar.php';
             width: 100%;
             /*position: absolute;*/
             background: url("static/assets/img/wallhaven-671087.jpg") no-repeat fixed;
-            background-size: 100% 400px;
+
 
         }
 
@@ -104,7 +141,7 @@ include 'navBar.php';
         }
 
         .comments {
-            min-height: 200px;
+            min-height: 150px;
             background-color: whitesmoke;
             left: 50%;
             transform: translateX(-50%);
@@ -182,115 +219,121 @@ include 'navBar.php';
             max-width: 100%;
         }
 
+        .media .comments {
+            width: 50%;
+            margin-top: 0;
+        }
+
+        border:
+
+        1
+        px solid black
+
+        ;
+        }
+
 
     </style>
 </head>
 <body data-spy="scroll" data-target=".titleTree">
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.js"></script>
-<script src="https://cdn.bootcss.com/wow/1.1.2/wow.js"></script>
+<script src="static/assets/vendors/jQuery/jQuery.js"></script>
+<script src="static/assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="static/assets/vendors/wow/wow.min.js"></script>
 <script src="static/assets/js/navBar.js"></script>
 
 <nav class="titleTree col-sm-1 col-2 titleTreeLeft animated">
     <ul class="nav ">
     </ul>
 </nav>
-<div class="page">
+<div class="page" style="background:url('<?php echo $article['imgurl']?>') no-repeat fixed; background-size: 100% 400px;">
     <div class="articleBox row">
 
         <div class="titleBox col-7 text-center py-4">
             <div class="page-header">
-                <h1>起不来会把闹</h1>
+                <h1><?php echo $article['title'] ?></h1>
                 <small>来自:</small>
-                <small>泛银河系含漱爆破液</small>
-                <small>创建于:2018-08-10 09:59:13</small>
-                <small>阅读数:99</small>
+                <small><?php echo $article['author'] ?></small>
+                <small>创建于:<?php echo $article['createTime'] ?></small>
+                <small>阅读数:<?php echo $article['view'] ?></small>
             </div>
         </div>
         <div class="articleContent col-7 py-4">
-
-            <p>我读书比大多数人都早，工作一年到现在是还没有满23岁的。我很庆轻基本一无所有。</p>
-            <p>我2017年本科毕业于华中农业大学，迫于家庭压力，大学学的专业叫应用化学。大二发现自己对化学毫无兴趣。我很庆幸，庆幸自己没想过去培训班、转专业或者跨专业考研。</p>
-            <p>我喜欢干实事，喜欢学学了就能产出东西的知识，讨厌长篇大论的理论知识。这也是为什么我不喜欢化学了。</p>
-            <p>我曾想过做设计，后来发现画画就跟写字一样，上十年才能达到一定的境界。</p>
-            <p>我向往德国、日本的教育，德国是以专科为主，学好了技术就能找到不错的工作；日本则是高中毕业就能工作。在中国专科或者高中毕业想找到好的工作基本不可能。</p>
-            <p>在GitHub上看到过一个97年的日本小兄弟已经600+个follower了，满是羡慕。</p>
-            <img src="https://img-blog.csdn.net/20180701152611176?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1NsYXJ0aWJhcnRmYXN0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"
-                 alt="">
-            <p>我是强迫症患者，早上起不来会把闹钟放在离床头很远的地方；看见写乱的代码会忍不住去改。</p>
-            <h2>收获为什么要清楚他妈的</h2>
-            <ol>
-                <li>做了这个博客</li>
-                <li>黄冈半年游，北京三月游</li>
-                <li>一群朋友</li>
-                <li>如何管理，如何协作</li>
-                <li>如何学习</li>
-                <li>多说无益</li>
-                <li>多做无益</li>
-                <li>眼界</li>
-            </ol>
-            <h2>未来的建议</h2>
-            <ol>
-                <li>坐自动扶梯不要站着不动</li>
-                <li>坐车的时候看掘金</li>
-                <li>做东西之前先思考</li>
-                <li>造轮子</li>
-                <li>多写博客</li>
-                <li>保持创造力</li>
-                <li>学好英语</li>
-                <li>清楚原理</li>
-                <li>锻炼文笔</li>
-                <li>全面发展</li>
+            <?php echo $article['content'] ?>
         </div>
-        <div class="commentBox col-7 mt-3;">
+        <div class="commentBox col-7 mt-3;" id="commentBox">
             <div class="col-12 py-3">
                 <h4>评论</h4>
+                <?php if (isset($errorMessage)): ?>
+                    <div class="alert alert-warning text-center">
+                        <?php echo $errorMessage; ?>
+                    </div>
+                <?php endif ?>
             </div>
 
-            <form action="" method="post" enctype="multipart/form-data"></form>
-            <div class="form-group ">
-                <label for="name"></label>
-                <input type="text" class="form-control" id="nickName" name="nickName" autocomplete="off"
-                       placeholder="昵称">
+
+            <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
+                <div class="form-group" style="display: none">
+                    <label for="id" >id</label>
+                    <input type="text" class="form-control" name="articleid" id="articleid" accept="multipart/form-data"
+                           value="<?php echo $articleid ?>">
+                </div>
+                <div class="form-group " style="display: none">
+                    <label for="fatherid"></label>
+                    <input type="text" class="form-control" id="fatherid" name="fatherid" autocomplete="off"
+                           placeholder="father">
+                </div>
+                <div class="form-group " style="display: none">
+                    <label for="applyTo"></label>
+                    <input type="text" class="form-control" id="applyTo" name="applyTo" autocomplete="off"
+                           placeholder="applyTo">
+                </div>
+                <div class="form-group ">
+                    <label for="nickName"></label>
+                    <input type="text" class="form-control" id="nickName" name="nickName" autocomplete="off"
+                           placeholder="昵称">
+                </div>
+                <div class="form-group">
+                    <label for="comment"></label>
+                    <textarea class="form-control " rows="5" name="comment" id="comment" placeholder="说点什么吧"></textarea>
+                </div>
+                <button class="btn btn-primary btn-sm" type="submit">提交</button>
+            </form>
+
+        </div>
+
+
+        <?php $count = 1;
+        foreach ($commentFather as $item):
+            $commentChild = myFetchAll("select * from commentchild where fatherid={$item['fatherid']}");
+            ?>
+
+            <div class="comments col-7 mt-3 py-3 ">
+                <div class="fatherid" style="display: none"><?php echo $item['fatherid'] ?></div>
+                <span class="floor font-weight-light text-muted "><?php echo $count ?>楼</span>
+                <span class=" font-weight-light nick"><?php echo $item['commentName'] ?>:</span>
+                <hr>
+                <p class="text-muted"><?php echo $item['commentContent'] ?></p>
+
+                <small class="commentTime font-weight-light text-muted"><?php echo $item['commentDate'] ?></small>
+                <a href="#commentBox" class="repply">回复</a>
+                <?php $index = 1;
+                foreach ($commentChild as $child): ?>
+                    <div class="media p-3">
+                        <div class="comments  col-12 ">
+                            <div class="fatherid" style="display: none"><?php echo $item['fatherid'] ?></div>
+                            <span class="text-right floor font-weight-light text-muted "><?php echo $index ?>楼</span>
+                            <span class=" font-weight-light nick"><?php echo $child['commentName'] ?>:</span>
+                            <hr>
+                            <p class="text-muted"><?php echo $child['commentContent'] ?></p>
+
+                            <small class="commentTime font-weight-light text-muted"><?php echo $child['commentDate'] ?></small>
+                            <a href="#commentBox" class="repply repplyInside">回复</a>
+                        </div>
+                    </div>
+                    <?php $index++; endforeach ?>
             </div>
-            <div class="form-group">
-                <label for="comment"></label>
-                <textarea class="form-control " rows="5" name="comment" id="comment" placeholder="说点什么吧"></textarea>
-            </div>
-
-        </div>
-        <div class="comments col-7 mt-3 py-3">
-            <span class="text-right">#1  </span> <span>name:</span>
-            <hr>
-            <p>我喜欢干实事，喜欢学学了就能产出东西的知识，讨厌长篇大论的理论知识。这也是为什么我不喜欢化学了。</p>
-            <small class="commentTime font-weight-light text-muted">2018-08-10 09:59:13</small>
-            <a href="#">回复</a>
-        </div>
-        <div class="comments col-7 mt-3 py-3">
-            <span class="text-right">#1  </span> <span>name:</span>
-            <hr>
-            <p>我喜欢干实事，喜欢学学了就能产出东西的知识，讨厌长篇大论的理论知识。这也是为什么我不喜欢化学了。</p>
-            <p>我喜欢干实事，喜欢学学了就能产出东西的知识，讨厌长篇大论的理论知识。这也是为什么我不喜欢化学了。</p>
-            <p>我喜欢干实事，喜欢学学了就能产出东西的知识，讨厌长篇大论的理论知识。这也是为什么我不喜欢化学了。</p>
-            <p>我喜欢干实事，喜欢学学了就能产出东西的知识，讨厌长篇大论的理论知识。这也是为什么我不喜欢化学了。</p>
-            <p>我喜欢干实事，喜欢学学了就能产出东西的知识，讨厌长篇大论的理论知识。这也是为什么我不喜欢化学了。</p>
-            <small class="commentTime font-weight-light text-muted">2018-08-10 09:59:13</small>
-            <a href="#">回复</a>
-        </div>
-        <div class="comments col-7 mt-3 py-3">
-            <span class="text-right">#1  </span> <span>name:</span>
-            <hr>
-            <p>我喜欢干实事，喜欢学学了就能产出东西的知识，讨厌长篇大论的理论知识。这也是为什么我不喜欢化学了。</p>
-            <small class="commentTime font-weight-light text-muted">2018-08-10 09:59:13</small>
-            <a href="#">回复</a>
-
-
-        </div>
-
-
+            <?php $count++; endforeach ?>
     </div>
-
-
 </div>
 <div class='goTop'>
     <span class="iconfont"></span>
@@ -313,10 +356,9 @@ include 'navBar.php';
         $(window).scroll(function () {
             var winTop = $(window).scrollTop();
             if (winTop >= 340) {
-                $('.navbar-brand').addClass('fadeOut').text('起不来会把闹').removeClass('fadeOut').addClass('fadeIn')
+                $('.navbar-brand').addClass('fadeOut').text($('.page-header h1').text()).removeClass('fadeOut').addClass('fadeIn');
                 $('.titleTree').addClass('fixed fadeInUp')
             }
-
             else {
                 $('.navbar-brand').text("Slartbartfast's Blog").removeClass('fixed fadeIn');
                 $('.titleTree').removeClass('fixed fadeInUp');
@@ -327,8 +369,6 @@ include 'navBar.php';
             else {
                 $('.goTop').fadeOut();
             }
-
-
         });
     });
 
@@ -343,6 +383,23 @@ include 'navBar.php';
         $('.goTop').toggleClass('goTopLeft');
     }));
 
+
+    //回复按钮:
+    $('.repply').on('click', function () {
+        var fatherid = $(this).parent().find('.fatherid').text();
+        var name = $(this).parent().find('.nick').eq(0).text();
+
+        $('#fatherid').val(fatherid);
+        $('#comment').attr('placeholder', '@' + name);
+        $('#applyTo').val('');
+
+    });
+    $('.repplyInside').on('click',function(){
+        var name = $(this).parent().find('.nick').eq(0).text();
+        var floor=$(this).parent().find('.floor').eq(0).text();
+        $('#comment').attr('placeholder', '@' + name);
+        $('#applyTo').val('回复'+floor+name);
+    })
 
 </script>
 <script>

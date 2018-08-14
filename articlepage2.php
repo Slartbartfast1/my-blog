@@ -17,8 +17,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         return;
     }
     if (empty($_POST['comment'])) {
+
         $GLOBALS['errorMessage'] = '请输入评论内容';
         return;
+
     }
     if (empty($_POST['fatherid'])) {
         $articleid1 = $_POST['articleid'];
@@ -31,8 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $articleid1 = $_POST['articleid'];
         $fatherid = $_POST['fatherid'];
         $applyTo=$_POST['appltTo'];
-            $fatherComment= $_POST['applyTo'] . $_POST['comment'];
-
+        $fatherComment= $_POST['applyTo'] . $_POST['comment'];
         $commentName = $_POST['nickName'];
         $commentTime = date('Y-m-d H:m:s', time());
         myExecute("insert into commentchild values('{$articleid1}',null,'{$commentTime}','{$commentName}','{$fatherComment}','{$fatherid}');");
@@ -53,8 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
-    <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="static/assets/vendors/bootstrap/bootstrap.min.css" rel="stylesheet">    <link href="static/assets/vendors/animate/animate.min.css" rel="stylesheet">
     <link rel="stylesheet" href="static/assets/css/main.css">
     <style>
 
@@ -224,21 +224,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             margin-top: 0;
         }
 
-        border:
-
-        1
-        px solid black
-
-        ;
-        }
 
 
     </style>
 </head>
 <body data-spy="scroll" data-target=".titleTree">
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.js"></script>
-<script src="https://cdn.bootcss.com/wow/1.1.2/wow.js"></script>
+<script src="static/assets/vendors/jQuery/jQuery.js"></script>
+<script src="static/assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="static/assets/vendors/wow/wow.min.js"></script>
 <script src="static/assets/js/navBar.js"></script>
 
 <nav class="titleTree col-sm-1 col-2 titleTreeLeft animated">
@@ -333,7 +326,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <?php $index++; endforeach ?>
             </div>
             <?php $count++; endforeach ?>
-
     </div>
 </div>
 <div class='goTop'>

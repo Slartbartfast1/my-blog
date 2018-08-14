@@ -16,7 +16,7 @@ $user =myFetchOne('select * from user');
     <style>
     </style>
 
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.css
+    <link rel="stylesheet" href="../static/assets/vendors/bootstrap/bootstrap.min.css
 ">
 </head>
 <body>
@@ -28,7 +28,7 @@ $user =myFetchOne('select * from user');
         </div>
         <div class="form-group">
             <div class="avatar text-center">
-                <img src="<?php echo $user['avatarurl']; ?>" alt="<?php echo $user["name"] ?>"  class="img-thumbnail col-5">
+                <img src="<?php echo substr($user['avatarurl'],6); ?>" alt="<?php echo $user["name"] ?>"  class="img-thumbnail col-5">
             </div>
             <div class="custom-file mt-3">
                 <input type="file" class="custom-file-input form-control" id="avatar" name="avatar" accept="image/*">

@@ -11,6 +11,5 @@ $userid=$_GET['userid'];
 
 $row=myFetchOne("select avatarurl from user where userid='{$userid}'");
 
-// 3. echo
 
-echo $row['avatarurl'];
+echo substr($row['avatarurl'],6);

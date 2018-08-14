@@ -15,8 +15,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="static/assets/vendors/bootstrap/bootstrap.min.css" rel="stylesheet">    <link href="static/assets/vendors/animate/animate.min.css" rel="stylesheet">
     <link rel="stylesheet" href="static/assets/css/main.css">
     <style>
 
@@ -250,9 +249,9 @@
         </div>
     </main>
 </div>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.js"></script>
-<script src="https://cdn.bootcss.com/wow/1.1.2/wow.js"></script>
+<script src="static/assets/vendors/jQuery/jQuery.js"></script>
+<script src="static/assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="static/assets/vendors/wow/wow.min.js"></script>
 <script src="static/assets/js/navBar.js"></script>
 </body>
 
@@ -311,7 +310,7 @@
 <script id="movieInTheater" type="text/myjsRender">
     {{for movies}}
             <div class="inTheaterMovie text-center ">
-                <img src="{{:images.large}}" alt="">
+                <a href="{{:alt}}"><img src="{{:images.large}}" alt=""></a>
                 <div class="movieName">
                 <a href="{{:alt}}">{{:title}}</a>
                 <div class="score">评分:{{:rating.average}}
@@ -327,7 +326,7 @@
 <script id="newMovies" type="text/myjsRender">
     {{for newMovies}}
     <tr>
-                       <td><img src="{{:images.small}}" alt=""></td>
+                       <td><a href="{{:alt}}"><img src="{{:images.small}}" alt=""></a></td>
                     <td><a href="{{:alt}}">{{:title}}</a></td>
                     <td>{{:pubdates}}</td>
                     <td>
@@ -351,7 +350,7 @@
 <script id="usBox" type="text/myjsRender">
     {{for usBox}}
     <tr>
-                       <td><img src="{{:subject.images.small}}" alt=""></td>
+                       <td><a href="{{:subject.alt}}"><img src="{{:subject.images.small}}" alt=""></a></td>
                     <td><a href="{{:subject.alt}}">{{:subject.title}}</a></td>
                     <td>{{:subject.pubdates}}</td>
                     <td>
@@ -373,7 +372,7 @@
 <script id="weekly" type="text/myjsRender">
     {{for weekly}}
     <tr>
-                       <td><img src="{{:subject.images.small}}" alt=""></td>
+                       <td><a href="{{:subject.alt}}"><img src="{{:subject.images.small}}" alt=""></a></td>
                     <td><a href="{{:subject.alt}}">{{:subject.title}}</a></td>
                     <td>{{:subject.pubdates}}</td>
                     <td>
@@ -394,7 +393,7 @@
 <script id="newMovies" type="text/myjsRender">
     {{for newMovies}}
     <tr>
-                       <td><img src="{{:images.small}}" alt=""></td>
+                       <td><a href="{{:alt}}"><img src="{{:images.small}}" alt=""></a></td>
                     <td><a href="{{:alt}}">{{:title}}</a></td>
                     <td>{{:pubdates}}</td>
                     <td>
@@ -416,7 +415,7 @@
 <script id="top10" type="text/myjsRender">
     {{for top10}}
     <tr>
-                       <td><img src="{{:images.small}}" alt=""></td>
+                       <td><a href="{{:alt}}"><img src="{{:images.small}}" alt=""></a></td>
                     <td><a href="{{:alt}}">{{:title}}</a></td>
                     <td>{{:pubdates}}</td>
                     <td>

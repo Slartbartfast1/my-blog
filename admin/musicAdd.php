@@ -38,8 +38,9 @@ function addMusic()
     $desc = $_POST['desc'];
     $album=$_POST['album'];
     $musicDest = '../static/assets/music/' . $title . $music['name'];
-    $posterDest='../static/assets/music/poster' . $title . $music['name'];
-
+    $posterDest='../static/assets/music/poster/' . $title . $album['name'];
+    $musicDest2=substr($musicDest,3);
+    $posterDest2=substr($posterDest,3);
 
     if (!move_uploaded_file($poster['tmp_name'],$posterDest)) {
         exit('上传海报失败');
@@ -51,7 +52,7 @@ function addMusic()
 
 
 
-if(!myExecute("insert into music values(null,'{$title}','{$musicDest}','{$author}','{$posterDest}','{$desc}','{$album}')")){
+if(!myExecute("insert into music values(null,'{$title}','{$musicDest2}','{$author}','{$posterDest2}','{$desc}','{$album}')")){
     exit('更新数据库失败');
 }else{
     header('Location:articleAdd.php');

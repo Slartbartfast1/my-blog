@@ -39,7 +39,7 @@ $music=myFetchAll('select * from music');
                     <td><?php echo $item['author']  ?></td>
                     <td><?php echo $item['description']  ?></td>
                     <td><?php echo $item['album']  ?></td>
-                    <td><a href="/Myblog/admin/musicDelete.php?title=<?php echo $item['title']; ?>"
+                    <td><a href="musicDelete.php?title=<?php echo $item['title']; ?>"
                            class="btn btn-danger btn-sm">删除</a></td>
                 </tr>
                 <?php endforeach; ?>

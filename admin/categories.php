@@ -12,7 +12,16 @@ function addCategory()
     }
     $categories = $_POST['categories'];
     $slug = $_POST['slug'];
-    $rows = myExecute("insert into categories values (null, '{$slug}', '{$categories}');");
+
+    $categoriesImg = $_FILES['categoriesImg'];
+
+    $dest = '../static/assets/categories/' . $slug . $categoriesImg['name'];
+    move_uploaded_file($categoriesImg['tmp_name'], $dest);
+
+//        exit('上传失败');}
+
+    $dest2 = substr($dest, 3);
+    $rows = myExecute("insert into categories values (null, '{$slug}', '{$categories}','{$dest2}');");
     $GLOBALS['success'] = $rows > 0;
     $GLOBALS['message'] = $rows <= 0 ? '添加失败！' : '添加成功！';
 }
@@ -130,7 +139,7 @@ if (empty($_GET['id'])) {
                     </div>
                 </form>
             <?php else: ?>
-                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data" >
                     <h2>添加新分类</h2>
                     <div class="form-group">
                         <label for="name">名称</label>
@@ -140,6 +149,11 @@ if (empty($_GET['id'])) {
                         <label for="slug">别名</label>
                         <input id="slug" class="form-control" name="slug" type="text" placeholder="slug">
                     </div>
+                    <div class="form-group">
+                        <label for="categoriesImg">图片</label>
+                        <input type="file" class="form-control" name="categoriesImg" accept="image/*" id="categoriesImg">
+                    </div>
+
                     <div class="form-group">
                         <button class="btn btn-primary" type="submit">添加</button>
                     </div>
