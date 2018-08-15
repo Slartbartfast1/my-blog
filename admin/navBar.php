@@ -8,8 +8,9 @@
         <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
         </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        <li class="nav-item dropdown <?php echo $_SERVER['PHP_SELF'] == '/Myblog/admin/musicAdd.php' ? " active" : '' ?>
+<?php echo $_SERVER['PHP_SELF'] == '/Myblog/admin/musicEdit.php' ? " active" : '' ?>">
+            <a class="nav-link dropdown-toggle " href="#" id="navbardrop" data-toggle="dropdown">
                 资源管理
             </a>
             <div class="dropdown-menu">
@@ -20,7 +21,7 @@
         <li class="nav-item dropdown
 <?php echo $_SERVER['PHP_SELF'] === '/Myblog/admin/articleAdd.php' ? "active" : '' ?>
 <?php echo $_SERVER['PHP_SELF'] === '/Myblog/admin/articles.php' ? "active" : '' ?>
-<?php echo $_SERVER['PHP_SELF'] === '/Myblog/admin/categroies.php' ? "active" : '' ?>">
+<?php echo $_SERVER['PHP_SELF'] === '/Myblog/admin/categories.php' ? "active" : '' ?>">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                 文章管理
             </a>

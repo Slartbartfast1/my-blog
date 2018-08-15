@@ -48,13 +48,18 @@ myGetCurrentUser();
     <td>{{:commentName}}</td>
     <td>{{:commentContent}}</td>
     <td class="text-center">{{:agreement}}</td>
-    <td class="text-center"><button class="btn btn-danger">删除</button></td>
+    <td class="text-center">
+    {{if childid>0}}
+    <a href="commentsDelete.php?childid={{:childid}}"><button class="btn btn-danger">删除</button></td></a>
+    {{else}}
+    <a href="commentsDelete.php?fatherid={{:fatherid}}"><button class="btn btn-danger">删除</button></td></a>
+    {{/if}}
     </tr>
     {{/for}}
 </script>
 <script>
     //通过ajax发送请求渲染页面
-    $.getJSON('/Myblog/admin/comments.php',{},function(res){
+    $.getJSON('comments.php',{},function(res){
         var html =$('#commentsTmpl').render({comments:res});
         $('tbody').html(html);
         console.log(html);

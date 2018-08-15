@@ -134,6 +134,10 @@ if (empty($_GET['id'])) {
                                value="<?php echo $currentEditCategory['slug']; ?>">
                     </div>
                     <div class="form-group">
+                        <label for="categoriesImg">图片</label>
+                        <input type="file" class="form-control" name="categoriesImg" accept="image/*" id="categoriesImg">
+                    </div>
+                    <div class="form-group">
                         <button class="btn btn-primary" type="submit">保存</button>
                         <a class="btn btn-secondary" href="categories.php">取消</a>
                     </div>

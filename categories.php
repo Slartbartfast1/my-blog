@@ -57,7 +57,8 @@ $categories=myFetchAll('select * from categories');
             width:100%;
             top:50%;
             transform: translateY(-50%);
-            font-size: 50px;
+            font-size: 40px;
+            font-family:"Microsoft JhengHei UI Light";
             color:white;
             z-index: 3;
 
@@ -81,7 +82,7 @@ $categories=myFetchAll('select * from categories');
                     <div class="category">
                     <div class="shadow"></div>
                     <div class="categoryName text-center">
-                        <span><?php $item['categories'] ?></span>
+                        <span><?php echo $item['categories'] ?></span>
                     </div>
                     <img src="<?php echo $item['imgurl']?>" alt="">
                 </div>

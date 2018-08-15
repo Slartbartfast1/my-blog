@@ -153,7 +153,7 @@ $categories=myFetchAll('select * from categories');
 
         <thead>
         <tr>
-            <th class="text-center" width="40"><input type="checkbox"></th>
+<!--            <th class="text-center" width="40"><input type="checkbox"></th>-->
             <th>标题</th>
             <th>作者</th>
             <th>分类</th>
@@ -165,7 +165,7 @@ $categories=myFetchAll('select * from categories');
         <tbody>
         <?php foreach ($articles as $item): ?>
             <tr>
-                <td class="text-center"><input type="checkbox"></td>
+<!--                <td class="text-center"><input type="checkbox"></td>-->
                 <td><?php echo $item['title']; ?></td>
                 <td><?php echo $item['author']; ?></td>
                 <td><?php echo $item['categoryName']; ?></td>

@@ -1,7 +1,7 @@
 <?php
 include 'navBar.php';
-require_once 'static/function.php';
-//        var_dump(date('Y-m-d H:m:s',time()));
+require 'static/function.php';
+
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $articleid = $_GET['articleid'];
     $article = myFetchOne("select * from article where articleid={$articleid}");
@@ -11,16 +11,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 
 };
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($_POST['nickName'])) {
         $GLOBALS['errorMessage'] = '请输入昵称';
         return;
     }
     if (empty($_POST['comment'])) {
-
         $GLOBALS['errorMessage'] = '请输入评论内容';
         return;
-
     }
     if (empty($_POST['fatherid'])) {
         $articleid1 = $_POST['articleid'];
@@ -60,12 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         .page {
             z-index: 1;
-            /*height:4000px;*/
             width: 100%;
-            /*position: absolute;*/
             background: url("static/assets/img/wallhaven-671087.jpg") no-repeat fixed;
-
-
         }
 
         .articleBox {
@@ -388,7 +383,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $('.repply').on('click', function () {
         var fatherid = $(this).parent().find('.fatherid').text();
         var name = $(this).parent().find('.nick').eq(0).text();
-
         $('#fatherid').val(fatherid);
         $('#comment').attr('placeholder', '@' + name);
         $('#applyTo').val('');

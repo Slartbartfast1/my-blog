@@ -50,13 +50,13 @@ article.author,
 article.createTime,
 article.top,
 article.view,
-article.imgurl,
+article.imgurl, 
+article.gist,
 article.category,
 categories.id,
 categories.categories as categoryName
 from article 
 inner join categories on article.category=categories.id where {$where} order by top asc, createTime asc limit {$offset},{$size} ;");
-
 ?>
 
 <!doctype html>
@@ -323,19 +323,23 @@ inner join categories on article.category=categories.id where {$where} order by 
             transition:1s ease 0s;
         }
 
-        .title {
+        .title{
             position:absolute;
-
             width: 100%;
             height: 80px;
             transition:.3s ease 0s;
-            /*margin-top:-70px;*/;
-            bottom:60px;
-            /*color: rgba(0,0,0,.1);*/
+            bottom:110px;
             z-index: 1;
+            text-shadow: gray 0px 1px 10px;
+            font-size:50px;
+            line-height: 80px;
+            color:black;
         }
+
         .titleImg:hover .title{
             background-color:rgba(255,255,255,.3);
+
+            text-shadow: none;
         }
         .titleImg:hover img{
             transform: scale(1.01,1.01);
@@ -348,17 +352,38 @@ inner join categories on article.category=categories.id where {$where} order by 
             background-color: darkgrey;
         }
         .info{
-            height:60px;
+            cursor: default;
+            height:50px;
             width:100%;
             position:relative;
             border-top:1px solid rgba(0,0,0,.1);
             background-color:rgba(255,255,255,.3);
         }
+        .summary{
+            height:60px;
+            width:100%;
+            position:relative;
+            border-top:1px solid rgba(0,0,0,.1);
+            background-color:rgba(255,255,255,.3);
+            text-indent: 4em;
+            color:rgba(0,0,0,.5);
+            font-size: .8em;
+        }
+        .summary p{
+            cursor: default;
+        }
+        /*.summary a{*/
+            /*display: inline-block;*/
+            /*border-bottom:1px solid #007bff;*/
+        /*}*/
+        /*!*.info p{*!*/
+            /*text-indent: 2em;*/
+        /*}*/
         .authorAvatar{
             position: relative;
             left:10px;
-            height:50px;
-            width:50px;
+            height:45px;
+            width:45px;
             border-radius: 50%;
             overflow: hidden;
         }
@@ -398,12 +423,7 @@ inner join categories on article.category=categories.id where {$where} order by 
             font-size: 12px;
             line-height: 12px;
         }
-        .title{
-            text-shadow: gray 0px 1px 10px;
-            font-size:50px;
-            line-height: 80px;
-            color:black;
-        }
+
         .paging{
             position:relative;
             left:15%;
@@ -413,13 +433,19 @@ inner join categories on article.category=categories.id where {$where} order by 
 
         .page-link{
             color:grey;
-        }
-        .page-link:hover{
-            color:black;
-        }
+            background-color:#fff;
+}
+.page-link:hover{
+    color:black;
+}
+.page-item.active .page-link{
+    background-color: #F5FAF9;
+    border:1px solid #dee2e6;
+    color:grey;
+}
 
 
-    </style>
+</style>
 </head>
 <body>
 <script src="static/assets/vendors/jQuery/jQuery.js"></script>
@@ -474,17 +500,20 @@ inner join categories on article.category=categories.id where {$where} order by 
                 $user=myFetchOne("select avatarurl from user  where name='{$name}'")
                 ?>
                 <div class="col-12 contentBox wow  animated fadeIn">
-                    <a href="/Myblog/articlepage.php?articleid=<?php echo $item['articleid'] ?>"><div class="titleImg">
+                    <a href="articlepage.php?articleid=<?php echo $item['articleid'] ?>"><div class="titleImg">
                             <img src="<?php echo $item['imgurl'] ?>" alt="" class="img-fluid">
                             <div class="title px-3">
                                 <p class="font-weight-light"><?php echo $item['title'] ?></p>
                             </div>
                         </div></a>
+                    <div class="summary p-3">
+                        <p><?php echo $item['gist'] ?>	&nbsp;<a href="articlepage.php?articleid=<?php echo $item['articleid'] ?>">阅读全文</a></p>
+                    </div>
                     <div class="info">
                         <div class="authorAvatar">
                             <img src="<?php echo $user['avatarurl'] ?>" alt="">
                         </div>
-                        <div class="date">
+                        <div class="date pt-2 text-muted">
                             <p><?php echo $item['author']?></p>
                             <small><?php echo $item['createTime']?></small>
                         </div>
@@ -497,7 +526,7 @@ inner join categories on article.category=categories.id where {$where} order by 
         <div class="paging">
 
             <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="?page=<?php echo ($page - 1).$search; ?>">上一页</a></li>
+                <li class="page-item"><a class="page-link" style="display:<?php echo $page<=1?'none':''; ?> " href="?page=<?php echo ($page - 1).$search; ?>">上一页</a></li>
                 <?php for($i=$begin;$i<$end;$i++): ?>
                     <li class="page-item <?php echo $i === $page ? ' active' : ''; ?>">
                         <a class="page-link" href="?page=<?php echo $i.$search; ?>"><?php echo $i; ?></a>
@@ -505,7 +534,7 @@ inner join categories on article.category=categories.id where {$where} order by 
                 <?php endfor ?>
 
 
-                <li class="page-item"><a class="page-link" href="?page=<?php echo $page == $totalPages ?$page.$search:($page + 1).$search; ?>">下一页</a></li>
+                <li class="page-item"><a class="page-link" style="display:<?php echo $page>=$totalPages?'none':''; ?> "  href="?page=<?php echo $page == $totalPages ?$page.$search:($page + 1).$search; ?>">下一页</a></li>
             </ul>
         </div>
 
@@ -514,15 +543,9 @@ inner join categories on article.category=categories.id where {$where} order by 
         </div>
     </main>
 </div>
-<!--TODO:优化布局    分页系统   头像点击显示信息   文章阅读界面-->
 <script>
     //轮播图定时
     $('.carousel').carousel({interval: 5000});
-
-    //页面布局
-    // $('.contentBox').css({left: '15%'});
-
-
 </script>
 
 <script src="static/assets/js/main.js"></script>
