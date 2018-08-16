@@ -16,13 +16,12 @@
 <link rel="stylesheet" href="static/assets/css/main.css">
 <link href="static/assets/vendors/aplayer/APlayer.min.css" rel="stylesheet">
 <style>
-    /*html, body{ margin:0; height:100%; }*/
+
     body {
         z-index: 1;
         width: 100%;
         height: 100%;
         position: absolute;
-
         background: url("static/assets/img/wallhaven-3771521.jpg") no-repeat fixed;
         background-size: 100% 400px;
         transition-duration: 0s;
@@ -64,7 +63,7 @@
     }
 
     .disc {
-        /*left:0!important;*/
+        left:-100px;
         width: 40vw;
         height: 40vw;
         border-radius: 50%;
@@ -193,7 +192,7 @@
         cursor: pointer;
     }
     .musicSmall{
-        padding: 0!important;
+        padding: 0;
         height:100px;
         width:100%;
         background-color: white;
@@ -230,7 +229,26 @@
         position:absolute;
     }
 
+    @media screen and (min-width: 320px) and (max-width: 480px) {
 
+        .musicSmall{
+            height: 20vw;
+            font-size: 16px;
+        }
+
+        .disc{
+            left: 300px;
+        }
+        .musicSmallInfo p{
+            display: inline-block;
+            position:relative;
+            top:-25px;
+            margin-top:10px;
+        }
+
+
+
+    }
 
 </style>
 </head>
@@ -320,33 +338,34 @@
         <hr>
         <div class="container">
             <div class="row  d-flex justify-content-around my-3">
-                <div class="col-3 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
+                <div class="col-lg-3 col-xs-8 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
                             <span class="iconfont"></span>
                         </div><img src="" alt=""></div><div class="musicSmallInfo"><p>我的滑板鞋</p><p>by artist</p></div></div>
-                <div class="col-3 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
+                <div class="col-lg-3 col-xs-8 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
                             <span class="iconfont"></span>
                         </div><img src="" alt=""></div><div class="musicSmallInfo"><p>我的滑板鞋</p><p>by artist</p></div></div>
-                <div class="col-3 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
+                <div class="col-lg-3 col-xs-8 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
                             <span class="iconfont"></span>
                         </div><img src="" alt=""></div><div class="musicSmallInfo"><p>我的滑板鞋</p><p>by artist</p></div></div>
-                <div class="col-3 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
+                <div class="col-lg-3 col-xs-8 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
                             <span class="iconfont"></span>
                         </div><img src="" alt=""></div><div class="musicSmallInfo"><p>我的滑板鞋</p><p>by artist</p></div></div>
-                <div class="col-3 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
+                <div class="col-lg-3 col-xs-8 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
                             <span class="iconfont"></span>
                         </div><img src="" alt=""></div><div class="musicSmallInfo"><p>我的滑板鞋</p><p>by artist</p></div></div>
-                <div class="col-3 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
+                <div class="col-lg-3 col-xs-8 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
                             <span class="iconfont"></span>
                         </div><img src="" alt=""></div><div class="musicSmallInfo"><p>我的滑板鞋</p><p>by artist</p></div></div>
-                <div class="col-3 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
+                <div class="col-lg-3 col-xs-8 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
                             <span class="iconfont"></span>
                         </div><img src="" alt=""></div><div class="musicSmallInfo"><p>我的滑板鞋</p><p>by artist</p></div></div>
-                <div class="col-3 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
+                <div class="col-lg-3 col-xs-8 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
                             <span class="iconfont"></span>
                         </div><img src="" alt=""></div><div class="musicSmallInfo"><p>我的滑板鞋</p><p>by artist</p></div></div>
-                <div class="col-3 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
+                <div class="col-lg-3 col-xs-8 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
                             <span class="iconfont"></span>
                         </div><img src="" alt=""></div><div class="musicSmallInfo"><p>我的滑板鞋</p><p>by artist</p></div></div>
+
 
             </div>
 
@@ -436,6 +455,7 @@
 <script src="static/assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
 <script src="static/assets/vendors/wow/wow.min.js"></script>
 <script src="static/assets/js/navBar.js"></script>
+<script src="static/assets/vendors/waterwheelCarousel/jquery.waterwheelCarousel.min.js"></script>
 <script src="static/assets/vendors/aplayer/APlayer.min.js"></script>
 <script src="static/assets/vendors/waterwheelCarousel/jquery.waterwheelCarousel.min.js"></script>
 <script>
