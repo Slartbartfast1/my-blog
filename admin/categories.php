@@ -16,9 +16,11 @@ function addCategory()
     $categoriesImg = $_FILES['categoriesImg'];
 
     $dest = '../static/assets/categories/' . $slug . $categoriesImg['name'];
-    move_uploaded_file($categoriesImg['tmp_name'], $dest);
+    if(!move_uploaded_file($categoriesImg['tmp_name'], $dest)){
+        exit('上传失败');
+    }
 
-//        exit('上传失败');}
+//
 
     $dest2 = substr($dest, 3);
     $rows = myExecute("insert into categories values (null, '{$slug}', '{$categories}','{$dest2}');");
@@ -75,7 +77,7 @@ if (empty($_GET['id'])) {
     </div>
     <div class="row mt-5">
 
-        <div class="col-8">
+        <div class="col-lg-8 col-sm-12">
             <div class="page-action">
                 <!-- show when multiple checked -->
                 <a id="btnDelete" class="btn btn-danger btn-sm" href="/Myblog/admin/categoriesDelete.php"
@@ -107,7 +109,7 @@ if (empty($_GET['id'])) {
                 </tbody>
             </table>
         </div>
-        <div class="col-4">
+        <div class="col-lg-4 col-sm-12">
             <?php if (isset($message)): ?>
                 <?php if ($success): ?>
                     <div class="alert alert-success">
