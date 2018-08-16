@@ -1,10 +1,16 @@
 <?php include 'navBar.php';
-/**
- * Created by PhpStorm.
- * User: huangrui10191180
- * Date: 2018/8/11
- * Time: 20:24
- */ ?>
+require_once 'static/function.php';
+$section1=myFetchAll("select * from music where album=1");
+$section2=myFetchAll("select * from music where album=2");
+$section3=myFetchAll("select * from music where album=3");
+$section4=myFetchAll("select * from music where album=4");
+
+
+
+
+
+
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +21,8 @@
 <link href="static/assets/vendors/animate/animate.min.css" rel="stylesheet">
 <link rel="stylesheet" href="static/assets/css/main.css">
 <link href="static/assets/vendors/aplayer/APlayer.min.css" rel="stylesheet">
+<link rel="stylesheet" href="static/assets/css/footer.css">
+
 <style>
 
     body {
@@ -27,9 +35,6 @@
         transition-duration: 0s;
     }
 
-    .page {
-
-    }
 
     .block {
         position: relative;
@@ -50,9 +55,6 @@
         margin-top: 400px;
     }
 
-    /*.block1 img{*/
-    /*height:100%;*/
-    /*}*/
     .last {
         /*height:400px;*/
     }
@@ -104,10 +106,10 @@
         }
     }
 
-    audio {
-        height: 100%;
-        width: 100%;
-    }
+    /*audio {*/
+        /*height: 100%;*/
+        /*!*width: 100%;*!*/
+    /*}*/
 
     @font-face {
         font-family: 'iconfont';
@@ -228,6 +230,10 @@
         display: inline-block;
         position:absolute;
     }
+    .footer{
+        z-index: 100;
+        bottom: -350px
+    }
 
     @media screen and (min-width: 320px) and (max-width: 480px) {
 
@@ -251,6 +257,7 @@
     }
 
 </style>
+<link rel="stylesheet" href="static/assets/css/footer.css">
 </head>
 <body>
 <div class="page">
@@ -269,7 +276,7 @@
                     </div>
                 </div>
                 <div class="firstBox  col-lg-6 col-xs-12">
-
+                    <?php foreach ($section1 as $item): ?>
                     <div class="mt-2 musicBox">
 
                         <div class="postImg">
@@ -279,44 +286,12 @@
                                 <span class="iconfont"></span>
                             </div>
                             <div class="postImgurl">
-                                <img src="static/assets/img/wallhaven-665520.jpg" alt="">
+                                <img src="<?php echo $item['posterurl'] ?>" alt="">
                             </div>
                         </div>
-
-
                     </div>
-                    <div class="mt-2 musicBox">
+                    <?php endforeach; ?>
 
-                        <div class="postImg">
-                            <div class="shadow">
-
-                            </div>
-                            <div class="play text-center">
-                                <span class="iconfont"></span>
-                            </div>
-                            <div class="postImgurl">
-                                <img src="static/assets/img/wallhaven-671087.jpg" alt="">
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class="mt-2 musicBox">
-
-                        <div class="postImg">
-                            <div class="shadow">
-
-                            </div>
-                            <div class="play text-center">
-                                <span class="iconfont"></span>
-                            </div>
-                            <div class="postImgurl">
-                                <img src="static/assets/img/wallhaven-671087.jpg" alt="">
-                            </div>
-                        </div>
-
-
-                    </div>
                 </div>
             </div>
         </div>
@@ -326,46 +301,24 @@
         <hr>
         <div class="contaner">
             <div id="carousel" >
-                <div class="carouselWrap"><img class="postImg" src="static/assets/img/wallhaven-53697.jpg" alt="Image 2"/> <span class="iconfont"></span></div>
-                <img class="postImg" src="static/assets/img/wallhaven-377152.jpg" alt="Image 3"/> <span class="iconfont"></span>
-                <img class="postImg" src="static/assets/img/wallhaven-644594.jpg" alt="Image 4"/> <span class="iconfont"></span>
-                <img class="postImg" src="static/assets/img/wallhaven-664064.png" alt="Image 5"/> <span class="iconfont"></span>
+                <div class="carouselWrap">
+                    <?php foreach ($section2 as $item): ?>
+                    <img class="postImg" src="<?php echo $item['posterurl'] ?>" alt=""/> <span class="iconfont" style="display: none"></span>
+                    <?php endforeach; ?>
             </div>
         </div>
+    </div>
     </div>
     <div class="block1">
         <h1 class="display-4 text-center">西部世界</h1>
         <hr>
         <div class="container">
             <div class="row  d-flex justify-content-around my-3">
+                <?php foreach ($section3 as $item): ?>
                 <div class="col-lg-3 col-xs-8 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
                             <span class="iconfont"></span>
-                        </div><img src="" alt=""></div><div class="musicSmallInfo"><p>我的滑板鞋</p><p>by artist</p></div></div>
-                <div class="col-lg-3 col-xs-8 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
-                            <span class="iconfont"></span>
-                        </div><img src="" alt=""></div><div class="musicSmallInfo"><p>我的滑板鞋</p><p>by artist</p></div></div>
-                <div class="col-lg-3 col-xs-8 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
-                            <span class="iconfont"></span>
-                        </div><img src="" alt=""></div><div class="musicSmallInfo"><p>我的滑板鞋</p><p>by artist</p></div></div>
-                <div class="col-lg-3 col-xs-8 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
-                            <span class="iconfont"></span>
-                        </div><img src="" alt=""></div><div class="musicSmallInfo"><p>我的滑板鞋</p><p>by artist</p></div></div>
-                <div class="col-lg-3 col-xs-8 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
-                            <span class="iconfont"></span>
-                        </div><img src="" alt=""></div><div class="musicSmallInfo"><p>我的滑板鞋</p><p>by artist</p></div></div>
-                <div class="col-lg-3 col-xs-8 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
-                            <span class="iconfont"></span>
-                        </div><img src="" alt=""></div><div class="musicSmallInfo"><p>我的滑板鞋</p><p>by artist</p></div></div>
-                <div class="col-lg-3 col-xs-8 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
-                            <span class="iconfont"></span>
-                        </div><img src="" alt=""></div><div class="musicSmallInfo"><p>我的滑板鞋</p><p>by artist</p></div></div>
-                <div class="col-lg-3 col-xs-8 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
-                            <span class="iconfont"></span>
-                        </div><img src="" alt=""></div><div class="musicSmallInfo"><p>我的滑板鞋</p><p>by artist</p></div></div>
-                <div class="col-lg-3 col-xs-8 musicSmall mx-2 my-4 wow animated fadeInDown"><div class="postImg postSmall"><div class="play text-center">
-                            <span class="iconfont"></span>
-                        </div><img src="" alt=""></div><div class="musicSmallInfo"><p>我的滑板鞋</p><p>by artist</p></div></div>
-
+                        </div><img src="<?php echo $item['posterurl'] ?>" alt=""></div><div class="musicSmallInfo"><p><?php echo $item['title'] ?></p><p>by <?php echo $item['author'] ?></p></div></div>
+                <?php endforeach; ?>
 
             </div>
 
@@ -378,76 +331,76 @@
         <div class="container">
             <table class="table table-hover musicTable">
                 <tbody>
+                <?php foreach ($section4 as $item): ?>
                 <tr class="wow animated fadeInDown">
-                    <td>123</td>
-                    <td>123</td>
-                    <td>123</td>
+                    <td><img src="<?php echo $item['posterurl'] ?>" alt="" width="100" height="120"></td>
+                    <td><?php echo $item['title'] ?></td>
+                    <td><?php echo $item['author'] ?></td>
                     <td> <span class="iconfont postImg"></span></td>
                 </tr>
-                <tr class="wow animated fadeInDown">
-                    <td>123</td>
-                    <td>123</td>
-                    <td>123</td>
-                    <td> <span class="iconfont postImg"></span></td>
-                </tr>
-                <tr class="wow animated fadeInDown">
-                    <td>123</td>
-                    <td>123</td>
-                    <td>123</td>
-                    <td> <span class="iconfont postImg"></span></td>
-                </tr>
-                <tr class="wow animated fadeInDown">
-                    <td>123</td>
-                    <td>123</td>
-                    <td>123</td>
-                    <td> <span class="iconfont postImg"></span></td>
-                </tr>
-                <tr class="wow animated fadeInDown">
-                    <td>123</td>
-                    <td>123</td>
-                    <td>123</td>
-                    <td> <span class="iconfont postImg"></span></td>
-                </tr>
-                <tr class="wow animated fadeInDown">
-                    <td>123</td>
-                    <td>123</td>
-                    <td>123</td>
-                    <td> <span class="iconfont postImg"></span></td>
-                </tr>
-                <tr class="wow animated fadeInDown">
-                    <td>123</td>
-                    <td>123</td>
-                    <td>123</td>
-                    <td> <span class="iconfont postImg"></span></td>
-                </tr>
-
-
-
+                <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
 
     </div>
+    <div class="footer ">
+        <div class="footerItem text-center">
 
+            <div class="link">
+                <div class="QR"><img src="static/assets/img/微信图片_20180815234204.jpg" alt="" class="img-fluid"></div>
+                <a href="#" class="icon1 wechat"><span></span></a>
+                <a href="https://blog.csdn.net/Slartibartfast" class="icon1 csdn"><span></span></a>
+                <a href="https://github.com/Slartbartfast1" class="icon1 github"><span></span></a>
+
+            </div>
+
+            <small class="text-muted">15212068@bjtu.edu.cn</small>
+            <p class="text-muted">© 2018 泛银河系含漱爆破液</p>
+        </div>
+    </div>
 
 </div>
+
 
 <!--================================================================================================================================-->
 
 <!--用PHP渲染播放器信息-->
 <div id="aplayer"></div>
-<div class="info" style="display: none">
-    <div class="title">2131231</div>
-    <div class="author">3232332</div>
-    <div class="posterurl">static/assets/img/wallhaven-671087.jpg</div>
-    <div class="musicurl">static/assets/music/Surf RiderThe Lively Ones - Surf Rider.mp3</div>
-</div>
-<div class="info" style="display: none">
-    <div class="title">2131231</div>
-    <div class="author">3232332</div>
-    <div class="posterurl">static/assets/img/wallhaven-671087.jpg</div>
-    <div class="musicurl">static/assets/music/Hooked On A FeelingBlue Swede - Hooked On A Feeling.mp3</div>
-</div>
+
+<?php foreach ($section1 as $item): ?>
+    <div class="info" style="display: none">
+        <div class="title"><?php echo $item['title'] ?></div>
+        <div class="author"><?php echo $item['author'] ?></div>
+        <div class="posterurl"><?php echo $item['posterurl'] ?></div>
+        <div class="musicurl"><?php echo $item['musicurl'] ?></div>
+    </div>
+<?php endforeach; ?>
+<?php foreach ($section2 as $item): ?>
+    <div class="info" style="display: none">
+        <div class="title"><?php echo $item['title'] ?></div>
+        <div class="author"><?php echo $item['author'] ?></div>
+        <div class="posterurl"><?php echo $item['posterurl'] ?></div>
+        <div class="musicurl"><?php echo $item['musicurl'] ?></div>
+    </div>
+<?php endforeach; ?>
+<?php foreach ($section3 as $item): ?>
+    <div class="info" style="display: none">
+        <div class="title"><?php echo $item['title'] ?></div>
+        <div class="author"><?php echo $item['author'] ?></div>
+        <div class="posterurl"><?php echo $item['posterurl'] ?></div>
+        <div class="musicurl"><?php echo $item['musicurl'] ?></div>
+    </div>
+<?php endforeach; ?>
+<?php foreach ($section4 as $item): ?>
+    <div class="info" style="display: none">
+        <div class="title"><?php echo $item['title'] ?></div>
+        <div class="author"><?php echo $item['author'] ?></div>
+        <div class="posterurl"><?php echo $item['posterurl'] ?></div>
+        <div class="musicurl"><?php echo $item['musicurl'] ?></div>
+    </div>
+<?php endforeach; ?>
+
 <!--//php待渲染-->
 
 
