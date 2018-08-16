@@ -21,7 +21,7 @@ $user =myFetchOne('select * from user');
 </head>
 <body>
 
-<div class="container ml-6 py-5 col-5">
+<div class="container ml-6 py-5 col-lg-5 col-sm-12">
     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
         <div class="page-title mb-5">
             <h1>用户信息</h1>
