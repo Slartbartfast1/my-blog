@@ -2,15 +2,19 @@
 include 'navBar.php';
 require_once 'static/function.php';
 $commentfather=myFetchAll("select * from commentfather where articleid='228'");
+
 if($_SERVER['REQUEST_METHOD']==='POST'){
     if (empty($_POST['nickName'])) {
+
         $GLOBALS['errorMessage'] = '请输入昵称';
         return;
     }
     if (empty($_POST['comment'])) {
+
         $GLOBALS['errorMessage'] = '请输入评论内容';
         return;
     }
+
     if (empty($_POST['fatherid'])) {
         $articleid1 = $_POST['articleid'];
         $commentName = $_POST['nickName'];
@@ -26,7 +30,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         $commentTime = date('Y-m-d H:m:s', time());
         myExecute("insert into commentchild values('{$articleid1}',null,'{$commentTime}','{$commentName}','{$fatherComment}','{$fatherid}');");
     }
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+
 }
 
 
@@ -60,6 +64,8 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
             height: 100%;
             z-index: 2;
             background-color: #F4EFE9;
+
+
         }
         .commentBox{
 
@@ -75,6 +81,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
             background-color: #FFF;
             font-size: .8em;
             position:relative;
+            box-shadow: 0 0 1px 1px rgba(0,0,0,.1);
         }
         .avatarLine{
             position:relative;
@@ -94,7 +101,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
             top:5px;
             left:60px;
         }
-        .date{
+        .date1{
             position:absolute;
             bottom:5px;
             left:60px;
@@ -115,15 +122,21 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
             width:100%;
             font-size: 1.2em;
         }
+        .comments{
+            min-height:0px;
+        }
+
+
     </style>
 </head>
 <body>
 <div class="page">
 <main>
+
 <div class="container">
     <div class="commentBox col-12" id="commentBox">
-        <div class="col-12 py-3">
-            <h1>留言区</h1>
+        <div class="col-lg-12    py-3">
+            <h1>留言板</h1>
             <hr>
             <?php if (isset($errorMessage)): ?>
                 <div class="alert alert-warning text-center">
@@ -154,17 +167,19 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
             <div id="div1">
             </div>
             <button class="btn btn-primary btn-sm" type="submit">提交</button>
+            <button class="btn btn-sm empty" type="button">清空</button>
+
         </form>
     </div>
         <?php $index=1;foreach ($commentfather as $item):
             $commentchild=myFetchAll("select * from commentchild where fatherid={$item['fatherid']}")?>
-            <div class="comments col-12 p-3" >
+            <div class="comments col-lg-12  p-3" >
             <div class="avatarLine" id="commentNum<?php echo $index ?>" >
             <div class="avatarWrap">
                 <img src="admin/avatar/default.png" alt="">
             </div >
                 <b class="nickName"><?php echo $item['commentName'] ?></b>
-                <span class="date text-muted"><?php echo $item['commentDate'] ?></span>
+                <span class="date1 text-muted"><?php echo $item['commentDate'] ?></span>
                 <a href="#commentBox" class="repply">回复</a>
                 <div class="fatherid" style="display: none"><?php echo $item['fatherid'] ?></div>
             </div>
@@ -173,13 +188,13 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
                 </div>
 <?php  foreach ($commentchild as $child):?>
                 <div class="media p-3">
-                    <div class="comments col-12 p-3" ">
+                    <div class="comments col-lg-12 ">
                         <div class="avatarLine" id="commentNum<?php echo $index ?>">
                             <div class="avatarWrap">
                                 <img src="admin/avatar/default.png" alt="">
                             </div>
                             <b class="nickName"><?php echo $child['commentName'] ?></b>
-                            <span class="date text-muted" ><?php echo $child['commentDate'] ?></span>
+                            <span class="date1 text-muted" ><?php echo $child['commentDate'] ?></span>
                             <a href="#" class="repply">回复</a>
                             <div class="fatherid" style="display: none"><?php echo $item['fatherid'] ?></div>
                         </div>
@@ -191,8 +206,8 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
                 <?php $index++; endforeach; ?>
             </div>
     <?php $index++; endforeach; ?>
-</div>
 
+</div>
 </main>
 
 
@@ -221,6 +236,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     $text1.val(editor.txt.html())
 </script>
 <script>
+    //回复按钮
     $('.repply').on('click',function(){
         var fatherid=$(this).next().text();
         var id=$(this).parent().attr('id');
@@ -228,7 +244,36 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         $('#fatherid').val(fatherid);
         var anchor="<a href='#"+id+"'>"+"@"+name+"</a>"+"<p><br></p>";
         editor.txt.html(anchor);
+    });
+
+    //清空按钮
+    $('.empty').on('click',function(){
+        editor.txt.html('');
+        $('#tex1').text('');
+        $('#fatherid').val('');
     })
+
+
+</script>
+
+
+<script>
+    //导航栏
+
+    $(function () {
+        $(window).scroll(function () {
+            var winTop = $(window).scrollTop();
+            if (winTop >= 340) {
+                $('.navbar-brand').addClass('fadeOut').text('留言板').removeClass('fadeOut').addClass('fadeIn');
+
+            }
+            else {
+                $('.navbar-brand').text("Slartbartfast's Blog").removeClass('fixed fadeIn');
+
+            }
+
+        });
+    });
 
 
 
