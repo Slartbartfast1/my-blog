@@ -15,7 +15,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-<link href="static/assets/vendors/bootstrap/bootstrap.min.css" rel="stylesheet">    <link href="static/assets/vendors/animate/animate.min.css" rel="stylesheet">
+<link href="static/assets/vendors/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="static/assets/vendors/animate/animate.min.css" rel="stylesheet">
     <link rel="stylesheet" href="static/assets/css/main.css">
     <style>
 
@@ -112,8 +113,11 @@
             position: absolute;
             display: block;
             color: #7C7C7D;
-            height: 40px;
-            width: 40px;
+            width:40px;
+            height:40px;
+            right:0px;
+            top:0;
+            line-height: 40px;
         }
 
         .btnGroup div {
@@ -126,11 +130,13 @@
         }
 
         .prev {
+            position:relative;
             left: 0;
 
         }
 
         .next {
+            position:relative;
             left: 40px;
 
         }
@@ -149,6 +155,19 @@
             height: 80px;
             width: 60px;
         }
+        .movieName{
+            width:100px;
+            background-color: rgba(0,0,0,0);
+        }
+        @media screen and (min-width: 320px) and (max-width: 480px) {
+
+           table{
+               font-size: 10px;
+           }
+            .movieName{
+                width:50px;
+            }
+        }
 
 
     </style>
@@ -156,7 +175,7 @@
 <body>
 <div class="page">
     <main>
-        <h1 class="display-4">正在热映:</h1>
+        <h1 class="display-5">正在热映:</h1>
         <hr>
         <div class="inTheaterSlide wow animated fadeInRight">
             <div class="iTSlideBox">
@@ -165,13 +184,49 @@
 
         </div>
         <div class="btnGroup mb-4">
-            <div class="prev "><span class="iconfont text-center">󰍃</span></div>
-            <div class="next "><span class="iconfont text-center">󰍄</span></div>
+            <div class="prev text-center"><span class="iconfont text-center">󰍃</span></div>
+            <div class="next text-center"><span class="iconfont text-center">󰍄</span></div>
             <small class="pageCount text-muted"></small>
         </div>
-        <h1 class="display-4">排行榜:</h1>
+        <h1 class="display-5">排行榜:</h1>
         <hr>
         <div class="container">
+            <div class="row">
+                <div class=" weekly col-lg-6 col-xs-12 wow animated fadeIn">
+                    <h4>一周口碑榜</h4>
+                    <table class="table table-hover">
+                        <thead>
+                        <th>海报</th>
+                        <th class="text-center">名称</th>
+                        <th>时间</th>
+                        <th>导演</th>
+                        <th class="text-center">卡司</th>
+                        <th class="text-center">评分</th>
+                        </thead>
+                        <tbody>
+                        <!--                        插入口碑榜-->
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class=" top10 col-lg-6 col-xs-12 wow animated fadeIn">
+                    <h4>TOP10</h4>
+                    <table class="table table-hover">
+                        <thead>
+                        <th>海报</th>
+                        <th class="text-center" >名称</th>
+                        <th>时间</th>
+                        <th>导演</th>
+                        <th class="text-center">卡司</th>
+                        <th class="text-center">评分</th>
+                        </thead>
+                        <tbody>
+                        <!--                        插入TOP10-->
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
             <div class="row">
                 <div class=" newMovies col-lg-6 col-xs-12 wow animated fadeIn">
                     <h4>新片榜</h4>
@@ -204,42 +259,6 @@
                         </thead>
                         <tbody>
 <!--                        插入北美票房榜-->
-                        </tbody>
-                    </table>
-
-                </div>
-            </div>
-            <div class="row">
-                <div class=" weekly col-lg-12 col-xs-12 wow animated fadeIn">
-                    <h4>一周口碑榜</h4>
-                    <table class="table table-hover">
-                        <thead>
-                        <th>海报</th>
-                        <th class="text-center">名称</th>
-                        <th>时间</th>
-                        <th>导演</th>
-                        <th class="text-center">卡司</th>
-                        <th class="text-center">评分</th>
-                        </thead>
-                        <tbody>
-                        <!--                        插入口碑榜-->
-                        </tbody>
-                    </table>
-
-                </div>
-                <div class=" top10 col-lg-12 col-xs-12 wow animated fadeIn">
-                    <h4>TOP10</h4>
-                    <table class="table table-hover">
-                        <thead>
-                        <th>海报</th>
-                        <th class="text-center">名称</th>
-                        <th>时间</th>
-                        <th>导演</th>
-                        <th class="text-center">卡司</th>
-                        <th class="text-center">评分</th>
-                        </thead>
-                        <tbody>
-                        <!--                        插入TOP10-->
                         </tbody>
                     </table>
 
@@ -327,7 +346,7 @@
     {{for newMovies}}
     <tr>
                        <td><a href="{{:alt}}"><img src="{{:images.small}}" alt=""></a></td>
-                    <td><a href="{{:alt}}">{{:title}}</a></td>
+                    <td class="movieName"><a href="{{:alt}}">{{:title}}</a></td>
                     <td>{{:pubdates}}</td>
                     <td>
                     {{for directors}}
@@ -351,7 +370,7 @@
     {{for usBox}}
     <tr>
                        <td><a href="{{:subject.alt}}"><img src="{{:subject.images.small}}" alt=""></a></td>
-                    <td><a href="{{:subject.alt}}">{{:subject.title}}</a></td>
+                    <td class="movieName"><a href="{{:subject.alt}}">{{:subject.title}}</a></td>
                     <td>{{:subject.pubdates}}</td>
                     <td>
                     {{for subject.directors}}
@@ -373,9 +392,9 @@
     {{for weekly}}
     <tr>
                        <td><a href="{{:subject.alt}}"><img src="{{:subject.images.small}}" alt=""></a></td>
-                    <td><a href="{{:subject.alt}}">{{:subject.title}}</a></td>
+                    <td class="movieName"><a href="{{:subject.alt}}">{{:subject.title}}</a></td>
                     <td>{{:subject.pubdates}}</td>
-                    <td>
+                    <td >
                     {{for subject.directors}}
                     {{:name}}
                     {{/for}}
@@ -394,7 +413,7 @@
     {{for newMovies}}
     <tr>
                        <td><a href="{{:alt}}"><img src="{{:images.small}}" alt=""></a></td>
-                    <td><a href="{{:alt}}">{{:title}}</a></td>
+                    <td class="movieName"><a href="{{:alt}}">{{:title}}</a></td>
                     <td>{{:pubdates}}</td>
                     <td>
                     {{for directors}}
@@ -416,7 +435,7 @@
     {{for top10}}
     <tr>
                        <td><a href="{{:alt}}"><img src="{{:images.small}}" alt=""></a></td>
-                    <td><a href="{{:alt}}">{{:title}}</a></td>
+                    <td class="movieName"><a href="{{:alt}}">{{:title}}</a></td>
                     <td>{{:pubdates}}</td>
                     <td>
                     {{for directors}}
