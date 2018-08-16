@@ -66,7 +66,7 @@ article.category,
 categories.id,
 categories.categories as categoryName
 from article 
-inner join categories on article.category=categories.id where {$where} limit {$offset},{$size};");
+inner join categories on article.category=categories.id where {$where} and articleid!=228 limit {$offset},{$size};");
 
 //转换置顶状态格式;
 function convertTop($top)
@@ -109,7 +109,7 @@ $categories=myFetchAll('select * from categories');
     </div>
     <div class="page-action row">
         <a class="btn btn-danger btn-sm" href="javascript:;" style="display: none">批量删除</a>
-        <form class="form-inline col-8" method="get" name="id" action="<?php $_SERVER['PHP_SELF'] ?>">
+        <form class="form-inline col-lg-8 col-sm-12" method="get" name="id" action="<?php $_SERVER['PHP_SELF'] ?>">
             <select name="category" class="form-control input-sm" >
                 <option value="all">所有分类</option>
                 <?php foreach ($categories as $item) :?>
