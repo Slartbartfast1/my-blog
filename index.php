@@ -1,5 +1,6 @@
 <?php
 include 'navBar.php';
+
 require_once 'static/function.php';
 
 $page = empty($_GET['page']) ? 1 : (int)$_GET['page'];//当前页码
@@ -68,98 +69,136 @@ $slider=myFetchAll("select * from slider order by 'index' asc;");
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>泛银河系含漱爆破液</title>
 
 <link href="static/assets/vendors/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="static/assets/vendors/animate/animate.min.css" rel="stylesheet">
     <link rel="stylesheet" href="static/assets/css/main.css">
-    <style>
-        .footer {
-            position:relative;
-            width: 100%;
-            height: 80px;
-            background-color: #F8FCFE;
-            border-top:1px solid rgba(0,0,0,.1)
-        }
-        .footerItem{
-            width:200px;
-            height:80px;
-            position:absolute;
-            left:50%;
-            margin-left: -100px;
-
-        }
-        @font-face {
-            font-family: 'iconfont';
-            src: url('/static/assets/fonts/iconfont.eot');
-            src: url('/static/assets/fonts/iconfont.eot?#iefix') format('embedded-opentype'),
-            url('/static/assets/fonts/iconfont.woff') format('woff'),
-            url('/static/assets/fonts/iconfont.ttf') format('truetype'),
-            url('/static/assets/fonts/iconfont.svg#iconfont') format('svg');
-        }
-        .icon1{
-            font-family: "iconfont" ;
-            font-style: normal;
-            -webkit-font-smoothing: antialiased;
-            -webkit-text-stroke-width: 0.2px;
-            -moz-osx-font-smoothing: grayscale;
-            text-decoration: none;
-            z-index: 999;
-            display: inline-block;
-            font-size: 25px;
-            line-height: 25px;
-            position:relative;
-            height:25px;
-            width:25px;
-            color: grey;
-            top:12px;
-
-        }
-        .github{
-            left:38px;
-        .github:hover{
-            color:#292D32
-        }
-        }
-        .csdn{
-
-            left:20px;
-            font-size: 23px;
-        }
-        .csdn:hover{
-            color:#C9141C
-        }
-        .wechat{
-            color:grey
-        }
-        .wechat:hover{
-            color:#609700
-        }
-        .QR{
-            height:120px;
-            width:120px;
-            background-color:  #F4EEE8;
-            position:absolute;
-            top:-120px;
-            left:-47px;
-            border-radius: 5px;
-            border:1px solid rgba(0,0,0,.1);
-            display: none;
-
-        }
-        .QR:after{
-            content:'';
-            width:20px;
-            height:20px;
-            border-left: solid 12px transparent;
-            border-top: solid 12px #FFF;
-            border-right: solid 12px transparent;
-            position:absolute;
-            left:46px;
-            top:120px;
-
-        }
-    </style>
+    <link rel="stylesheet" href="static/assets/css/footer.css">
+<!--    <style>-->
+<!--        .footer {-->
+<!--            position:relative;-->
+<!--            width: 100%;-->
+<!--            height: 100px;-->
+<!--            background-color: #F8FCFE;-->
+<!--            border-top:1px solid rgba(0,0,0,.1)-->
+<!--        }-->
+<!--        .footerItem{-->
+<!--            width:200px;-->
+<!--            height:80px;-->
+<!--            position:absolute;-->
+<!--            left:50%;-->
+<!--            margin-left: -100px;-->
+<!--        }-->
+<!--        @font-face {-->
+<!--            font-family: 'iconfont';-->
+<!--            src: url('/static/assets/fonts/iconfont.eot');-->
+<!--            src: url('/static/assets/fonts/iconfont.eot?#iefix') format('embedded-opentype'),-->
+<!--            url('/static/assets/fonts/iconfont.woff') format('woff'),-->
+<!--            url('/static/assets/fonts/iconfont.ttf') format('truetype'),-->
+<!--            url('/static/assets/fonts/iconfont.svg#iconfont') format('svg');-->
+<!--        }-->
+<!--        .icon1{-->
+<!--            font-family: "iconfont" ;-->
+<!--            font-style: normal;-->
+<!--            -webkit-font-smoothing: antialiased;-->
+<!--            -webkit-text-stroke-width: 0.2px;-->
+<!--            -moz-osx-font-smoothing: grayscale;-->
+<!--            text-decoration: none;-->
+<!--            z-index: 999;-->
+<!--            display: inline-block;-->
+<!--            font-size: 15px;-->
+<!--            line-height: 25px;-->
+<!--            position:relative;-->
+<!--            height:25px;-->
+<!--            width:25px;-->
+<!--            color: grey;-->
+<!--            /*top:12px;*/-->
+<!---->
+<!--        }-->
+<!--        .github{-->
+<!--            left:45px;}-->
+<!--        .github:hover{-->
+<!--            color:#292D32-->
+<!---->
+<!--        }-->
+<!--        .csdn{-->
+<!--            left:10px;-->
+<!--            /*left:20px;*/-->
+<!--            font-size: 13px;-->
+<!--        }-->
+<!--        .csdn:before{-->
+<!--            content: '';-->
+<!--            border-right:1px solid rgba(0,0,0,.3);-->
+<!--            margin-right:15px;-->
+<!--            height:10px;-->
+<!--        }-->
+<!--        .csdn:after{-->
+<!--            content: '';-->
+<!--            border-left:1px solid rgba(0,0,0,.3);-->
+<!--            display: ;-->
+<!--            margin-left:15px;-->
+<!---->
+<!--        }-->
+<!--        .csdn:hover{-->
+<!--            color:#C9141C-->
+<!--        }-->
+<!--        .wechat{-->
+<!--            color:grey;-->
+<!--            /*left:3px;*/-->
+<!---->
+<!--        }-->
+<!--        .wechat:hover{-->
+<!--            color:#609700-->
+<!--        }-->
+<!--        .QR{-->
+<!--            height:120px;-->
+<!--            width:120px;-->
+<!--            background-color:  #F4EEE8;-->
+<!--            position:absolute;-->
+<!--            top:-120px;-->
+<!--            left:-10px;-->
+<!--            border-radius: 5px;-->
+<!--            border:1px solid rgba(0,0,0,.1);-->
+<!--            display: none;-->
+<!---->
+<!---->
+<!--        }-->
+<!--        .QR:after{-->
+<!--            content:'';-->
+<!--            width:20px;-->
+<!--            height:20px;-->
+<!--            border-left: solid 12px transparent;-->
+<!--            border-top: solid 12px #FFF;-->
+<!--            border-right: solid 12px transparent;-->
+<!--            position:absolute;-->
+<!--            left:46px;-->
+<!--            top:120px;-->
+<!--            margin-top:-5px;-->
+<!--        }-->
+<!--        .link{-->
+<!--            /*position:relative;*/-->
+<!--            margin-top:10px;-->
+<!--            top:10px;-->
+<!--            left:50%;-->
+<!--            margin-left:-40px;-->
+<!--        }-->
+<!--        .footerItem small{-->
+<!--            /*position: absolute;*/-->
+<!--           /*top:30px;*/-->
+<!--            display: inline-block;-->
+<!--            margin-top:2px;-->
+<!--            margin-left:5px;-->
+<!--            font-size: .6em;-->
+<!--        }-->
+<!--        .footerItem p{-->
+<!--            display: inline-block;-->
+<!--            margin-top:2px;-->
+<!--            margin-left:5px;-->
+<!--            font-size: .6em;-->
+<!--        }-->
+<!---->
+<!--    </style>-->
 </head>
 <body>
 <script src="static/assets/vendors/jQuery/jQuery.js"></script>
@@ -234,23 +273,26 @@ $slider=myFetchAll("select * from slider order by 'index' asc;");
 
     </main>
     <div class="footer ">
-        <div class="footerItem">
-            <div class="QR"><img src="static/assets/img/微信图片_20180815234204.jpg" alt="" class="img-fluid"></div>
-            <a href="#" class="icon1 wechat"><span></span></a>
-            <a href="https://blog.csdn.net/Slartibartfast" class="icon1 csdn"><span></span></a>
-            <a href="https://github.com/Slartbartfast1" class="icon1 github"><span></span></a>
-        </div>
+        <div class="footerItem text-center">
 
+            <div class="link">
+                <div class="QR"><img src="static/assets/img/微信图片_20180815234204.jpg" alt="" class="img-fluid"></div>
+                <a href="#" class="icon1 wechat"><span></span></a>
+                <a href="https://blog.csdn.net/Slartibartfast" class="icon1 csdn"><span></span></a>
+                <a href="https://github.com/Slartbartfast1" class="icon1 github"><span></span></a>
+
+            </div>
+
+            <small class="text-muted">15212068@bjtu.edu.cn</small>
+            <p class="text-muted">© 2018 泛银河系含漱爆破液</p>
+        </div>
     </div>
+
 </div>
+
 <script src="static/assets/js/main.js"></script>
 <script>
-    $('.wechat').mouseenter(function(){
-        $('.QR').fadeIn(200);
-    });
-    $('.wechat').mouseleave(function(){
-        $('.QR').fadeOut(100);
-    });
+
 </script>
 </body>
 </html>
