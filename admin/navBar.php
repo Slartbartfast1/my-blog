@@ -36,8 +36,8 @@
                 设置
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">导航菜单</a>
-                <a class="dropdown-item" href="#">图片轮播</a>
+<!--                <a class="dropdown-item" href="#">导航菜单</a>-->
+                <a class="dropdown-item" href="sliderSeetings.php">图片轮播</a>
                 <a class="dropdown-item" href="#">网站设置</a>
             </div>
         </li>
