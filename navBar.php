@@ -21,17 +21,20 @@
             <img src="static/assets/img/3123avatar1.png" alt="" class="img-thumbnail rounded-circle">
 
         </div>
-        <div class="quote">
-            <blockquote class="text-muted text-center">一切可说之事皆可说清,一切不可说之事只可不说</blockquote>
-        </div>
+
     </div>
+    <div class="quote text-center">
+        <small class="text-muted ">一切可说之事皆可说清,一切不可说之事只可保持沉默</small>
+    </div>
+
     <div class="btns text-center">
-        <div class="buttonWarp"><a href="index.php" class="myActive">首页
+        <div class="buttonWarp"><a href="index.php" class="myActive">所有文章
             </a></div>
         <div class="buttonWarp"><a href="categories.php">分类</a></div>
-        <div class="buttonWarp"><a href="music.php">音乐盒</a></div>
-        <div class="buttonWarp"><a href="#">资源</a></div>
-        <div class="buttonWarp"><a href="theater.php">影院</a></div>
+        <div class="buttonWarp musicBox"><a href="music.php">音乐盒</a></div>
+        <div class="buttonWarp"><a href="theater.php">豆瓣影讯</a></div>
+        <div class="buttonWarp"><a href="comments.php">留言板</a></div>
+
     </div>
 
     <div class="openNav">
