@@ -50,6 +50,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     <link href="static/assets/vendors/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="static/assets/vendors/animate/animate.min.css" rel="stylesheet">
     <link rel="stylesheet" href="static/assets/css/main.css">
+    <link rel="stylesheet" href="static/assets/css/footer.css">
     <style>
         .page {
             z-index: 1;
@@ -208,6 +209,21 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     <?php $index++; endforeach; ?>
 
 </div>
+    <div class="footer ">
+        <div class="footerItem text-center">
+
+            <div class="link">
+                <div class="QR"><img src="static/assets/img/微信图片_20180815234204.jpg" alt="" class="img-fluid"></div>
+                <a href="#" class="icon1 wechat"><span></span></a>
+                <a href="https://blog.csdn.net/Slartibartfast" class="icon1 csdn"><span></span></a>
+                <a href="https://github.com/Slartbartfast1" class="icon1 github"><span></span></a>
+
+            </div>
+
+            <small class="text-muted">15212068@bjtu.edu.cn</small>
+            <p class="text-muted">© 2018 泛银河系含漱爆破液</p>
+        </div>
+    </div>
 </main>
 
 
