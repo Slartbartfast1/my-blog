@@ -136,11 +136,12 @@ function addArticle()
             <label for="articl">文章</label>
 
 
-            <div id="div1">
-            </div>
+
 <!--            将富文本编辑器的内容同步到表单的文本域;-->
             <div style="display:none">
                 <textarea id="text1" name="content" class="form-control"></textarea>
+            </div>
+            <div id="div1">
             </div>
         </div>
         <button class="btn btn-outline-success" type="submit">发布文章</button>
