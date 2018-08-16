@@ -19,12 +19,12 @@ function addslider(){
 }
 
 ?>
-<div class="container">
+
     <div class="page-title my-5">
         <h1>轮播图管理</h1>
     </div>
     <div class="row">
-<div class="col-8">
+<div class="col-lg-8 col-sm-12">
     <table class="table">
         <thead>
         <th class="text-center">层级</th>
@@ -39,8 +39,6 @@ function addslider(){
            <td class="text-center"><img src="../<?php echo $item['imgurl'] ?>" alt="" width="180" height="90"></td>
            <td class="text-center"><?php echo $item['name'] ?></td>
            <td class="text-center">
-               <a href="slider.php?id=<?php echo $item['id']; ?>"
-                  class="btn btn-info btn-sm">编辑</a>
                <a href="sliderDelete.php?id=<?php echo $item['id']; ?>"
                   class="btn btn-danger btn-sm">删除</a>
            </td>
@@ -49,7 +47,7 @@ function addslider(){
         </tbody>
     </table>
 </div>
-    <div class="col-4">
+    <div class="col-lg-4 col-sm-12">
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data" >
             <h2>添加图片</h2>
             <div class="form-group">
@@ -73,4 +71,3 @@ function addslider(){
 
     </div>
     </div>
-</div>
