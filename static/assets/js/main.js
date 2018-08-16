@@ -30,3 +30,9 @@ $('.openNav').on('click',function () {
     $('.navbar-brand').toggleClass('navbarBrandLeft')
 
 });
+
+//轮播图定时
+$('.carousel').carousel({interval: 5000});
+
+//二维码
+
