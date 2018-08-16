@@ -21,9 +21,12 @@ $dest2='admin/' . $dest;
     if (empty($intro)) {
         exit('个人简介不能为空');
     }
+    if(!empty($avatarFile['name'])){
     if(!move_uploaded_file($avatarFile['tmp_name'], $dest)){
         exit('上传失败');
     }
+    }
+
     //TODO: 如果上传头像为空,头像路径不变;
     if ($_FILES['avatar']["name"] == "") {
         myExecute("update user set name='$username',introduction='$intro',email='$email'");
