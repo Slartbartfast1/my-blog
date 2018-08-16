@@ -32,3 +32,10 @@ $('.openNav').on('click',function () {
     $('.navWrap').toggleClass('text-center');           //宽时logo居中
     $('.navbar-brand').toggleClass('navbarBrandLeft')   //窄时logo居中
 });
+if($(window).width<=480){
+    $('.openNav').on('click',function(){
+        $(this).css({display:'none'})
+
+
+    })
+}
