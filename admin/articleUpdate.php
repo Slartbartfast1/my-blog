@@ -160,7 +160,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
         <button class="btn btn-outline-success" type="submit">保存更改</button>
-<!--        <button class="btn btn-outline-warning" type="submit" id="btn2">保存草稿</button>-->
     </form>
     <script src="https://cdn.bootcss.com/wangEditor/10.0.13/wangEditor.js"></script>
     <script type="text/javascript">
@@ -176,6 +175,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     </script>
     <script>
+        //图片预览
         $("#fileUpload").on('change', function () {
 
             if (typeof (FileReader) != "undefined") {
