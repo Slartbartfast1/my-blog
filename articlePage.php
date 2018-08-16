@@ -8,8 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $commentFather = myFetchAll("select * from commentfather where articleid={$articleid}");
     $articleView = (int)$article['view'] + 1;
     myExecute("update article set view={$articleView} where articleid={$articleid}");
-
-
 };
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -32,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $articleid1 = $_POST['articleid'];
         $fatherid = $_POST['fatherid'];
         $applyTo=$_POST['appltTo'];
-        $fatherComment= $_POST['applyTo'] . $_POST['comment'];
+        $fatherComment=$_POST['comment'];
         $commentName = $_POST['nickName'];
         $commentTime = date('Y-m-d H:m:s', time());
         myExecute("insert into commentchild values('{$articleid1}',null,'{$commentTime}','{$commentName}','{$fatherComment}','{$fatherid}');");
@@ -70,6 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             height: 100%;
             z-index: 2;
             background-color: #F4EFE9;
+
         }
 
         .titleBox {
@@ -80,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             transform: translate(-50%, -50%);
             box-shadow: 0 0 1px 1px rgba(0, 0, 0, .1);
             text-align: center;
+            border-radius: 3px;
         }
 
         .articleContent {
@@ -99,6 +99,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             display: block;
             z-index: 1;
             transition: .1s ease-in 0s;
+            width:140px;
+
         }
 
         .titleTree ul {
@@ -123,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .titleTreeLeft {
-            left: 7%;
+            left: 4%;
         }
 
         .commentBox {
@@ -152,7 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             text-indent: 2em;
         }
 
-        .comments a {
+        .comments .repply {
             position: absolute;
             right: 10px;
             bottom: 10px;
@@ -218,14 +220,56 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             width: 50%;
             margin-top: 0;
         }
-
-        border:
-
-        1
-        px solid black
-
-        ;
+        #div1{
+            background-color: #FFF;
         }
+        @media screen and (min-width: 320px) and (max-width: 480px) {
+
+            /*.commentBox{*/
+                /*height: 400px!important;*/
+                /*font-size: 5px;*/
+            /*}*/
+            .titleTree{
+                display: none;
+            }
+           #div1{
+               overflow: hidden;
+               height: 200px !important;
+
+           }
+            .w-e-text-container{
+                width:100%;
+                height: 200px !important;
+            }
+            .w-e-toolbar{
+                width:360px;
+
+            }
+            .titleBox h1{
+                font-size:20px;
+                line-height: 20px;
+            }
+            .titleBox small{
+                font-size:8px;
+                line-height: 8px;
+            }
+            .articleContent{
+                font-size: 10px;
+            }
+            .comments{
+                font-size: 0.5em;
+            }
+            .articleBox{
+                top:350px;
+            }
+
+        }
+        @media screen and (min-width:600px) and (max-width:960px){
+            .titleTree{
+                display: none;
+            }
+        }
+
 
 
     </style>
@@ -236,14 +280,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <script src="static/assets/vendors/wow/wow.min.js"></script>
 <script src="static/assets/js/navBar.js"></script>
 
-<nav class="titleTree col-sm-1 col-2 titleTreeLeft animated">
+<nav class="titleTree  titleTreeLeft animated">
     <ul class="nav ">
     </ul>
 </nav>
 <div class="page" style="background:url('<?php echo $article['imgurl']?>') no-repeat fixed; background-size: 100% 400px;">
     <div class="articleBox row">
-
-        <div class="titleBox col-7 text-center py-4">
+        <div class="titleBox col-lg-8 col-sm-12 text-center py-4">
             <div class="page-header">
                 <h1><?php echo $article['title'] ?></h1>
                 <small>来自:</small>
@@ -252,10 +295,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <small>阅读数:<?php echo $article['view'] ?></small>
             </div>
         </div>
-        <div class="articleContent col-7 py-4">
+        <div class="articleContent col-lg-8 col-sm-12 py-4">
             <?php echo $article['content'] ?>
         </div>
-        <div class="commentBox col-7 mt-3;" id="commentBox">
+        <div class="commentBox col-lg-8 col-sm-12 mt-3;" id="commentBox">
             <div class="col-12 py-3">
                 <h4>评论</h4>
                 <?php if (isset($errorMessage)): ?>
@@ -273,7 +316,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                            value="<?php echo $articleid ?>">
                 </div>
                 <div class="form-group " style="display: none">
-                    <label for="fatherid"></label>
+                    <label for="fatherid" ></label>
                     <input type="text" class="form-control" id="fatherid" name="fatherid" autocomplete="off"
                            placeholder="father">
                 </div>
@@ -289,32 +332,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <div class="form-group">
                     <label for="comment"></label>
-                    <textarea class="form-control " rows="5" name="comment" id="comment" placeholder="说点什么吧"></textarea>
+                    <textarea class="form-control " rows="10" name="comment" id="text1" placeholder="说点什么吧" style="display:none"></textarea>
+                    <div id="div1" style="min-height: 100px;">
+                    </div>
                 </div>
                 <button class="btn btn-primary btn-sm" type="submit">提交</button>
+                <button class="btn btn-sm empty" type="button">清空</button>
             </form>
 
         </div>
 
 
-        <?php $count = 1;
+        <?php $count = 1; $num=1; //$count 生成楼层 $num生成锚点
         foreach ($commentFather as $item):
             $commentChild = myFetchAll("select * from commentchild where fatherid={$item['fatherid']}");
             ?>
 
-            <div class="comments col-7 mt-3 py-3 ">
-                <div class="fatherid" style="display: none"><?php echo $item['fatherid'] ?></div>
+            <div class="comments col-lg-8 col-sm-12 mt-3 py-3 " id="commentNum<?php echo $num ?>">
+                <div class="fatherid" style="display: none;position:absolute"><?php echo $item['fatherid'] ?></div>
                 <span class="floor font-weight-light text-muted "><?php echo $count ?>楼</span>
                 <span class=" font-weight-light nick"><?php echo $item['commentName'] ?>:</span>
                 <hr>
-                <p class="text-muted"><?php echo $item['commentContent'] ?></p>
+                <?php echo $item['commentContent'] ?>
 
                 <small class="commentTime font-weight-light text-muted"><?php echo $item['commentDate'] ?></small>
                 <a href="#commentBox" class="repply">回复</a>
-                <?php $index = 1;
+                <?php $index = 1;//生成楼层
                 foreach ($commentChild as $child): ?>
                     <div class="media p-3">
-                        <div class="comments  col-12 ">
+                        <div class="comments  col-12" id="commentNum<?php echo $num ?>">
                             <div class="fatherid" style="display: none"><?php echo $item['fatherid'] ?></div>
                             <span class="text-right floor font-weight-light text-muted "><?php echo $index ?>楼</span>
                             <span class=" font-weight-light nick"><?php echo $child['commentName'] ?>:</span>
@@ -325,9 +371,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <a href="#commentBox" class="repply repplyInside">回复</a>
                         </div>
                     </div>
-                    <?php $index++; endforeach ?>
+                    <?php $index++;$num++; endforeach ?>
             </div>
-            <?php $count++; endforeach ?>
+            <?php $count++;$num++; endforeach ?>
     </div>
 </div>
 <div class='goTop'>
@@ -378,25 +424,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $('.goTop').toggleClass('goTopLeft');
     }));
 
+</script>
 
-    //回复按钮:
-    $('.repply').on('click', function () {
-        var fatherid = $(this).parent().find('.fatherid').text();
-        var name = $(this).parent().find('.nick').eq(0).text();
-        $('#fatherid').val(fatherid);
-        $('#comment').attr('placeholder', '@' + name);
-        $('#applyTo').val('');
-
-    });
-    $('.repplyInside').on('click',function(){
-        var name = $(this).parent().find('.nick').eq(0).text();
-        var floor=$(this).parent().find('.floor').eq(0).text();
-        $('#comment').attr('placeholder', '@' + name);
-        $('#applyTo').val('回复'+floor+name);
-    })
-
+<!--============================留言开始=====================================================-->
+<script src="https://cdn.bootcss.com/wangEditor/10.0.13/wangEditor.js"></script>
+    <script type="text/javascript">
+    let E = window.wangEditor;
+    let editor = new E('#div1');
+    let $text1 = $('#text1');
+    editor.customConfig.onchange = function (html) {
+        $text1.val(html)
+    };
+    editor.create();
+    $text1.val(editor.txt.html())
 </script>
 <script>
+
+
+    //回复按钮点击事件
+    $('.repply').on('click',function(){
+        let fatherid = $(this).parent().find('.fatherid').text();
+        let id=$(this).parent().attr('id');
+        let name = $(this).parent().find('.nick').eq(0).text();
+        let anchor="<a href='#"+id+"'>"+"@"+name+"</a>"+"<p><br></p>";//富文本编辑器中插入src为锚点的a标签
+        $('#fatherid').val(fatherid);
+
+        editor.txt.html(anchor);
+    });
+    //清空按钮
+
+    $('.empty').on('click',function(){
+        editor.txt.html('');
+        $('#tex1').text('');
+        $('#fatherid').val('');
+    })
+// ===================================留言结束======================================
+
+
+
 
 </script>
 
