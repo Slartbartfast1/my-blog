@@ -34,6 +34,11 @@ $categories=myFetchAll('select * from categories');
             margin-top:50px;
             top:-120px;
             box-shadow: 0 0 1px 2px rgba(0,0,0,.1)
+            display: flex;
+            justify-content:center;
+            margin-left: 68px;
+
+
 
         }
         .category img{
@@ -62,12 +67,43 @@ $categories=myFetchAll('select * from categories');
             color:white;
             z-index: 3;
 
+
             /*margin-top:-25%;*/
         }
         .container{
             position: relative;
             top:400px;
             height:400px;
+        }
+        @media screen and (min-width: 320px) and (max-width: 480px) {
+
+            .category{
+                height:100px;
+                width:100px;
+                float: left;
+                display: inline-block;
+                margin: 40px ;
+
+            }
+            .categoryName{
+                font-size:15px;
+            }
+
+
+        }
+
+        @media screen and (min-width:600px) and (max-width:960px){
+            .category{
+                height:150px;
+                width:150px;
+                float: left;
+                display: inline-block;
+                margin: 40px ;
+
+            }
+            .categoryName{
+                font-size:15px;
+            }
         }
 
     </style>
@@ -77,7 +113,7 @@ $categories=myFetchAll('select * from categories');
     <div class="container">
         <div class="row">
             <?php foreach ($categories as $item): ?>
-            <div class="col-lg-4  col-xs-12">
+            <div class="">
                 <a href="index.php?category=<?php echo $item['id']?>">
                     <div class="category">
                     <div class="shadow"></div>
