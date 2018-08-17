@@ -14,7 +14,7 @@
     border-radius: 0;
 }
 body{
-    background-color: #FAFAFA;
+    background-color: #F4EEE8;
 }
 .page{
     transition: .3s ease 0s;
@@ -288,6 +288,10 @@ body{
     border-top:1px solid rgba(0,0,0,.1);
     background-color:#fff
 
+}
+kbd{
+    background-color:#DDD;
+    color:white;
 }
 .summary{
     height:60px;

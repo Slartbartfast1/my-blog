@@ -148,6 +148,12 @@ body {
     width: 50px;
 
 }
+.postSmall .play{
+    left:67%;
+}
+.carouselWrap .iconfont{
+    font-size: 0;
+}
 
 #aplayer {
     position: fixed;
