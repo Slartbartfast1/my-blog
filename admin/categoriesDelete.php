@@ -10,4 +10,4 @@ $id=$_GET['id'];
 $rows=myExecute('delete from categories where id in (' .$id . ');');
 
 
-header('Location: /admin/categories.php');
+header('location: '.$_SERVER['HTTP_REFERER']);
