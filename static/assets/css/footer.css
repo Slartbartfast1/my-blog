@@ -1,20 +1,21 @@
 .footer {
-    position:absolute;
+    position: absolute;
     width: 100%;
     height: 90px;
     background-color: #F8FCFE;
-    border-top:1px solid rgba(0,0,0,.1);
-
+    border-top: 1px solid rgba(0, 0, 0, .1);
 
 }
-.footerItem{
-    width:200px;
-    height:80px;
-    position:absolute;
-    left:50%;
+
+.footerItem {
+    width: 200px;
+    height: 80px;
+    position: absolute;
+    left: 50%;
     margin-left: -100px;
 
 }
+
 @font-face {
     font-family: 'iconfont';
     src: url('/static/assets/fonts/iconfont.eot');
@@ -23,8 +24,9 @@
     url('/static/assets/fonts/iconfont.ttf') format('truetype'),
     url('/static/assets/fonts/iconfont.svg#iconfont') format('svg');
 }
-.icon1{
-    font-family: "iconfont" ;
+
+.icon1 {
+    font-family: "iconfont";
     font-style: normal;
     -webkit-font-smoothing: antialiased;
     -webkit-text-stroke-width: 0.2px;
@@ -34,91 +36,97 @@
     display: inline-block;
     font-size: 15px;
     line-height: 25px;
-    position:relative;
-    height:25px;
-    width:25px;
+    position: relative;
+    height: 25px;
+    width: 25px;
     color: grey;
-    /*top:12px;*/
 
 }
-.github{
-    left:45px;}
-.github:hover{
-    color:#292D32
+
+.github {
+    left: 45px;
+}
+
+.github:hover {
+    color: #292D32
 
 }
-.csdn{
-    left:10px;
-    /
+
+.csdn {
+    left: 10px;
     font-size: 13px;
 }
-.csdn:before{
+
+.csdn:before {
     content: '';
-    border-right:1px solid rgba(0,0,0,.3);
-    margin-right:15px;
-    height:10px;
+    border-right: 1px solid rgba(0, 0, 0, .3);
+    margin-right: 15px;
+    height: 10px;
 }
-.csdn:after{
+
+.csdn:after {
     content: '';
-    border-left:1px solid rgba(0,0,0,.3);
-
-    margin-left:15px;
-
-}
-.csdn:hover{
-    color:#C9141C
-}
-.wechat{
-    color:grey;
-    /*left:3px;*/
+    border-left: 1px solid rgba(0, 0, 0, .3);
+    margin-left: 15px;
 
 }
-.wechat:hover{
-    color:#609700
+
+.csdn:hover {
+    color: #C9141C
 }
-.QR{
-    height:120px;
-    width:120px;
-    background-color:  #F4EEE8;
-    position:absolute;
-    top:-120px;
-    left:-10px;
+
+.wechat {
+    color: grey;
+}
+
+.wechat:hover {
+    color: #609700
+}
+
+.QR {
+    height: 120px;
+    width: 120px;
+    background-color: #F4EEE8;
+    position: absolute;
+    top: -120px;
+    left: -10px;
     border-radius: 5px;
-    border:1px solid rgba(0,0,0,.1);
+    border: 1px solid rgba(0, 0, 0, .1);
     display: none;
-z-index: 9999;
+    z-index: 9999;
 
 }
-.QR:after{
-    content:'';
-    width:20px;
-    height:20px;
+
+.QR:after {
+    content: '';
+    width: 20px;
+    height: 20px;
     border-left: solid 12px transparent;
     border-top: solid 12px #FFF;
     border-right: solid 12px transparent;
-    position:absolute;
-    left:46px;
-    top:120px;
-    margin-top:-5px;
+    position: absolute;
+    left: 46px;
+    top: 120px;
+    margin-top: -5px;
 }
-.link{
-    /*position:relative;*/
-    margin-top:10px;
-    top:10px;
-    left:50%;
-    margin-left:-40px;
+
+.link {
+    margin-top: 10px;
+    top: 10px;
+    left: 50%;
+    margin-left: -40px;
 }
-.footerItem small{
-    /*position: absolute;*/
-    /*top:30px;*/
+
+.footerItem small {
     display: inline-block;
-    margin-top:2px;
-    margin-left:5px;
+    margin-top: 2px;
+    margin-left: 5px;
     font-size: .6em;
 }
-.footerItem p{
+
+.footerItem p {
     display: inline-block;
-    margin-top:2px;
-    margin-left:5px;
+    margin-top: 2px;
+    margin-left: 5px;
     font-size: .6em;
 }
