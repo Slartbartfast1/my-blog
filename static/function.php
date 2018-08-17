@@ -1,5 +1,5 @@
 <?php
-
+header("Content-Type: text/html;charset=utf-8");
 require_once 'config.php';
 
 /**
@@ -7,9 +7,6 @@ require_once 'config.php';
  */
 session_start();
 
-// 定义函数时一定要注意：函数名与内置函数冲突问题
-// JS 判断方式：typeof fn === 'function'
-// PHP 判断函数是否定义的方式： function_exists('get_current_user')
 
 /**
  * 获取当前登录用户信息，如果没有获取到则自动跳转到登录页面
@@ -24,11 +21,11 @@ function myGetCurrentUser () {
 }
 
 /**
- * 通过一个数据库查询获取多条数据
- * => 索引数组套关联数组
+ * 多条数据
  */
 function myFetchAll ($sql) {
     $conn = mysqli_connect(MY_DB_HOST, MY_DB_USER, MY_DB_PASS, MY_DB_NAME);
+    mysqli_query($conn,"set names utf8");
     if (!$conn) {
         exit('连接失败');
     }
@@ -38,6 +35,7 @@ function myFetchAll ($sql) {
         // 查询失败
         return false;
     }
+
     $result=[];
     while ($row = mysqli_fetch_assoc($query)) {
         $result[] = $row;
@@ -50,8 +48,8 @@ function myFetchAll ($sql) {
 }
 
 /**
- * 获取单条数据
- * => 关联数组
+ * 单条数据
+ *
  */
 function myFetchOne ($sql) {
     $res = myFetchAll($sql);
@@ -59,14 +57,14 @@ function myFetchOne ($sql) {
 }
 
 /**
- * 执行一个增删改语句
+ * 增删改
  */
 function myExecute ($sql) {
     $conn = mysqli_connect(MY_DB_HOST, MY_DB_USER, MY_DB_PASS, MY_DB_NAME);
     if (!$conn) {
         exit('连接失败');
     }
-
+    mysqli_query($conn,"set names utf8");
     $query = mysqli_query($conn, $sql);
     if (!$query) {
         // 查询失败
