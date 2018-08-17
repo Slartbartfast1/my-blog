@@ -123,7 +123,7 @@ header("Content-Type: text/html;charset=utf-8");
                             <p><?php echo $item['author']?></p>
                             <small><?php echo $item['createTime']?></small>
                         </div>
-                        <span class="iconfont"><?php echo $item['view']?></span>
+                        <span class="iconfont"><kbd><?php echo $item['categoryName'] ?></kbd> &nbsp<?php echo $item['view']?></span>
                     </div>
                 </div>
             <?php endforeach; ?>
