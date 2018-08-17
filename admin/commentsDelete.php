@@ -13,8 +13,8 @@ if($_SERVER['REQUEST_METHOD']==='GET'){
     else if(!empty($_GET['fatherid'])){
         $fatherid=$_GET['fatherid'];
         myExecute("delete from commentfather where fatherid='{$fatherid}';");
-        return;
+
     }
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
-}
+
+}header('Location: '.$_SERVER['HTTP_REFERER']);
 
