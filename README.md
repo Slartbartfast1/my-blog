@@ -45,32 +45,32 @@ It's Slartbartfast'sBlog.
 [img]http://i1.bvimg.com/658595/ed255702b3b4722c.png[/img]
 
 豆瓣
-
+http://i1.bvimg.com/658595/0e666bf2ef9cb4d2.png
 
 
 留言板
-
+![Markdown](http://i1.bvimg.com/658595/f9a3b23bf9e4c779.png)
 
 
 后台管理系统
 登录页
-
+![Markdown](http://i1.bvimg.com/658595/c4e7239e6b7eed10.jpg)
 
 
 仪表盘
-
+![Markdown](http://i1.bvimg.com/658595/4cf64ec5f7ceca21.jpg)
 
 
 文章管理
-
+![Markdown](http://i1.bvimg.com/658595/896f1c5a8d95b6d3.jpg)
 
 
 文章发布
 
-
+![Markdown](http://i1.bvimg.com/658595/c39a359606d59fd5.jpg)
 
 评论管理
-
+![Markdown](http://i1.bvimg.com/658595/86454361b8125f2e.jpg)
 
 
 其他的还有 首页轮播图设置 文章编辑页 分类添加 编辑页 以及音乐上传和管理,
