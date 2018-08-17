@@ -15,5 +15,6 @@ if($_SERVER['REQUEST_METHOD']==='GET'){
         myExecute("delete from commentfather where fatherid='{$fatherid}';");
         return;
     }
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
 }
-header('Location: ' . $_SERVER['HTTP_REFERER']);
+
