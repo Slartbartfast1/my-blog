@@ -17,7 +17,7 @@ select count(*) as num,commentchild.articleid  from commentchild where articleid
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>登陆</title>
+    <title>后台管理</title>
     <style>
         #chart1{
 
@@ -49,7 +49,7 @@ select count(*) as num,commentchild.articleid  from commentchild where articleid
     </div>
 </div>
 
-<script src="../static/assets/vendors/echarts/echarts.min.js"></script>
+<script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script>
 <script>
     var myChart1 = echarts.init(document.getElementById('chart1'));
     option1 = {
