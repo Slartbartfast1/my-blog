@@ -1,6 +1,7 @@
 <?php
 include('navBar.php');
 require_once '../static/function.php';
+header("Content-Type: text/html;charset=utf-8");
 myGetCurrentUser();
 $sliders=myFetchAll("select * from slider");
 if($_SERVER['REQUEST_METHOD']==='POST'){
@@ -11,6 +12,7 @@ function addslider(){
     $name=$_POST['name'];
     $img=$_FILES['img'];
     $dest='../static/assets/sliderImgs/' . $img['name'];
+
     if(!move_uploaded_file($img['tmp_name'],$dest)){
         exit('上传失败');
     };
@@ -19,6 +21,16 @@ function addslider(){
 }
 
 ?>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>轮播图管理</title>
+</head>
+<body>
 
     <div class="page-title my-5">
         <h1>轮播图管理</h1>
@@ -71,3 +83,6 @@ function addslider(){
 
     </div>
     </div>
+
+</body>
+</html>
