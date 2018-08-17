@@ -1,6 +1,7 @@
 <?php
 include 'navBar.php';
 require_once 'static/function.php';
+header("Content-Type: text/html;charset=utf-8");
 $commentfather=myFetchAll("select * from commentfather where articleid='228'");
 
 if($_SERVER['REQUEST_METHOD']==='POST'){
@@ -51,84 +52,8 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     <link href="static/assets/vendors/animate/animate.min.css" rel="stylesheet">
     <link rel="stylesheet" href="static/assets/css/main.css">
     <link rel="stylesheet" href="static/assets/css/footer.css">
-    <style>
-        .page {
-            z-index: 1;
-            width: 100%;
-            background: url("static/assets/img/wallhaven-557342.jpg") no-repeat fixed;
-            background-size: 100% 400px;
-        }
-        main {
-            position: relative;
-            top: 400px;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-            background-color: #F4EFE9;
+    <link rel="stylesheet" href="static/assets/css/comments.css">
 
-
-        }
-        .commentBox{
-
-            position:relative;
-            top:-50px;
-            border:1px solid rgba(0,0,0,.1);
-            background-color: #fff;
-            border-radius: 3px;
-        }
-        .comments{
-            margin-top:10px;
-            min-height:200px;
-            background-color: #FFF;
-            font-size: .8em;
-            position:relative;
-            box-shadow: 0 0 1px 1px rgba(0,0,0,.1);
-        }
-        .avatarLine{
-            position:relative;
-            height:60px;
-            width:100%;
-            border-bottom:1px solid rgba(0,0,0,.1)
-        }
-        .avatarWrap{
-            display: inline-block;
-            height:50px;
-            width:50px;
-            border-radius: 50%;
-            overflow: hidden;
-        }
-        .nickName{
-            position:absolute;
-            top:5px;
-            left:60px;
-        }
-        .date1{
-            position:absolute;
-            bottom:5px;
-            left:60px;
-        }
-        .avatarLine a{
-            position: absolute;
-            right:0;
-            top:50%;
-            font-size: 1.2em;
-        }
-        .avatarWrap img{
-            width:100%;
-            height:100%:
-
-        }
-        .commentContent{
-            text-indent: 2em;
-            width:100%;
-            font-size: 1.2em;
-        }
-        .comments{
-            min-height:0px;
-        }
-
-
-    </style>
 </head>
 <body>
 <div class="page">
