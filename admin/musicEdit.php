@@ -1,6 +1,7 @@
 <?php
 include('navBar.php');
 require_once '../static/function.php';
+header("Content-Type: text/html;charset=utf-8");
 myGetCurrentUser();
 $music=myFetchAll('select * from music');
 
@@ -13,7 +14,7 @@ $music=myFetchAll('select * from music');
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>音乐管理</title>
 </head>
 <body>
 <div class="container">
@@ -34,7 +35,7 @@ $music=myFetchAll('select * from music');
                 <tbody>
                 <?php foreach ($music as $item): ?>
                 <tr>
-                    <td><img src="<?php echo $item['posterurl']  ?>" alt="" width="100" height="100"></td>
+                    <td><img src="../<?php echo $item['posterurl']  ?>" alt="" width="50" height="50"></td>
                     <td><?php echo $item['title']  ?></td>
                     <td><?php echo $item['author']  ?></td>
                     <td><?php echo $item['description']  ?></td>

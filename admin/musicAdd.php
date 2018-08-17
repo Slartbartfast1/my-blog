@@ -1,6 +1,7 @@
 <?php
 include('navBar.php');
 require_once '../static/function.php';
+header("Content-Type: text/html;charset=utf-8");
 myGetCurrentUser();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     addMusic();
@@ -38,27 +39,26 @@ function addMusic()
     $desc = $_POST['desc'];
     $album=$_POST['album'];
     $musicDest = '../static/assets/music/' . $title . $music['name'];
-    $posterDest='../static/assets/music/poster/' . $title . $album['name'];
+    $posterDest='../static/assets/music/poster/' . $title . $poster['name'];
     $musicDest2=substr($musicDest,3);
     $posterDest2=substr($posterDest,3);
 
-    if (!move_uploaded_file($poster['tmp_name'],$posterDest)) {
-        exit('上传海报失败');
-    }
 
     if (!move_uploaded_file($music['tmp_name'],$musicDest)) {
         exit('上传音乐失败');
     }
+    if (!move_uploaded_file($poster['tmp_name'],$posterDest)) {
+        exit('上传海报失败');
+    }
 
 
+    
 
 if(!myExecute("insert into music values(null,'{$title}','{$musicDest2}','{$author}','{$posterDest2}','{$desc}','{$album}')")){
     exit('更新数据库失败');
 }else{
-    header('Location:articleAdd.php');
+    header('Location:musicAdd.php');
 }
-
-
 
 
 }
@@ -72,7 +72,7 @@ if(!myExecute("insert into music values(null,'{$title}','{$musicDest2}','{$autho
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>音乐上传</title>
 </head>
 <body>
 <div class="container">
