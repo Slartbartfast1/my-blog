@@ -5,7 +5,7 @@ header("Content-Type: text/html;charset=utf-8");
 myGetCurrentUser();
 
 //链接数据库 填充标签
-$categories = myFetchAll('select id from categories;');
+$categories = myFetchAll('select * from categories;');
 $defultAuthor = myFetchOne('select name from user');
 
 
@@ -44,7 +44,9 @@ function addArticle()
     $author = $_POST['author'];
     $createTime = $_POST['createTime'];
    $imgTitle = $_FILES['imgTitle'];
-    $category = $_POST['category'];
+    $category1 = $_POST['category'];
+   $category2=myFetchOne("select * from categories where categories='{$category1}'");
+    $category=$category2['id'];
     $content = $_POST['content'];
     $gist=$_POST['gist'];
     $dest = '../static/assets/img/' . $title . $imgTitle['name'];
@@ -123,7 +125,7 @@ function addArticle()
                 <label for="tag">分类</label>
                 <select class="form-control" name="category" accept="multipart/form-data">
                     <?php foreach ($categories as $item): ?>
-                        <option><?php echo $item['id'] ?></option>
+                        <option><?php echo $item['categories']?></option>
                     <?php endforeach ?>
                     <option value="other">其它</option>
                 </select>

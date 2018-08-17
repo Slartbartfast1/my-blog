@@ -5,7 +5,7 @@ header("Content-Type: text/html;charset=utf-8");
 myGetCurrentUser();
 
 //连接数据库 填充标签
-$categories = myFetchAll('select id from categories;');
+$categories = myFetchAll('select * from categories;');
 if($_SERVER['REQUEST_METHOD']==='GET'){
     $articleid=$_GET['articleid'];
     $article=myFetchOne("select * from article where articleid ='{$articleid}'");
@@ -41,11 +41,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $author = $_POST['author'];
     $createTime = $_POST['createTime'];
     $imgTitle = $_FILES['imgTitle'];
-    $category = $_POST['category'];
+    $category1 = $_POST['category'];
+    $category2=myFetchOne("select * from categories where categories='{$category1}';");
+    $category=$category2['id'];
     $content = $_POST['content'];
     $gist=$_POST['gist'];
 
-    $article1=myFetchOne("select * from article where articleid ='{$articleid1}'");
+    $article1=myFetchOne("select * from article where articleid ='{$articleid1}';");
     if (empty($_FILES['imgTitle']["name"])) {
         $dest2=$article1['imgurl'];  //保留原来路径
 
@@ -138,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="tag">分类</label>
                 <select class="form-control" name="category" accept="multipart/form-data">
                     <?php foreach ($categories as $item): ?>
-                        <option <?php echo $item['id']==$article['category']? ' selected':''?>><?php echo $item['id'] ?></option>
+                        <option <?php echo $item['id']==$article['category']? ' selected':''?>><?php echo $item['categories']?></option>
                     <?php endforeach ?>
                     <option value="other">其它</option>
                 </select>
