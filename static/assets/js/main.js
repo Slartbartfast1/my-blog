@@ -35,4 +35,10 @@ $('.openNav').on('click',function () {
 $('.carousel').carousel({interval: 5000});
 
 //二维码
+$('.wechat').mouseenter(function(){
+    $('.QR').fadeIn(200);
+});
+$('.wechat').mouseleave(function(){
+    $('.QR').fadeOut(100);
+});
 

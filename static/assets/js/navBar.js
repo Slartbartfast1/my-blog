@@ -39,3 +39,11 @@ if($(window).width<=480){
 
     })
 }
+
+$('.wechat').mouseenter(function(){
+    $('.QR').fadeIn(200);
+});
+$('.wechat').mouseleave(function(){
+    $('.QR').fadeOut(100);
+});
+
