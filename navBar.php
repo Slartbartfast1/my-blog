@@ -1,5 +1,8 @@
 <?php
+require_once 'static/function.php';
 
+$user=myFetchOne("select * from user where userid='huangrui1019';");
+header("Content-Type: text/html;charset=utf-8");
 /**
  * Created by PhpStorm.
  * User: huangrui10191180
@@ -7,7 +10,6 @@
  * Time: 20:50
  */?>
 <header>
-
     <div class="navbar navbar-expand-sm navbar-light">
         <div class="navWrap text-center">
             <a class="navbar-brand animated " href="#">Slartbartfast's Blog</a>
@@ -18,13 +20,13 @@
 <div class="sideNav sideNavSlide">
     <div class="avatarBox animated">
         <div class="avatar text-center">
-            <img src="static/assets/img/3123avatar1.png" alt="" class="img-thumbnail rounded-circle">
+            <img src="<?php echo $user['avatarurl'] ?>" alt="" class="img-thumbnail rounded-circle">
 
         </div>
 
     </div>
     <div class="quote text-center">
-        <small class="text-muted ">一切可说之事皆可说清,一切不可说之事只可保持沉默</small>
+        <small class="text-muted "> <?php echo $user['introduction'] ?></small>
     </div>
 
     <div class="btns text-center">
