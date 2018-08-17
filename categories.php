@@ -1,6 +1,7 @@
 <?php
 include 'navBar.php';
 require_once 'static/function.php';
+header("Content-Type: text/html;charset=utf-8");
 $categories=myFetchAll('select * from categories');
 
 
@@ -16,6 +17,7 @@ $categories=myFetchAll('select * from categories');
     <title>Document</title>
 <link href="static/assets/vendors/bootstrap/bootstrap.min.css" rel="stylesheet">    <link href="static/assets/vendors/animate/animate.min.css" rel="stylesheet">
     <link rel="stylesheet" href="static/assets/css/main.css">
+    <link rel="stylesheet" href="static/assets/css/footer.css">
     <style>
         .page {
             z-index: 1;
@@ -31,12 +33,12 @@ $categories=myFetchAll('select * from categories');
             height:300px;
             width:300px;
             background-color: pink;
-            margin-top:50px;
+            /*margin:50px;*/
             top:-120px;
-            box-shadow: 0 0 1px 2px rgba(0,0,0,.1)
+            box-shadow: 0 0 1px 2px rgba(0,0,0,.1);
             display: flex;
             justify-content:center;
-            margin-left: 68px;
+            margin: 80px;
 
 
 
@@ -66,15 +68,16 @@ $categories=myFetchAll('select * from categories');
             font-family:"Microsoft JhengHei UI Light";
             color:white;
             z-index: 3;
-
-
             /*margin-top:-25%;*/
         }
-        .container{
+
+        .container1{
             position: relative;
             top:400px;
             height:400px;
+            display: block;
         }
+
         @media screen and (min-width: 320px) and (max-width: 480px) {
 
             .category{
@@ -82,12 +85,14 @@ $categories=myFetchAll('select * from categories');
                 width:100px;
                 float: left;
                 display: inline-block;
-                margin: 40px ;
+                margin-left:0;
+
 
             }
             .categoryName{
                 font-size:15px;
             }
+
 
 
         }
@@ -100,20 +105,23 @@ $categories=myFetchAll('select * from categories');
                 display: inline-block;
                 margin: 40px ;
 
+
             }
             .categoryName{
                 font-size:15px;
             }
+
         }
+
 
     </style>
 </head>
 <body>
 <div class="page">
-    <div class="container">
+    <div class="container1">
         <div class="row">
             <?php foreach ($categories as $item): ?>
-            <div class="">
+            <div class="col-4">
                 <a href="index.php?category=<?php echo $item['id']?>">
                     <div class="category">
                     <div class="shadow"></div>
@@ -127,17 +135,31 @@ $categories=myFetchAll('select * from categories');
             <?php endforeach; ?>
 
         </div>
+        <div class="footer ">
+            <div class="footerItem text-center">
 
+                <div class="link">
+                    <div class="QR"><img src="static/assets/img/微信图片_20180815234204.jpg" alt="" class="img-fluid"></div>
+                    <a href="#" class="icon1 wechat"><span></span></a>
+                    <a href="https://blog.csdn.net/Slartibartfast" class="icon1 csdn"><span></span></a>
+                    <a href="https://github.com/Slartbartfast1" class="icon1 github"><span></span></a>
+
+                </div>
+
+                <small class="text-muted">15212068@bjtu.edu.cn</small>
+                <p class="text-muted">© 2018 泛银河系含漱爆破液</p>
+            </div>
+        </div>
     </div>
 
 
 </div>
 
 
-
 <script src="static/assets/vendors/jQuery/jQuery.js"></script>
 <script src="static/assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
 <script src="static/assets/vendors/wow/wow.min.js"></script>
 <script src="static/assets/js/navBar.js"></script>
+
 </body>
 </html>
