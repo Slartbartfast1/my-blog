@@ -1,5 +1,6 @@
 <?php
 require_once '../static/function.php';
+header("Content-Type: text/html;charset=utf-8");
 if(empty($_GET['articleid'])){
     exit('错误请求');
 }
