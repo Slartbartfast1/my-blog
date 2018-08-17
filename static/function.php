@@ -25,7 +25,7 @@ function myGetCurrentUser () {
  */
 function myFetchAll ($sql) {
     $conn = mysqli_connect(MY_DB_HOST, MY_DB_USER, MY_DB_PASS, MY_DB_NAME);
-    mysqli_query($conn,"set names utf8");
+    mysqli_query($conn,"set names utf8mb4");
     if (!$conn) {
         exit('连接失败');
     }
@@ -64,7 +64,7 @@ function myExecute ($sql) {
     if (!$conn) {
         exit('连接失败');
     }
-    mysqli_query($conn,"set names utf8");
+    mysqli_query($conn,"set names utf8mb4");
     $query = mysqli_query($conn, $sql);
     if (!$query) {
         // 查询失败
