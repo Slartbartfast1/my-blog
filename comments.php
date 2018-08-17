@@ -1,7 +1,7 @@
 <?php
 include 'navBar.php';
 require_once 'static/function.php';
-header("Content-Type: text/html;charset=utf-8");
+
 $commentfather=myFetchAll("select * from commentfather where articleid='228'");
 
 if($_SERVER['REQUEST_METHOD']==='POST'){
@@ -31,6 +31,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         $commentTime = date('Y-m-d H:m:s', time());
         myExecute("insert into commentchild values('{$articleid1}',null,'{$commentTime}','{$commentName}','{$fatherComment}','{$fatherid}');");
     }
+    header('location:comments.php');
 
 }
 
@@ -47,7 +48,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>留言板</title>
     <link href="static/assets/vendors/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="static/assets/vendors/animate/animate.min.css" rel="stylesheet">
     <link rel="stylesheet" href="static/assets/css/main.css">
