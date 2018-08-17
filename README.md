@@ -42,10 +42,10 @@ It's Slartbartfast'sBlog.
 
 音乐盒 主要是视差效果
 
-[img]http://i1.bvimg.com/658595/ed255702b3b4722c.png[/img]
+![Markdown](http://i1.bvimg.com/658595/ed255702b3b4722ct.jpg)
 
 豆瓣
-http://i1.bvimg.com/658595/0e666bf2ef9cb4d2.png
+![Markdown](http://i1.bvimg.com/658595/0e666bf2ef9cb4d2t.jpg)
 
 
 留言板
