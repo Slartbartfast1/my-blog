@@ -1,15 +1,13 @@
 <?php
-
-session_start();
+header("Content-Type: text/html;charset=utf-8");
+require_once '../static/function.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $userID = $_POST['userID'];
     $password = $_POST['password'];
-    $conn = mysqli_connect('localhost', 'root', '12345678', 'blog', '3306');
-    $query = mysqli_query($conn, "select * from user where userid='{$userID}' and password='{$password}'");
-    $pass = mysqli_fetch_assoc($query);
+    $pass= myFetchOne("select * from user where userid='{$userID}' and password='{$password}'");
     if($pass){
         $_SESSION['currentLoginUser']=$userID;
-        header('Location: http://localhost:63342/Myblog/admin/userInfoEdit.php');
+        header('Location: adminIndex.php');
     }else{
         $GLOBALS['errorMessage']='登陆失败';
     }
@@ -79,20 +77,13 @@ if($_SERVER['REQUEST_METHOD']==='GET'&& isset($_GET['action'])&&$_GET['action']=
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
 <script>
     $(function($){
-        //输入用户名之后能显示头像;
-        //时机:用户名文本框失去焦点
-        //事件:获取用户名对应的头像地址;
         $('#userID').on('blur',function(){
             var value=$(this).val();
             if(!value) return;
             $.get('api/avatar.php',{userid:value},function(res){
-                //拿到地址
                 if(!res) return;
-                //将图片地址加入dom
                 $('.avatar').fadeOut(function () {
-                    // 等到 淡出完成
                     $(this).on('load', function () {
-                        // 图片完全加载成功过后
                         $(this).fadeIn()
                     }).attr('src', res)
                 })
