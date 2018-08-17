@@ -1,6 +1,7 @@
 <?php
 include('navBar.php');
 require_once '../static/function.php';
+header("Content-Type: text/html;charset=utf-8");
 myGetCurrentUser();
 
 //链接数据库 填充标签
@@ -77,7 +78,7 @@ function addArticle()
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>文章发布</title>
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.css
 ">
 </head>
@@ -145,7 +146,6 @@ function addArticle()
             </div>
         </div>
         <button class="btn btn-outline-success" type="submit">发布文章</button>
-        <button class="btn btn-outline-warning" type="submit">保存草稿</button>
     </form>
     <script src="https://cdn.bootcss.com/wangEditor/10.0.13/wangEditor.js"></script>
     <script type="text/javascript">
