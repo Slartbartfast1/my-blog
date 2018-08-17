@@ -1,6 +1,7 @@
 <?php
 include('navBar.php');
 include('updateUserInfo.php');
+header("Content-Type: text/html;charset=utf-8");
 require_once '../static/function.php';
 myGetCurrentUser();
 $user =myFetchOne('select * from user');
@@ -12,7 +13,7 @@ $user =myFetchOne('select * from user');
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>用户信息</title>
     <style>
     </style>
 
