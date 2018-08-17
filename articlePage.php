@@ -57,6 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="static/assets/css/main.css">
     <link rel="stylesheet" href="static/assets/css/footer.css">
     <link rel="stylesheet" href="static/assets/css/articlePage.css">
+    <link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/default.min.css" rel="stylesheet">
 </head>
 <body data-spy="scroll" data-target=".titleTree">
 <script src="static/assets/vendors/jQuery/jQuery.js"></script>
@@ -80,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <small>阅读数:<?php echo $article['view'] ?></small>
             </div>
         </div>
-        <div class="articleContent col-lg-8 col-sm-12 py-4">
+        <div class="articleContent col-lg-8 col-sm-12 p-5">
             <?php echo $article['content'] ?>
         </div>
         <div class="commentBox col-lg-8 col-sm-12 mt-3;" id="commentBox">
@@ -183,7 +184,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <span class="iconfont"></span>
 
 </div>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
 <script>
     //创建锚点
     for (var count = 0; count < $(':header').length; count++) {
