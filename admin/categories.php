@@ -1,6 +1,7 @@
 <?php
 include('navBar.php');
 require_once '../static/function.php';
+header("Content-Type: text/html;charset=utf-8");
 myGetCurrentUser();
 
 function addCategory()
@@ -67,7 +68,7 @@ if (empty($_GET['id'])) {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>分类管理</title>
 </head>
 <body>
 
@@ -80,7 +81,7 @@ if (empty($_GET['id'])) {
         <div class="col-lg-8 col-sm-12">
             <div class="page-action">
                 <!-- show when multiple checked -->
-                <a id="btnDelete" class="btn btn-danger btn-sm" href="/Myblog/admin/categoriesDelete.php"
+                <a id="btnDelete" class="btn btn-danger btn-sm" href="/admin/categoriesDelete.php"
                    style="display: none">批量删除</a>
             </div>
             <table class="table table-striped table-bordered table-hover">
@@ -99,9 +100,9 @@ if (empty($_GET['id'])) {
                         <td><?php echo $item['categories']; ?></td>
                         <td><?php echo $item['slug']; ?></td>
                         <td class="text-center">
-                            <a href="/Myblog/admin/categories.php?id=<?php echo $item['id']; ?>"
+                            <a href="/admin/categories.php?id=<?php echo $item['id']; ?>"
                                class="btn btn-info btn-sm">编辑</a>
-                            <a href="/Myblog/admin/categoriesDelete.php?id=<?php echo $item['id']; ?>"
+                            <a href="/admin/categoriesDelete.php?id=<?php echo $item['id']; ?>"
                                class="btn btn-danger btn-sm">删除</a>
                         </td>
                     </tr>
