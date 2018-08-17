@@ -30,13 +30,13 @@
                 <a class="dropdown-item" href="categories.php">分类管理</a>
             </div>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown  <?php echo $_SERVER['PHP_SELF'] == '/admin/sliderSettings.php' ? "active" : '' ?>">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                 设置
             </a>
             <div class="dropdown-menu">
 <!--                <a class="dropdown-item" href="#">导航菜单</a>-->
-                <a class="dropdown-item" href="sliderSeetings.php">图片轮播</a>
+                <a class="dropdown-item" href="sliderSettings.php">图片轮播</a>
             </div>
         </li>
 
