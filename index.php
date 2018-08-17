@@ -57,8 +57,12 @@ article.category,
 categories.id,
 categories.categories as categoryName
 from article 
-inner join categories on article.category=categories.id where {$where} and articleid!=228 order by top asc, createTime asc limit {$offset},{$size} ;");
+inner join categories on article.category=categories.id where {$where} and articleid!=228 order by top asc, createTime desc limit {$offset},{$size} ;");
 $slider=myFetchAll("select * from slider order by 'index' asc;");
+
+$user=myFetchOne("select * from user where userid='huangrui1019';");
+
+header("Content-Type: text/html;charset=utf-8");
 ?>
 
 
@@ -69,136 +73,14 @@ $slider=myFetchAll("select * from slider order by 'index' asc;");
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>泛银河系含漱爆破液</title>
+    <meta name="keywords" content=" 博客  技术 分享 泛银河系含漱爆破液 slartbartfast blog">
+    <meta name="description" content="泛银河系含漱爆破液的个人博客,热衷于分享技术,交流思想,培养自由思想和独立精神">
+    <title>泛银河系含漱爆破液的个人博客</title>
 
 <link href="static/assets/vendors/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="static/assets/vendors/animate/animate.min.css" rel="stylesheet">
     <link rel="stylesheet" href="static/assets/css/main.css">
     <link rel="stylesheet" href="static/assets/css/footer.css">
-<!--    <style>-->
-<!--        .footer {-->
-<!--            position:relative;-->
-<!--            width: 100%;-->
-<!--            height: 100px;-->
-<!--            background-color: #F8FCFE;-->
-<!--            border-top:1px solid rgba(0,0,0,.1)-->
-<!--        }-->
-<!--        .footerItem{-->
-<!--            width:200px;-->
-<!--            height:80px;-->
-<!--            position:absolute;-->
-<!--            left:50%;-->
-<!--            margin-left: -100px;-->
-<!--        }-->
-<!--        @font-face {-->
-<!--            font-family: 'iconfont';-->
-<!--            src: url('/static/assets/fonts/iconfont.eot');-->
-<!--            src: url('/static/assets/fonts/iconfont.eot?#iefix') format('embedded-opentype'),-->
-<!--            url('/static/assets/fonts/iconfont.woff') format('woff'),-->
-<!--            url('/static/assets/fonts/iconfont.ttf') format('truetype'),-->
-<!--            url('/static/assets/fonts/iconfont.svg#iconfont') format('svg');-->
-<!--        }-->
-<!--        .icon1{-->
-<!--            font-family: "iconfont" ;-->
-<!--            font-style: normal;-->
-<!--            -webkit-font-smoothing: antialiased;-->
-<!--            -webkit-text-stroke-width: 0.2px;-->
-<!--            -moz-osx-font-smoothing: grayscale;-->
-<!--            text-decoration: none;-->
-<!--            z-index: 999;-->
-<!--            display: inline-block;-->
-<!--            font-size: 15px;-->
-<!--            line-height: 25px;-->
-<!--            position:relative;-->
-<!--            height:25px;-->
-<!--            width:25px;-->
-<!--            color: grey;-->
-<!--            /*top:12px;*/-->
-<!---->
-<!--        }-->
-<!--        .github{-->
-<!--            left:45px;}-->
-<!--        .github:hover{-->
-<!--            color:#292D32-->
-<!---->
-<!--        }-->
-<!--        .csdn{-->
-<!--            left:10px;-->
-<!--            /*left:20px;*/-->
-<!--            font-size: 13px;-->
-<!--        }-->
-<!--        .csdn:before{-->
-<!--            content: '';-->
-<!--            border-right:1px solid rgba(0,0,0,.3);-->
-<!--            margin-right:15px;-->
-<!--            height:10px;-->
-<!--        }-->
-<!--        .csdn:after{-->
-<!--            content: '';-->
-<!--            border-left:1px solid rgba(0,0,0,.3);-->
-<!--            display: ;-->
-<!--            margin-left:15px;-->
-<!---->
-<!--        }-->
-<!--        .csdn:hover{-->
-<!--            color:#C9141C-->
-<!--        }-->
-<!--        .wechat{-->
-<!--            color:grey;-->
-<!--            /*left:3px;*/-->
-<!---->
-<!--        }-->
-<!--        .wechat:hover{-->
-<!--            color:#609700-->
-<!--        }-->
-<!--        .QR{-->
-<!--            height:120px;-->
-<!--            width:120px;-->
-<!--            background-color:  #F4EEE8;-->
-<!--            position:absolute;-->
-<!--            top:-120px;-->
-<!--            left:-10px;-->
-<!--            border-radius: 5px;-->
-<!--            border:1px solid rgba(0,0,0,.1);-->
-<!--            display: none;-->
-<!---->
-<!---->
-<!--        }-->
-<!--        .QR:after{-->
-<!--            content:'';-->
-<!--            width:20px;-->
-<!--            height:20px;-->
-<!--            border-left: solid 12px transparent;-->
-<!--            border-top: solid 12px #FFF;-->
-<!--            border-right: solid 12px transparent;-->
-<!--            position:absolute;-->
-<!--            left:46px;-->
-<!--            top:120px;-->
-<!--            margin-top:-5px;-->
-<!--        }-->
-<!--        .link{-->
-<!--            /*position:relative;*/-->
-<!--            margin-top:10px;-->
-<!--            top:10px;-->
-<!--            left:50%;-->
-<!--            margin-left:-40px;-->
-<!--        }-->
-<!--        .footerItem small{-->
-<!--            /*position: absolute;*/-->
-<!--           /*top:30px;*/-->
-<!--            display: inline-block;-->
-<!--            margin-top:2px;-->
-<!--            margin-left:5px;-->
-<!--            font-size: .6em;-->
-<!--        }-->
-<!--        .footerItem p{-->
-<!--            display: inline-block;-->
-<!--            margin-top:2px;-->
-<!--            margin-left:5px;-->
-<!--            font-size: .6em;-->
-<!--        }-->
-<!---->
-<!--    </style>-->
 </head>
 <body>
 <script src="static/assets/vendors/jQuery/jQuery.js"></script>
@@ -207,6 +89,7 @@ $slider=myFetchAll("select * from slider order by 'index' asc;");
 
 <div class="page">
     <div id="demo" class="carousel slide" data-ride="carousel">
+<!--        //轮播图-->
         <div class="carousel-inner">
             <?php $count=0; foreach($slider as $item):?>
                 <div class="carousel-item <?php if($count==0){echo 'active';}$count++; ?>">
@@ -214,35 +97,27 @@ $slider=myFetchAll("select * from slider order by 'index' asc;");
                 </div>
             <?php endforeach;?>
         </div>
-
-        <!-- 左右切换按钮 -->
-<!--        <a class="carousel-control-prev" href="#demo" data-slide="prev">-->
-<!--            <span class="carousel-control-prev-icon"></span>-->
-<!--        </a>-->
-<!--        <a class="carousel-control-next" href="#demo" data-slide="next">-->
-<!--            <span class="carousel-control-next-icon"></span>-->
-<!--        </a>-->
     </div>
     <main>
-
+<div class="container">
         <div class="content">
             <?php foreach ($article as $item):
                 $name=$item['author'];
-                $user=myFetchOne("select avatarurl from user  where name='{$name}'")
+                $user1=myFetchOne("select avatarurl from user  where name='{$name}'")
                 ?>
-                <div class="col-lg-12  contentBox wow  animated fadeIn">
-                    <a href="articlepage.php?articleid=<?php echo $item['articleid'] ?>"><div class="titleImg">
+                <div class="contentBox wow  animated fadeIn">
+                    <a href="articlePage.php?articleid=<?php echo $item['articleid'] ?>"><div class="titleImg">
                             <img src="<?php echo $item['imgurl'] ?>" alt="" class="img-fluid">
                             <div class="title px-3">
                                 <p class="font-weight-light"><?php echo $item['title'] ?></p>
                             </div>
                         </div></a>
                     <div class="summary p-3">
-                        <p><?php echo $item['gist'] ?>	&nbsp;<a href="articlepage.php?articleid=<?php echo $item['articleid'] ?>">阅读全文</a></p>
+                        <p><?php echo $item['gist'] ?>	&nbsp;<a href="articlePage.php?articleid=<?php echo $item['articleid'] ?>">阅读全文</a></p>
                     </div>
                     <div class="info">
                         <div class="authorAvatar">
-                            <img src="<?php echo $user['avatarurl'] ?>" alt="">
+                            <img src="<?php echo $user1['avatarurl'] ?>" alt="">
                         </div>
                         <div class="date pt-2 text-muted">
                             <p><?php echo $item['author']?></p>
@@ -265,12 +140,13 @@ $slider=myFetchAll("select * from slider order by 'index' asc;");
                 <?php endfor ?>
 
 
-                <li class="page-item"><a class="page-link" style="display:<?php echo $page>=$totalPages?'none':''; ?> "  href="?page=<?php echo $page == $totalPages ?$page.$search:($page + 1).$search; ?>">下一页</a></li>
+                <li class="page-item"><a class="page-link" style="display:<?php echo $page>=$totalPages?'none':''; ?> "
+                                         href="?page=<?php echo $page == $totalPages ?$page.$search:($page + 1).$search; ?>">下一页</a></li>
             </ul>
         </div>
 
-
-
+</div>
+<!--底部-->
     </main>
     <div class="footer ">
         <div class="footerItem text-center">
@@ -283,8 +159,8 @@ $slider=myFetchAll("select * from slider order by 'index' asc;");
 
             </div>
 
-            <small class="text-muted">15212068@bjtu.edu.cn</small>
-            <p class="text-muted">© 2018 泛银河系含漱爆破液</p>
+            <small class="text-muted"> <?php echo $user['email'] ?></small>
+            <p class="text-muted">© 2018 <?php echo $user['name'] ?></p>
         </div>
     </div>
 
