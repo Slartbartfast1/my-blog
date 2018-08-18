@@ -95,11 +95,11 @@ if(!myExecute("insert into music values(null,'{$title}','{$musicDest2}','{$autho
         </div>
         <div class="form-group">
             <label for="author">歌手</label>
-            <input type="text" class="form-control" name="author" id="author" accept="multipart/form-data"">
+            <input type="text" class="form-control" name="author" id="author" accept="multipart/form-data">
         </div>
         <div class="form-group">
             <label for="album">唱片集</label>
-            <input type="text" class="form-control" name="album" id="album" accept="multipart/form-data"">
+            <input type="text" class="form-control" name="album" id="album" accept="multipart/form-data">
         </div>
         <div class="form-group">
             <div id="imageHolder"></div>
