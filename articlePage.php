@@ -22,8 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     if (empty($_POST['fatherid'])) {
         $articleid1 = $_POST['articleid'];
-        $commentName = $_POST['nickName'];
-        $fatherComment = $_POST['comment'];
+        $commentName = addslashes($_POST['nickName']);
+        $fatherComment =addslashes( $_POST['comment']);
         $commentTime = date('Y-m-d H:m:s', time());
         myExecute("insert into commentfather values('{$articleid1}',null,'{$commentTime}','{$commentName}','{$fatherComment}');");
 
@@ -31,8 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $articleid1 = $_POST['articleid'];
         $fatherid = $_POST['fatherid'];
         $applyTo=$_POST['appltTo'];
-        $fatherComment=$_POST['comment'];
-        $commentName = $_POST['nickName'];
+        $commentName = addslashes($_POST['nickName']);
+        $fatherComment =addslashes( $_POST['comment']);
         $commentTime = date('Y-m-d H:m:s', time());
         myExecute("insert into commentchild values('{$articleid1}',null,'{$commentTime}','{$commentName}','{$fatherComment}','{$fatherid}');");
     }

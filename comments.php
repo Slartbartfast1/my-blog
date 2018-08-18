@@ -17,17 +17,17 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     }
 
     if (empty($_POST['fatherid'])) {
-        $articleid1 = $_POST['articleid'];
-        $commentName = $_POST['nickName'];
-        $fatherComment = $_POST['comment'];
+        $articleid1= $_POST['articleid'];
+        $commentName = addslashes($_POST['nickName']);
+        $fatherComment =addslashes( $_POST['comment']);
         $commentTime = date('Y-m-d H:m:s', time());
         myExecute("insert into commentfather values('{$articleid1}',null,'{$commentTime}','{$commentName}','{$fatherComment}');");
 
     } else {
         $articleid1 = $_POST['articleid'];
         $fatherid = $_POST['fatherid'];
-        $fatherComment=$_POST['comment'];
-        $commentName = $_POST['nickName'];
+        $commentName = addslashes($_POST['nickName']);
+        $fatherComment =addslashes( $_POST['comment']);
         $commentTime = date('Y-m-d H:m:s', time());
         myExecute("insert into commentchild values('{$articleid1}',null,'{$commentTime}','{$commentName}','{$fatherComment}','{$fatherid}');");
     }
@@ -47,8 +47,9 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>留言板</title>
+    <link rel="icon" href="/favicon.ico">
     <link href="static/assets/vendors/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="static/assets/vendors/animate/animate.min.css" rel="stylesheet">
     <link rel="stylesheet" href="static/assets/css/main.css">
