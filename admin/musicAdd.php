@@ -32,16 +32,16 @@ function addMusic()
         $GLOBALS['errorMessage'] = '请输入合集';
         return;
     }
-    $title = $_POST['title'];
-    $author = $_POST['author'];
+    $title = addslashes($_POST['title']);
+    $author = addslashes($_POST['author']);
     $music = $_FILES['music'];
     $poster = $_FILES['poster'];
-    $desc = $_POST['desc'];
-    $album=$_POST['album'];
-    $musicDest = '../static/assets/music/' . $title . $music['name'];
-    $posterDest='../static/assets/music/poster/' . $title . $poster['name'];
-    $musicDest2=substr($musicDest,3);
-    $posterDest2=substr($posterDest,3);
+    $desc =addslashes($_POST['desc']);
+    $album=addslashes($_POST['album']);
+    $musicDest = '../static/assets/music/'  . $music['name'];
+    $posterDest='../static/assets/music/poster/'  . $poster['name'];
+    $musicDest2=addslashes(substr($musicDest,3));
+    $posterDest2=addslashes(substr($posterDest,3));
 
 
     if (!move_uploaded_file($music['tmp_name'],$musicDest)) {

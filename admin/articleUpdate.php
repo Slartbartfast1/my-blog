@@ -44,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $category1 = $_POST['category'];
     $category2=myFetchOne("select * from categories where categories='{$category1}';");
     $category=$category2['id'];
-    $content = $_POST['content'];
-    $gist=$_POST['gist'];
+    $content =addslashes($_POST['content']);
+    $gist=addslashes($_POST['gist']);
 
     $article1=myFetchOne("select * from article where articleid ='{$articleid1}';");
     if (empty($_FILES['imgTitle']["name"])) {
@@ -68,10 +68,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $top = 2;//不置顶
     }
-
-//if(isset($_FILES['imgTitle']["name"])){
-//    move_uploaded_file($imgTitle['tmp_name'], $dest)? var_dump('上传成功') : exit('上传失败') ;
-//};
     //将数据存入数据库
     if (myExecute("update article set title='{$title}',createTime='{$createTime}'
 ,author='{$author}',content='{$content}',top={$top},gist='{$gist}',imgurl='{$dest2}',category='{$category}' where articleid='{$articleid1}';")) {
@@ -118,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="form-group">
             <label for="作者">作者</label>
             <input type="text" class="form-control" name="author" id="author" accept="multipart/form-data"
-                   value="<?php echo $article['title']; ?>">
+                   value="<?php echo $article['author']; ?>">
         </div>
         <div class="form-group">
             <label for="摘要">摘要</label>

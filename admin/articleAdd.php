@@ -42,13 +42,13 @@ function addArticle()
     //变量声明
     $title = $_POST['title'];
     $author = $_POST['author'];
-    $createTime = $_POST['createTime'];
+    $createTime =$_POST['createTime'];
    $imgTitle = $_FILES['imgTitle'];
     $category1 = $_POST['category'];
    $category2=myFetchOne("select * from categories where categories='{$category1}'");
     $category=$category2['id'];
-    $content = $_POST['content'];
-    $gist=$_POST['gist'];
+    $content = addslashes($_POST['content']);
+    $gist=addslashes($_POST['gist']);
     $dest = '../static/assets/img/' . $title . $imgTitle['name'];
     $imgTitle2=substr($dest,3) ;
 
