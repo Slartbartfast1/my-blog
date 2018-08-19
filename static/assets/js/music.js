@@ -10,26 +10,26 @@ $(function () {
                 if (winTop >= height * 2 + 1200) {
 
                     $('body').css({
-                        background: "url('static/assets/img/wallhaven-53697.jpg') no-repeat fixed",
+                        background: "url('http://i2.bvimg.com/658595/2145b0347f9bc4b9.jpg') no-repeat fixed",
                         backgroundSize: '100% 100%'
                     })
                 } else {
                     $('body').css({
-                        background: "url('static/assets/img/music2.jpg') no-repeat fixed",
+                        background: "url('http://i2.bvimg.com/658595/33c2f13b53fe7f61.jpg') no-repeat fixed",
                         backgroundSize: '100% 100%'
                     })
                 }
             } else {
 
                 $('body').css({
-                    background: "url('static/assets/img/music1.jpg') no-repeat fixed",
+                    background: "url('http://i2.bvimg.com/658595/6b17fafa502c1748.jpg') no-repeat fixed",
                     backgroundSize: '100% 100%'
                 });
 
             }
         } else {
             $('body').css({
-                background: "url('static/assets/img/wallhaven-3771521.jpg') no-repeat fixed",
+                background: "url('http://i2.bvimg.com/658595/f55f995f51507939.jpg') no-repeat fixed",
                 backgroundSize: '100% 400px'
             });
 
