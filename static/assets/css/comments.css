@@ -1,7 +1,7 @@
 .page {
     z-index: 1;
     width: 100%;
-    background: url("../img/wallhaven-557342.jpg") no-repeat fixed;
+    background: url("http://i2.bvimg.com/658595/b2029233d2353d83.jpg") no-repeat fixed;
     background-size: 100% 400px;
 }
 body{
@@ -14,8 +14,6 @@ main {
     height: 100%;
     z-index: 2;
     background-color: #F4EFE9;
-
-
 }
 .commentBox{
 

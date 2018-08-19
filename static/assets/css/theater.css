@@ -4,9 +4,8 @@
     /*height:4000px;*/
     width: 100%;
     /*position: absolute;*/
-    background: url("../img/wallhaven-644594.jpg") no-repeat fixed;
+    background: url("http://i2.bvimg.com/658595/f06ac63647922921.jpg") no-repeat fixed;
     background-size: 100% 450px;
-
 }
 
 main {
@@ -142,6 +141,7 @@ table img {
         font-size: 10px;
     }
     .movieName{
+        left: 0;
         width:50px;
     }
 }
