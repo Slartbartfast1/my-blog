@@ -57,16 +57,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="static/assets/css/main.css">
     <link rel="stylesheet" href="static/assets/css/footer.css">
     <link rel="stylesheet" href="static/assets/css/articlePage.css">
-    <link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/default.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/atom-one-light.min.css" rel="stylesheet">
 </head>
 <body data-spy="scroll" data-target=".titleTree">
-<script src="static/assets/vendors/jQuery/jQuery.js"></script>
+<script src="static/assets/vendors/jquery/jquery.js"></script>
 <script src="static/assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
 <script src="static/assets/vendors/wow/wow.min.js"></script>
 <script src="static/assets/js/navBar.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.11.0/languages/javascript.min.js"></script>
 
 <nav class="titleTree  titleTreeLeft animated">
-    <ul class="nav ">
+    <ul class="nav">
     </ul>
 </nav>
 <div>
@@ -81,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <small>阅读数:<?php echo $article['view'] ?></small>
             </div>
         </div>
-        <div class="articleContent col-lg-8 col-sm-12 p-5">
+        <div class="articleContent col-lg-8 col-sm-12 p-4">
             <?php echo $article['content'] ?>
         </div>
         <div class="commentBox col-lg-8 col-sm-12 mt-3;" id="commentBox">
@@ -171,9 +173,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <a href="https://github.com/Slartbartfast1" class="icon1 github"><span></span></a>
 
                 </div>
-
-                <small class="text-muted">15212068@bjtu.edu.cn</small>
-                <p class="text-muted">© 2018 泛银河系含漱爆破液</p>
+                <?php $user=myFetchOne("select * from user where userid='huangrui1019';"); ?>
+                <small class="text-muted"> <?php echo $user['email'] ?></small>
+                <p class="text-muted">© 2018 <?php echo $user['name'] ?></p>
             </div>
         </div>
     </div>
@@ -184,7 +186,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <span class="iconfont"></span>
 
 </div>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
 <script>
     hljs.initHighlightingOnLoad();
@@ -235,7 +236,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 </script>
 
-<!--============================留言开始=====================================================-->
+
 <script src="https://cdn.bootcss.com/wangEditor/10.0.13/wangEditor.js"></script>
     <script type="text/javascript">
     let E = window.wangEditor;
@@ -260,14 +261,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         editor.txt.html(anchor);
     });
-    //清空按钮
+    // 清空按钮
 
     $('.empty').on('click',function(){
         editor.txt.html('');
         $('#tex1').text('');
         $('#fatherid').val('');
     });
-// ===================================留言结束======================================
 
 
     $('.wechat').mouseenter(function(){
@@ -276,7 +276,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $('.wechat').mouseleave(function(){
         $('.QR').fadeOut(100);
     });
-
 
 
 </script>
