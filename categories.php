@@ -22,31 +22,24 @@ $categories=myFetchAll('select * from categories');
         .page {
             z-index: 1;
             width: 100%;
-            /*position: absolute;*/
             background: url("static/assets/img/wallhaven-677930.jpg") no-repeat fixed;
             background-size: 100% 400px;
-
-
         }
         .category{
             position:relative;
             height:300px;
             width:300px;
             background-color: pink;
-            /*margin:50px;*/
             top:-120px;
             box-shadow: 0 0 1px 2px rgba(0,0,0,.1);
             display: flex;
             justify-content:center;
             margin: 80px;
 
-
-
         }
         .category img{
             height:100%;
             width:100%;
-
         }
         .shadow{
             height:100%;
@@ -68,7 +61,6 @@ $categories=myFetchAll('select * from categories');
             font-family:"Microsoft JhengHei UI Light";
             color:white;
             z-index: 3;
-            /*margin-top:-25%;*/
         }
 
         .container1{
@@ -86,15 +78,10 @@ $categories=myFetchAll('select * from categories');
                 float: left;
                 display: inline-block;
                 margin-left:0;
-
-
             }
             .categoryName{
                 font-size:15px;
             }
-
-
-
         }
 
         @media screen and (min-width:600px) and (max-width:960px){
@@ -104,13 +91,10 @@ $categories=myFetchAll('select * from categories');
                 float: left;
                 display: inline-block;
                 margin: 40px ;
-
-
             }
             .categoryName{
                 font-size:15px;
             }
-
         }
 
 
@@ -119,7 +103,7 @@ $categories=myFetchAll('select * from categories');
 <body>
 <div class="page">
     <div class="container1">
-        <div class="row">
+        <div class="row d-flex justify-content-around">
             <?php foreach ($categories as $item): ?>
             <div class="col-4">
                 <a href="index.php?category=<?php echo $item['id']?>">
@@ -145,9 +129,9 @@ $categories=myFetchAll('select * from categories');
                     <a href="https://github.com/Slartbartfast1" class="icon1 github"><span></span></a>
 
                 </div>
-
-                <small class="text-muted">15212068@bjtu.edu.cn</small>
-                <p class="text-muted">© 2018 泛银河系含漱爆破液</p>
+                <?php $user=myFetchOne("select * from user where userid='huangrui1019';"); ?>
+                <small class="text-muted"> <?php echo $user['email'] ?></small>
+                <p class="text-muted">© 2018 <?php echo $user['name'] ?></p>
             </div>
         </div>
     </div>
@@ -156,7 +140,7 @@ $categories=myFetchAll('select * from categories');
 </div>
 
 
-<script src="static/assets/vendors/jQuery/jQuery.js"></script>
+<script src="static/assets/vendors/jquery/jquery.js"></script>
 <script src="static/assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
 <script src="static/assets/vendors/wow/wow.min.js"></script>
 <script src="static/assets/js/navBar.js"></script>

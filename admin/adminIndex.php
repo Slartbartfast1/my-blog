@@ -3,9 +3,14 @@ include('navBar.php');
 require_once '../static/function.php';
 header("Content-Type: text/html;charset=utf-8");
 myGetCurrentUser();
-$data=myFetchAll("select count(*) as num ,category from article group by category;");
-$comments=myFetchAll("select sum(count)as total,articleid from (select count(*) as count,commentfather.articleid  from commentfather where articleid!=228   group by articleid  union all
-select count(*) as num,commentchild.articleid  from commentchild where articleid!=228  group by articleid ) as a  group by articleid 
+$data=myFetchAll("select count(*) as num ,categories from (
+select article.category,categories.categories from article 
+inner join categories on article.category=categories.id ) as a group by categories");
+$comments=myFetchAll("select sum(count)as total,articleid from 
+(select count(*) as count,commentfather.articleid  from commentfather where articleid!=228   group by articleid  
+union all
+select count(*) as num,commentchild.articleid  from commentchild where articleid!=228  group by articleid )
+ as a  group by articleid 
 ;")
 ?>
 
@@ -20,13 +25,10 @@ select count(*) as num,commentchild.articleid  from commentchild where articleid
     <title>后台管理</title>
     <style>
         #chart1{
-
-            height:500px;
-
+            height:400px;
         }
         #chart2{
-            height:500px;
-
+            height:400px;
         }
     </style>
 </head>
@@ -44,7 +46,6 @@ select count(*) as num,commentchild.articleid  from commentchild where articleid
 <div id="chart1" class="col-lg-6">
 </div>
     <div id="chart2" class="col-lg-6">
-
     </div>
     </div>
 </div>
@@ -66,7 +67,7 @@ select count(*) as num,commentchild.articleid  from commentchild where articleid
             orient: 'vertical',
             left: 'left',
             data: [<?php foreach($data as $item): ?>
-               "<?php echo $item['category']; ?>",
+               "<?php echo $item['categories']; ?>",
 
             <?php endforeach; ?>]
 
@@ -79,7 +80,7 @@ select count(*) as num,commentchild.articleid  from commentchild where articleid
                 center: ['50%', '60%'],
                 data:[
                     <?php foreach($data as $item): ?>
-                    {value:<?php echo $item['num']  ?>, name:"<?php echo $item['category']; ?>"},
+                    {value:<?php echo $item['num']  ?>, name:"<?php echo $item['categories']; ?>"},
                     <?php endforeach; ?>
                 ],
                 itemStyle: {
@@ -107,7 +108,6 @@ select count(*) as num,commentchild.articleid  from commentchild where articleid
             type: 'category',
             data: [<?php foreach($comments as $item): ?>
                 "<?php echo $item['articleid']; ?>",
-
                 <?php endforeach; ?>]
         },
         yAxis: {
@@ -116,7 +116,6 @@ select count(*) as num,commentchild.articleid  from commentchild where articleid
         series: [{
             data: [<?php foreach($comments as $item): ?>
                 "<?php echo $item['total']; ?>",
-
                 <?php endforeach; ?>],
             type: 'bar'
         }]
