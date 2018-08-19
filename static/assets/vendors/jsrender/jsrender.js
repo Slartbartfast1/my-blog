@@ -2,7 +2,7 @@
 /*! **VERSION FOR WEB** (For NODE.JS see http://jsviews.com/download/jsrender-node.js) */
 /*
  * Best-of-breed templating in browser or on Node.js.
- * Does not require jQuery, or HTML DOM
+ * Does not require jquery, or HTML DOM
  * Integrates with JsViews (http://jsviews.com/#jsviews)
  *
  * Copyright 2017, Boris Moore
@@ -18,9 +18,9 @@
 	if (typeof exports === "object") { // CommonJS e.g. Browserify
 		module.exports = $
 			? factory(global, $)
-			: function($) { // If no global jQuery, take optional jQuery passed as parameter: require('jsrender')(jQuery)
+			: function($) { // If no global jquery, take optional jquery passed as parameter: require('jsrender')(jquery)
 				if ($ && !$.fn) {
-					throw "Provide jQuery or null";
+					throw "Provide jquery or null";
 				}
 				return factory(global, $);
 			};
@@ -42,7 +42,7 @@ function(global, $) {
 // global var is the this object, which is window when running in the usual browser environment
 var setGlobals = $ === false; // Only set globals if script block in browser (not AMD and not CommonJS)
 
-$ = $ && $.fn ? $ : global.jQuery; // $ is jQuery passed in by CommonJS loader (Browserify), or global jQuery.
+$ = $ && $.fn ? $ : global.jQuery; // $ is jquery passed in by CommonJS loader (Browserify), or global jquery.
 
 var versionNumber = "v0.9.86",
 	jsvStoreName, rTag, rTmplString, topView, $views,	$expando,
@@ -89,7 +89,7 @@ var versionNumber = "v0.9.86",
 	$render = {},
 
 	jsr = global.jsrender,
-	jsrToJq = jsr && $ && !$.render, // JsRender already loaded, without jQuery. but we will re-load it now to attach to jQuery
+	jsrToJq = jsr && $ && !$.render, // JsRender already loaded, without jquery. but we will re-load it now to attach to jquery
 
 	jsvStores = {
 		template: {
@@ -105,7 +105,7 @@ var versionNumber = "v0.9.86",
 		converter: {}
 	};
 
-	// views object ($.views if jQuery is loaded, jsrender.views if no jQuery, e.g. in Node.js)
+	// views object ($.views if jquery is loaded, jsrender.views if no jquery, e.g. in Node.js)
 	$views = {
 		jsviews: versionNumber,
 		sub: {
@@ -177,7 +177,7 @@ function getDerivedMethod(baseMethod, method) {
 
 function getMethod(baseMethod, method) {
 	// For derived methods (or handlers declared declaratively as in {{:foo onChange=~fooChanged}} replace by a derived method, to allow using this.base(...)
-	// or this.baseApply(arguments) to call the base implementation. (Equivalent to this._super(...) and this._superApply(arguments) in jQuery UI)
+	// or this.baseApply(arguments) to call the base implementation. (Equivalent to this._super(...) and this._superApply(arguments) in jquery UI)
 	if ($isFunction(method)) {
 		method = getDerivedMethod(
 				!baseMethod
@@ -275,7 +275,7 @@ function $viewsDelimiters(openChars, closeChars, link) {
 
 	$sub.rTmpl = new RegExp("^\\s|\\s$|<.*>|([^\\\\]|^)[{}]|" + openChars + ".*" + closeChars);
 	// $sub.rTmpl looks for initial or final white space, html tags or { or } char not preceded by \\, or JsRender tags {{xxx}}.
-	// Each of these strings are considered NOT to be jQuery selectors
+	// Each of these strings are considered NOT to be jquery selectors
 	return $viewsSettings;
 }
 
@@ -905,7 +905,7 @@ function compileTag(name, tagDef, parentTmpl) {
 
 function baseApply(args) {
 	// In derived method (or handler declared declaratively as in {{:foo onChange=~fooChanged}} can call base method,
-	// using this.baseApply(arguments) (Equivalent to this._superApply(arguments) in jQuery UI)
+	// using this.baseApply(arguments) (Equivalent to this._superApply(arguments) in jquery UI)
 	return this.base.apply(this, args);
 }
 
@@ -935,7 +935,7 @@ function compileTmpl(name, tmpl, parentTmpl, options) {
 					}
 				} else if ($.fn && !$sub.rTmpl.test(value)) {
 					try {
-						elem = $ (value, document)[0]; // if jQuery is loaded, test for selector returning elements, and get first element
+						elem = $ (value, document)[0]; // if jquery is loaded, test for selector returning elements, and get first element
 					} catch (e) {}
 				}// END BROWSER-SPECIFIC CODE
 			} //BROWSER-SPECIFIC CODE
@@ -2278,7 +2278,7 @@ function getTargetProps(source) {
 }
 
 function $fnRender(data, context, noIteration) {
-	var tmplElem = this.jquery && (this[0] || error('Unknown template')), // Targeted element not found for jQuery template selector such as "#myTmpl"
+	var tmplElem = this.jquery && (this[0] || error('Unknown template')), // Targeted element not found for jquery template selector such as "#myTmpl"
 		tmpl = tmplElem.getAttribute(tmplAttr);
 
 	return renderContent.call(tmpl && $.data(tmplElem)[jsvTmpl] || $templates(tmplElem),
@@ -2298,7 +2298,7 @@ $sub = $views.sub;
 $viewsSettings = $views.settings;
 
 if (!(jsr || $ && $.render)) {
-	// JsRender not already loaded, or loaded without jQuery, and we are now moving from jsrender namespace to jQuery namepace
+	// JsRender not already loaded, or loaded without jquery, and we are now moving from jsrender namespace to jquery namepace
 	for (jsvStoreName in jsvStores) {
 		registerStore(jsvStoreName, jsvStores[jsvStoreName]);
 	}
@@ -2320,7 +2320,7 @@ if (!(jsr || $ && $.render)) {
 	if ($) {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		// jQuery (= $) is loaded
+		// jquery (= $) is loaded
 
 		$.fn.render = $fnRender;
 		$expando = $.expando;
@@ -2331,7 +2331,7 @@ if (!(jsr || $ && $.render)) {
 
 	} else {
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		// jQuery is not loaded.
+		// jquery is not loaded.
 
 		$ = {};
 
@@ -2352,9 +2352,9 @@ if (!(jsr || $ && $.render)) {
 			return ({}.toString).call(obj) === "[object Array]";
 		};
 
-		$sub._jq = function(jq) { // private method to move from JsRender APIs from jsrender namespace to jQuery namespace
+		$sub._jq = function(jq) { // private method to move from JsRender APIs from jsrender namespace to jquery namespace
 			if (jq !== $) {
-				$extend(jq, $); // map over from jsrender namespace to jQuery namespace
+				$extend(jq, $); // map over from jsrender namespace to jquery namespace
 				$ = jq;
 				$.fn.render = $fnRender;
 				delete $.jsrender;
@@ -2476,7 +2476,7 @@ $isArray = ($||jsr).isArray;
 $viewsSettings.delimiters("{{", "}}", "^");
 
 
-if (jsrToJq) { // Moving from jsrender namespace to jQuery namepace - copy over the stored items (templates, converters, helpers...)
+if (jsrToJq) { // Moving from jsrender namespace to jquery namepace - copy over the stored items (templates, converters, helpers...)
 	jsr.views.sub._jq($);
 }
 return $ || jsr;

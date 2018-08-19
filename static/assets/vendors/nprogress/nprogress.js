@@ -192,7 +192,7 @@
   };
 
   /**
-   * Waits for all supplied jQuery promises and
+   * Waits for all supplied jquery promises and
    * increases the progress as the promises resolve.
    *
    * @param $promise jQUery Promise
@@ -371,7 +371,7 @@
   })();
 
   /**
-   * (Internal) Applies css properties to an element, similar to the jQuery
+   * (Internal) Applies css properties to an element, similar to the jquery
    * css method.
    *
    * While this helper does assist with vendor prefixed property names, it
