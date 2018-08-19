@@ -77,12 +77,6 @@ body {
         transform: rotate(360deg)
     }
 }
-
-/*audio {*/
-/*height: 100%;*/
-/*!*width: 100%;*!*/
-/*}*/
-
 @font-face {
     font-family: 'iconfont';
     src: url('static/assets/fonts/iconfont.eot');
@@ -174,10 +168,8 @@ body {
     width:100%;
     background-color: white;
     box-shadow: 0 0 10px 1px rgba(0,0,0,.1);
-    /*text-align:center;*/
     vertical-align:middle;
     transition:.3s ease 0s;
-
 }
 .postSmall{
     height:100%;
@@ -185,7 +177,6 @@ body {
     display: inline-block;
     position: absolute;
     left:0;
-
 }
 .musicSmallInfo{
     cursor: default;
