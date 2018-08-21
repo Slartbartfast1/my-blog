@@ -30,7 +30,8 @@ header("Content-Type: text/html;charset=utf-8");
     </div>
 
     <div class="btns text-center">
-        <div class="buttonWarp"><a href="index.php" class="myActive">所有文章
+
+        <div class="buttonWarp"><a href="index.php" class="myActive">所有文章 <kbd><?php echo myFetchOne(" select count(1) as num from article where articleid!=228")['num'];?></kbd>
             </a></div>
         <div class="buttonWarp"><a href="categories.php">分类</a></div>
         <div class="buttonWarp musicBox"><a href="music.php">音乐盒</a></div>
