@@ -170,6 +170,14 @@ body{
 #div1{
     background-color: #FFF;
 }
+blockquote{
+    font: 14px/22px normal helvetica, sans-serif;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding:10px;
+    border-left: 8px solid #CFE4F2;
+    background-color:#f1f1f1
+}
 @media screen and (min-width: 320px) and (max-width: 480px) {
 
     .titleTree{
@@ -188,9 +196,7 @@ body{
         font-size:8px;
         line-height: 8px;
     }
-    .articleContent{
-        font-size: 10px;
-    }
+
     .comments{
         font-size: 0.5em;
     }
