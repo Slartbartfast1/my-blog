@@ -2,8 +2,8 @@
 header("Content-Type: text/html;charset=utf-8");
 require_once '../static/function.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $userID = $_POST['userID'];
-    $password = $_POST['password'];
+    $userID = addslashes($_POST['userID']);
+    $password =addslashes($_POST['password']);
     $pass= myFetchOne("select * from user where userid='{$userID}' and password='{$password}'");
     if($pass){
         $_SESSION['currentLoginUser']=$userID;
@@ -89,7 +89,12 @@ if($_SERVER['REQUEST_METHOD']==='GET'&& isset($_GET['action'])&&$_GET['action']=
                 })
             })
         })
-    })
+    });
+
+
+
 </script>
+
+
 </body>
 </html>
