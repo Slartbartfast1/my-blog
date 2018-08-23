@@ -27,6 +27,7 @@ myGetCurrentUser();
     <div class="page-title my-5">
         <h1>评论管理</h1>
     </div>
+    <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover ">
         <thead>
         <th>位置</th>
@@ -39,6 +40,7 @@ myGetCurrentUser();
         <tbody>
         </tbody>
     </table>
+    </div>
 </div>
 <script src="https://cdn.bootcss.com/jsrender/1.0.0-rc.70/jsrender.min.js"></script>
 <script id="commentsTmpl" type="text/myJSRender">
@@ -67,5 +69,7 @@ myGetCurrentUser();
     })
 
 </script>
+
+
 </body>
 </html>

@@ -3,7 +3,7 @@ include('navBar.php');
 require_once '../static/function.php';
 header("Content-Type: text/html;charset=utf-8");
 myGetCurrentUser();
-$music=myFetchAll('select * from music');
+$music=myFetchAll('select * from music order by album asc');
 
 ?>
 
@@ -22,7 +22,7 @@ $music=myFetchAll('select * from music');
         <h1>音乐管理</h1>
     </div>
     <div class="row">
-        <div class="col-10">
+            <div class="table-responsive">
             <table class="table table-striped table-bordered table-hover text-center">
                 <thead>
                 <th>海报</th>
@@ -47,10 +47,6 @@ $music=myFetchAll('select * from music');
 
                 </tbody>
             </table>
-
-        </div>
-        <div class="col-4">
-
         </div>
     </div>
 </div>

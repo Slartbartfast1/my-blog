@@ -31,12 +31,14 @@ function addslider(){
     <title>轮播图管理</title>
 </head>
 <body>
+<div class="container">
 
     <div class="page-title my-5">
         <h1>轮播图管理</h1>
     </div>
     <div class="row">
 <div class="col-lg-8 col-sm-12">
+    <div class="table-responsive">
     <table class="table">
         <thead>
         <th class="text-center">层级</th>
@@ -58,6 +60,7 @@ function addslider(){
         <?php endforeach; ?>
         </tbody>
     </table>
+        </div>
 </div>
     <div class="col-lg-4 col-sm-12">
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data" >
@@ -83,6 +86,6 @@ function addslider(){
 
     </div>
     </div>
-
+</div>
 </body>
 </html>

@@ -12,7 +12,7 @@ $offset = ($page - 1) * $size;
 
 
 //筛选参数
-$where='1=1';
+$where='articleid!=228';
 $search='';
 //分类筛选
 if(!empty($_GET['category'])&&$_GET['category']!='all'){
@@ -26,17 +26,18 @@ if(!empty($_GET['top'])&&$_GET['top']!='all'){
 }
 
 
+////不能小于1
+//$page<1? header('Location:articles.php?page=1'.$search):$page;
+////不能超出page范围
+//$page>$totalPages? header('Location: articles.php?page=' . $totalPages . $search):$page;
 
-//不能小于1
-$page<1? header('Location: /Myblog/admin/articles.php?page=1'.$search):$page;
 
 //最大的页数
 
 $totalCount = (int)myFetchOne("select count(1) as num from article where {$where}")['num'];
 $totalPages = (int)ceil($totalCount / $size);
 
-//不能超出page范围
-$page>$totalPages? header('Location: /Myblog/admin/articles.php?page=' . $totalPages . $search):$page;
+
 
 //分页页码
 $visiables = 5;
@@ -67,8 +68,12 @@ article.category,
 categories.id,
 categories.categories as categoryName
 from article 
-inner join categories on article.category=categories.id where {$where} and articleid!=228 limit {$offset},{$size};");
+inner join categories on article.category=categories.id where {$where} and articleid!=228 order by createTime desc limit {$offset},{$size};");
 
+if(!$articles){
+   exit( '找不到符合条件的文章');
+
+}
 //转换置顶状态格式;
 function convertTop($top)
 {
@@ -94,17 +99,10 @@ $categories=myFetchAll('select * from categories');
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>文章管理</title>
-    <style>
-        .page {
-            float: right;
-            display: inline-block;
-        }
-
-    </style>
 </head>
 <body>
 
-<script>NProgress.start();</script>
+
 <div class="container">
     <div class="page-title my-5">
         <h1>文章管理</h1>
@@ -130,8 +128,8 @@ $categories=myFetchAll('select * from categories');
             </select>
             <button class="btn btn-primary">筛选</button>
         </form>
-        <div class="page">
-            <ul class="pagination">
+        <div class="page col-lg-4">
+            <ul class="pagination ">
                 <li class="page-item">
                     <a class="page-link" href="?page=<?php echo ($page - 1).$search; ?>">
                         上一页</a>
@@ -150,12 +148,14 @@ $categories=myFetchAll('select * from categories');
             </ul>
         </div>
     </div>
+    <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover">
 
 
         <thead>
         <tr>
 <!--            <th class="text-center" width="40"><input type="checkbox"></th>-->
+            <th>id</th>
             <th>标题</th>
             <th>作者</th>
             <th>分类</th>
@@ -168,6 +168,7 @@ $categories=myFetchAll('select * from categories');
         <?php foreach ($articles as $item): ?>
             <tr>
 <!--                <td class="text-center"><input type="checkbox"></td>-->
+                <td><?php echo $item['articleid']; ?></td>
                 <td><?php echo $item['title']; ?></td>
                 <td><?php echo $item['author']; ?></td>
                 <td><?php echo $item['categoryName']; ?></td>
@@ -184,8 +185,9 @@ $categories=myFetchAll('select * from categories');
         <?php endforeach ?>
         </tbody>
     </table>
+    </div>
 </div>
 
-<script>NProgress.done();</script>
+
 </body>
 </html>
