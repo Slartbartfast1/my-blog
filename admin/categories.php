@@ -13,18 +13,13 @@ function addCategory()
     }
     $categories = $_POST['categories'];
     $slug = $_POST['slug'];
-
     $categoriesImg = $_FILES['categoriesImg'];
-
     $dest = '../static/assets/categories/' . $slug . $categoriesImg['name'];
     if(!move_uploaded_file($categoriesImg['tmp_name'], $dest)){
         exit('上传失败');
     }
-
-//
-
     $dest2 = substr($dest, 3);
-    $rows = myExecute("insert into categories values (null, '{$slug}', '{$categories}','{$dest2}');");
+    $rows = myExecute("insert into categories values (null, '{$categories}', '{$slug}','{$dest2}');");
     $GLOBALS['success'] = $rows > 0;
     $GLOBALS['message'] = $rows <= 0 ? '添加失败！' : '添加成功！';
 }
@@ -38,7 +33,18 @@ function editCategory()
     $currentEditCategory['categories'] = $category;
     $slug = empty($_POST['slug']) ? $currentEditCategory['slug'] : $_POST['slug'];
     $currentEditCategory['slug'] = $slug;
-    $rows = myExecute("update categories set categories='{$category}',slug='{$slug}'  where id={$id}");
+
+    if(!empty($_FILES['categoriesImg']['name'])){
+        $categoriesImg=$_FILES['categoriesImg'];
+        $dest = '../static/assets/categories/'  .$slug. $categoriesImg['name'];
+        if(!move_uploaded_file($categoriesImg['tmp_name'], $dest)){
+            exit('上传失败');
+        };
+        $dest2 = substr($dest, 3);
+        $rows = myExecute("update categories set categories='{$category}',slug='{$slug}',imgurl='{$dest2}'where id={$id}");
+    }else{
+        $rows = myExecute("update categories set categories='{$category}',slug='{$slug}'where id={$id}");
+    }
     $GLOBALS['success'] = $rows > 0;
     $GLOBALS['message'] = $rows <= 0 ? '更新失败！' : '更新成功！';
 }
@@ -77,14 +83,14 @@ if (empty($_GET['id'])) {
         <h1>分类管理</h1>
     </div>
     <div class="row mt-5">
-
         <div class="col-lg-8 col-sm-12">
             <div class="page-action">
                 <!-- show when multiple checked -->
                 <a id="btnDelete" class="btn btn-danger btn-sm" href="/admin/categoriesDelete.php"
                    style="display: none">批量删除</a>
             </div>
-            <table class="table table-striped table-bordered table-hover">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
                 <thead>
                 <tr>
                     <th class="text-center" width="40"><input type="checkbox"></th>
@@ -100,15 +106,16 @@ if (empty($_GET['id'])) {
                         <td><?php echo $item['categories']; ?></td>
                         <td><?php echo $item['slug']; ?></td>
                         <td class="text-center">
-                            <a href="/admin/categories.php?id=<?php echo $item['id']; ?>"
+                            <a href="categories.php?id=<?php echo $item['id']; ?>"
                                class="btn btn-info btn-sm">编辑</a>
-                            <a href="/admin/categoriesDelete.php?id=<?php echo $item['id']; ?>"
+                            <a href="categoriesDelete.php?id=<?php echo $item['id']; ?>"
                                class="btn btn-danger btn-sm">删除</a>
                         </td>
                     </tr>
                 <?php endforeach ?>
                 </tbody>
             </table>
+            </div>
         </div>
         <div class="col-lg-4 col-sm-12">
             <?php if (isset($message)): ?>
@@ -124,7 +131,7 @@ if (empty($_GET['id'])) {
             <?php endif ?>
             <?php if (isset($currentEditCategory)): ?>
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>?id=<?php echo $currentEditCategory['id']; ?>"
-                      method="post">
+                      method="post" enctype="multipart/form-data">
                     <h2>编辑"<?php echo $currentEditCategory['categories']; ?>"</h2>
                     <div class="form-group">
                         <label for="name">名称</label>
@@ -193,6 +200,7 @@ if (empty($_GET['id'])) {
         })
     });
 </script>
+
 
 
 </body>
