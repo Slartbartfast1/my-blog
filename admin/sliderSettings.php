@@ -10,14 +10,8 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 function addslider(){
     $index=$_POST['index'];
     $name=$_POST['name'];
-    $img=$_FILES['img'];
-    $dest='../static/assets/sliderImgs/' . $img['name'];
-
-    if(!move_uploaded_file($img['tmp_name'],$dest)){
-        exit('上传失败');
-    };
-    $dest2=substr($dest,3);
-    myExecute("insert into slider values(null,'{$name}','{$dest2}','{$index}')");
+    $url=$_POST['url'];
+    myExecute("insert into slider values(null,'{$name}','{$url}','{$index}')");
 }
 
 ?>
@@ -50,7 +44,7 @@ function addslider(){
        <?php foreach ($sliders as $item) :?>
        <tr>
            <td class="text-center"><?php echo $item['index'] ?></td>
-           <td class="text-center"><img src="../<?php echo $item['imgurl'] ?>" alt="" width="180" height="90"></td>
+           <td class="text-center"><img src="<?php echo $item['imgurl'] ?>" alt="" width="180" height="90"></td>
            <td class="text-center"><?php echo $item['name'] ?></td>
            <td class="text-center">
                <a href="sliderDelete.php?id=<?php echo $item['id']; ?>"
@@ -73,12 +67,10 @@ function addslider(){
                 <label for="name">层级</label>
                 <input id="name" class="form-control" name="index" type="number" placeholder="数字" value="1">
             </div>
-
             <div class="form-group">
-                <label for="img">图片</label>
-                <input type="file" class="form-control" name="img" accept="image/*" id="categoriesImg">
+                <label for="url">网址</label>
+                <input id="url" class="form-control" name="url" type="text" placeholder="URL">
             </div>
-
             <div class="form-group">
                 <button class="btn btn-primary" type="submit">添加</button>
             </div>
