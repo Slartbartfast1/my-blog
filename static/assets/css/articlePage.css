@@ -101,7 +101,7 @@ body{
     text-indent: 2em;
 }
 
-.comments .repply {
+.comments .reply {
     position: absolute;
     right: 10px;
     bottom: 10px;
@@ -110,16 +110,16 @@ body{
 .commentTime {
     position: absolute;
     left: 10px;
-    bottom: 10px;
+    bottom: 5px;
 }
 
 @font-face {
     font-family: 'iconfont';
-    src: url('static/assets/fonts/iconfont.eot');
-    src: url('static/assets/fonts/iconfont.eot?#iefix') format('embedded-opentype'),
-    url('static/assets/fonts/iconfont.woff') format('woff'),
-    url('static/assets/fonts/iconfont.ttf') format('truetype'),
-    url('static/assets/fonts/iconfont.svg#iconfont') format('svg');
+    src: url('../fonts/iconfont.eot');
+    src: url('../fonts/iconfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/iconfont.woff') format('woff'),
+    url('../fonts/iconfont.ttf') format('truetype'),
+    url('../fonts/iconfont.svg#iconfont') format('svg');
 }
 
 .iconfont {
