@@ -1,38 +1,33 @@
 <?php
 include 'navBar.php';
 require_once 'static/function.php';
-
 $commentfather=myFetchAll("select * from commentfather where articleid='228'");
 
 if($_SERVER['REQUEST_METHOD']==='POST'){
     if (empty($_POST['nickName'])) {
+       exit('请输入昵称');
 
-        $GLOBALS['errorMessage'] = '请输入昵称';
-        return;
     }
     if (empty($_POST['comment'])) {
-
-        $GLOBALS['errorMessage'] = '请输入评论内容';
-        return;
+        exit('请输入评论内容');
     }
-
     if (empty($_POST['fatherid'])) {
-        $articleid1= $_POST['articleid'];
+        $articleid1= addslashes($_POST['articleid']);
         $commentName = addslashes($_POST['nickName']);
         $fatherComment =addslashes( $_POST['comment']);
-        $commentTime = date('Y-m-d H:m:s', time());
+        $commentTime = addslashes(date('Y-m-d H:i:s', time()));
         myExecute("insert into commentfather values('{$articleid1}',null,'{$commentTime}','{$commentName}','{$fatherComment}');");
-
     } else {
-        $articleid1 = $_POST['articleid'];
-        $fatherid = $_POST['fatherid'];
+        $articleid1 = addslashes($_POST['articleid']);
+        $fatherid = addslashes($_POST['fatherid']);
         $commentName = addslashes($_POST['nickName']);
         $fatherComment =addslashes( $_POST['comment']);
-        $commentTime = date('Y-m-d H:m:s', time());
+        $commentTime = addslashes(date('Y-m-d H:i:s', time()));
         myExecute("insert into commentchild values('{$articleid1}',null,'{$commentTime}','{$commentName}','{$fatherComment}','{$fatherid}');");
-    }
-    header('location:comments.php');
 
+    }
+
+    header('location:comments.php');
 }
 
 
@@ -55,7 +50,6 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     <link rel="stylesheet" href="static/assets/css/main.css">
     <link rel="stylesheet" href="static/assets/css/footer.css">
     <link rel="stylesheet" href="static/assets/css/comments.css">
-
 </head>
 <body>
 <div class="page">
@@ -66,15 +60,10 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         <div class="col-lg-12    py-3">
             <h1>留言板</h1>
             <hr>
-            <?php if (isset($errorMessage)): ?>
-                <div class="alert alert-warning text-center">
-                    <?php echo $errorMessage; ?>
-                </div>
-            <?php endif ?>
         </div>
         <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
             <div class="form-group" style="display: none">
-                <label for="id" >id</label>
+                <label for="fatherid"></label>
                 <input type="text" class="form-control" name="articleid" id="articleid" accept="multipart/form-data"
                        value="228">
             </div>
@@ -143,27 +132,22 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
                 <div class="QR"><img src="static/assets/img/微信图片_20180815234204.jpg" alt="" class="img-fluid"></div>
                 <a href="#" class="icon1 wechat"><span></span></a>
                 <a href="https://blog.csdn.net/Slartibartfast" class="icon1 csdn"><span></span></a>
-                <a href="https://github.com/Slartbartfast1" class="icon1 github"><span></span></a>
+                <a href="https://github.com/Slartbartfast1/Myblog" class="icon1 github"><span></span></a>
 
             </div>
 
-            <small class="text-muted">15212068@bjtu.edu.cn</small>
-            <p class="text-muted">© 2018 泛银河系含漱爆破液</p>
+            <?php $user=myFetchOne("select * from user where userid='huangrui1019';"); ?>
+            <small class="text-muted"> <?php echo $user['email'] ?></small>
+            <p class="text-muted">© 2018 <?php echo $user['name'] ?></p>
         </div>
     </div>
 </main>
-
-
 </div>
 
 
 
 
-
-
-
-<script src="static/assets/vendors/jQuery/jQuery.js"></script>
-
+<script src="static/assets/vendors/jquery/jquery.js"></script>
 <script src="static/assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
 <script src="static/assets/vendors/wow/wow.min.js"></script>
 <script src="static/assets/js/navBar.js"></script>

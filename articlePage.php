@@ -2,7 +2,6 @@
 include 'navBar.php';
 require_once 'static/function.php';
 header("Content-Type: text/html;charset=utf-8");
-
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $articleid = $_GET['articleid'];
     $article = myFetchOne("select * from article where articleid={$articleid}");
@@ -13,35 +12,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($_POST['nickName'])) {
-        $GLOBALS['errorMessage'] = '请输入昵称';
-        return;
+        exit('请输入昵称');
     }
     if (empty($_POST['comment'])) {
-        $GLOBALS['errorMessage'] = '请输入评论内容';
-        return;
+        exit('请输入评论内容');
     }
     if (empty($_POST['fatherid'])) {
-        $articleid1 = $_POST['articleid'];
+        $articleid1 = addslashes($_POST['articleid']);
         $commentName = addslashes($_POST['nickName']);
         $fatherComment =addslashes( $_POST['comment']);
-        $commentTime = date('Y-m-d H:m:s', time());
+        $commentTime = addslashes(date('Y-m-d H:i:s', time()));
         myExecute("insert into commentfather values('{$articleid1}',null,'{$commentTime}','{$commentName}','{$fatherComment}');");
 
     } else {
-        $articleid1 = $_POST['articleid'];
-        $fatherid = $_POST['fatherid'];
-        $applyTo=$_POST['appltTo'];
+        $articleid1 =addslashes($_POST['articleid']);
+        $fatherid = addslashes($_POST['fatherid']);
+        $applyTo=addslashes($_POST['applyTo']);
         $commentName = addslashes($_POST['nickName']);
         $fatherComment =addslashes( $_POST['comment']);
-        $commentTime = date('Y-m-d H:m:s', time());
+        $commentTime = addslashes(date('Y-m-d H:i:s', time()));
         myExecute("insert into commentchild values('{$articleid1}',null,'{$commentTime}','{$commentName}','{$fatherComment}','{$fatherid}');");
     }
     header('Location: ' . $_SERVER['HTTP_REFERER']);
-
-
 }
-
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -51,7 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?php echo $article['title'] ?></title>
-
 <link href="static/assets/vendors/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="static/assets/vendors/animate/animate.min.css" rel="stylesheet">
     <link rel="stylesheet" href="static/assets/css/main.css">
@@ -74,8 +66,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div>
 <div class="page" style="background:url('<?php echo $article['imgurl']?>') no-repeat fixed; background-size: 100% 400px;">
     <div class="articleBox row">
-        <div class="titleBox col-lg-8 col-sm-12 text-center py-4">
-            <div class="page-header">
+        <div class="titleBox col-lg-8 col-sm-12 text-center py-4 animated fadeIn">
+            <div class="page-header ">
                 <h1><?php echo $article['title'] ?></h1>
                 <small>来自:</small>
                 <small><?php echo $article['author'] ?></small>
@@ -83,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <small>阅读数:<?php echo $article['view'] ?></small>
             </div>
         </div>
-        <div class="articleContent col-lg-8 col-sm-12 p-4">
+        <div class="articleContent col-lg-8 col-sm-12 p-4  animated fadeIn">
             <?php echo $article['content'] ?>
         </div>
         <div class="commentBox col-lg-8 col-sm-12 mt-3;" id="commentBox">
@@ -144,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php echo $item['commentContent'] ?>
 
                 <small class="commentTime font-weight-light text-muted"><?php echo $item['commentDate'] ?></small>
-                <a href="#commentBox" class="repply">回复</a>
+                <a href="#commentBox" class="reply">回复</a>
                 <?php $index = 1;//生成楼层
                 foreach ($commentChild as $child): ?>
                     <div class="media p-3">
@@ -156,7 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <p class="text-muted"><?php echo $child['commentContent'] ?></p>
 
                             <small class="commentTime font-weight-light text-muted"><?php echo $child['commentDate'] ?></small>
-                            <a href="#commentBox" class="repply repplyInside">回复</a>
+                            <a href="#commentBox" class="reply repplyInside">回复</a>
                         </div>
                     </div>
                     <?php $index++;$num++; endforeach ?>
@@ -170,7 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="QR"><img src="static/assets/img/微信图片_20180815234204.jpg" alt="" class="img-fluid"></div>
                     <a href="#" class="icon1 wechat"><span></span></a>
                     <a href="https://blog.csdn.net/Slartibartfast" class="icon1 csdn"><span></span></a>
-                    <a href="https://github.com/Slartbartfast1" class="icon1 github"><span></span></a>
+                    <a href="https://github.com/Slartbartfast1/Myblog" class="icon1 github"><span></span></a>
 
                 </div>
                 <?php $user=myFetchOne("select * from user where userid='huangrui1019';"); ?>
@@ -252,17 +244,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     //回复按钮点击事件
-    $('.repply').on('click',function(){
+    $('.reply').on('click',function(){
         let fatherid = $(this).parent().find('.fatherid').text();
         let id=$(this).parent().attr('id');
         let name = $(this).parent().find('.nick').eq(0).text();
         let anchor="<a href='#"+id+"'>"+"@"+name+"</a>"+"<p><br></p>";//富文本编辑器中插入src为锚点的a标签
         $('#fatherid').val(fatherid);
-
         editor.txt.html(anchor);
     });
-    // 清空按钮
 
+    // 清空按钮
     $('.empty').on('click',function(){
         editor.txt.html('');
         $('#tex1').text('');
@@ -276,6 +267,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $('.wechat').mouseleave(function(){
         $('.QR').fadeOut(100);
     });
+    //内容加样式
+    $('table').addClass('table table-bordered table-striped ').wrap('<div></div>').parent().addClass('table-responsive');
+    $('thead').addClass('thead-light');
 
 
 </script>
