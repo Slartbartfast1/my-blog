@@ -43,9 +43,9 @@ function addArticle()
     $title = $_POST['title'];
     $author = $_POST['author'];
     $createTime =$_POST['createTime'];
-   $imgTitle = $_FILES['imgTitle'];
+    $imgTitle = $_FILES['imgTitle'];
     $category1 = $_POST['category'];
-   $category2=myFetchOne("select * from categories where categories='{$category1}'");
+    $category2=myFetchOne("select * from categories where categories='{$category1}'");
     $category=$category2['id'];
     $content = addslashes($_POST['content']);
     $gist=addslashes($_POST['gist']);
@@ -112,7 +112,7 @@ function addArticle()
         <div class="form-group">
             <label for="创建时间">创建时间</label>
             <input type="text" class="form-control" name="createTime" id="createTime"
-                   accept="multipart/form-data" value="<?php echo date('y-m-d h:i:s',time()); ?>">
+                   accept="multipart/form-data" value="<?php echo date('Y-m-d H:i:s',time()); ?>">
         </div>
         <div class="form-group">
             <div id="imageHolder"></div>
@@ -137,8 +137,6 @@ function addArticle()
         </div>
         <div class="form-group">
             <label for="articl">文章</label>
-
-
 
 <!--            将富文本编辑器的内容同步到表单的文本域;-->
             <div style="display:none">
@@ -185,6 +183,5 @@ function addArticle()
         });
 
     </script>
-
 </body>
 </html>
