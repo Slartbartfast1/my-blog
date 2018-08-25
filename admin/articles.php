@@ -108,7 +108,6 @@ $categories=myFetchAll('select * from categories');
         <h1>文章管理</h1>
     </div>
     <div class="page-action row">
-        <a class="btn btn-danger btn-sm" href="javascript:;" style="display: none">批量删除</a>
         <form class="form-inline col-lg-8 col-sm-12" method="get" name="id" action="<?php $_SERVER['PHP_SELF'] ?>">
             <select name="category" class="form-control input-sm" >
                 <option value="all">所有分类</option>
@@ -176,7 +175,7 @@ $categories=myFetchAll('select * from categories');
                 <td class="text-center"><?php echo convertTop($item['top']); ?></td>
                 <td class="text-center">
                     <a href="articleUpdate.php?articleid=<?php echo $item['articleid'] ?>" class="btn  btn-primary btn-xs">编辑</a>
-                    <a href="articleDelete.php?articleid=<?php echo $articles['articleid']?>"
+                    <a href="articleDelete.php?articleid=<?php echo $item['articleid']?>"
                        class="btn btn-danger btn-xs">
                         删除
                     </a>
