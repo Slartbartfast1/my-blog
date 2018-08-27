@@ -108,11 +108,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="form-group ">
                     <label for="nickName"></label>
                     <input type="text" class="form-control" id="nickName" name="nickName" autocomplete="off"
-                           placeholder="昵称">
+                           placeholder="昵称" required>
                 </div>
                 <div class="form-group">
                     <label for="comment"></label>
-                    <textarea class="form-control " rows="10" name="comment" id="text1" placeholder="说点什么吧" style="display:none"></textarea>
+                    <textarea class="form-control " rows="10" name="comment" id="text1" placeholder="说点什么吧" style="display:none" required></textarea>
                     <div id="div1" style="min-height: 100px;">
                     </div>
                 </div>
