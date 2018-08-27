@@ -26,13 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         return;
     }
 
-
-
     if (empty($_POST['content'])) {
         $GLOBALS['errorMessage'] = '内容不能为空';
         return;
     }
-
 
     //变量声明
 
@@ -144,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <div class="form-group">
             <label for="置顶">置顶</label>
-            <input type="checkbox" name="top" id="top" accept="multipart/form-data" <?php echo $article['top']==2? ' checked':''?>>
+            <input type="checkbox" name="top" id="top" accept="multipart/form-data" <?php echo $article['top']==1? ' checked':''?>>
         </div>
         <div class="form-group">
             <label for="articl">文章</label>
@@ -160,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <button class="btn btn-outline-success" type="submit">保存更改</button>
     </form>
-    <script src="https://cdn.bootcss.com/wangEditor/10.0.13/wangEditor.js"></script>
+    <script src="https://cdn.bootcss.com/wangEditor/3.1.1/wangEditor.js"></script>
     <script type="text/javascript">
         var E = window.wangEditor;
         var editor = new E('#div1');
@@ -168,6 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         editor.customConfig.onchange = function (html) {
             $text1.val(html)
         };
+
         editor.create();
         $text1.val(editor.txt.html());
 
@@ -200,5 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         });
 
     </script>
+
+
 </body>
 </html>

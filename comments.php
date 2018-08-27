@@ -151,7 +151,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 <script src="static/assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
 <script src="static/assets/vendors/wow/wow.min.js"></script>
 <script src="static/assets/js/navBar.js"></script>
-<script src="https://cdn.bootcss.com/wangEditor/10.0.13/wangEditor.js"></script>
+<script src="https://cdn.bootcss.com/wangEditor/3.1.1/wangEditor.js"></script>
 <script type="text/javascript">
     var E = window.wangEditor;
     var editor = new E('#div1');

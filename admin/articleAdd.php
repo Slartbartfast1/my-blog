@@ -147,7 +147,7 @@ function addArticle()
         </div>
         <button class="btn btn-outline-success" type="submit">发布文章</button>
     </form>
-    <script src="https://cdn.bootcss.com/wangEditor/10.0.13/wangEditor.js"></script>
+    <script src="https://cdn.bootcss.com/wangEditor/3.1.1/wangEditor.js"></script>
     <script type="text/javascript">
         var E = window.wangEditor;
         var editor = new E('#div1');
