@@ -69,7 +69,18 @@ and articleid!=228 order by top asc, createTime desc limit {$offset},{$size} ;")
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="keywords" content="泛银河系含漱爆破液,个人博客,javascript,前端,slartbartfast,blog">
     <meta name="description" content="泛银河系含漱爆破液的个人博客,热衷于分享技术,交流思想,培养自由思想和独立精神">
-    <title>泛银河系含漱爆破液的个人博客</title>
+    <title><?php  if($_SERVER['QUERY_STRING']){
+        if(strpos($_SERVER['QUERY_STRING'],'&')){
+            $query=explode('=',explode('&',$_SERVER['QUERY_STRING'])[0])[1];
+
+            }else{
+            $query=explode('=',$_SERVER['QUERY_STRING'])[1];
+        }
+        $category=myFetchOne("select categories from categories where id={$query}");
+        echo $category['categories'].'分类' .'--泛银河系含漱爆破液的个人博客';
+    }else{
+        echo '泛银河系含漱爆破液的个人博客';
+}?></title>
     <link type="icon" rel="shortcut icon" href="/favicon.ico"/>
     <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">

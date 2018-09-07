@@ -1,5 +1,4 @@
 <?php
-include('navBar.php');
 require_once '../static/function.php';
 header("Content-Type: text/html;charset=utf-8");
 myGetCurrentUser();
@@ -101,6 +100,7 @@ $categories=myFetchAll('select * from categories');
     <title>文章管理</title>
 </head>
 <body>
+<?php include('navBar.php');?>
 
 
 <div class="container">
