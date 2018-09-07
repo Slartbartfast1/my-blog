@@ -2,6 +2,8 @@
 include 'navBar.php';
 require_once 'static/function.php';
 header("Content-Type: text/html;charset=utf-8");
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $articleid = $_GET['articleid'];
     $article = myFetchOne("select * from article where articleid={$articleid}");
@@ -43,21 +45,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords" content="泛银河系含漱爆破液 javascript 前端 css 计算机网络">
+    <meta name="description" content="<?php echo $article['title'] ?>">
     <title><?php echo $article['title'] ?></title>
-<link href="static/assets/vendors/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <link href="static/assets/vendors/animate/animate.min.css" rel="stylesheet">
+<link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
     <link rel="stylesheet" href="static/assets/css/main.css">
     <link rel="stylesheet" href="static/assets/css/footer.css">
     <link rel="stylesheet" href="static/assets/css/articlePage.css">
     <link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/atom-one-light.min.css" rel="stylesheet">
 </head>
 <body data-spy="scroll" data-target=".titleTree">
-<script src="static/assets/vendors/jquery/jquery.js"></script>
-<script src="static/assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
-<script src="static/assets/vendors/wow/wow.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
 <script src="static/assets/js/navBar.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.11.0/languages/javascript.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/languages/json.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/languages/php.min.js"></script>
+
 
 <nav class="titleTree  titleTreeLeft animated">
     <ul class="nav">
@@ -76,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
         <div class="articleContent col-lg-8 col-sm-12 p-4  animated fadeIn">
-            <?php echo $article['content'] ?>
+            <article><?php echo $article['content'] ?></article>
         </div>
         <div class="commentBox col-lg-8 col-sm-12 mt-3;" id="commentBox">
             <div class="col-12 py-3">
@@ -112,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <div class="form-group">
                     <label for="comment"></label>
-                    <textarea class="form-control " rows="10" name="comment" id="text1" placeholder="说点什么吧" style="display:none" required></textarea>
+                    <textarea class="form-control "name="comment" id="text1" placeholder="说点什么吧" style="display:none" required></textarea>
                     <div id="div1" style="min-height: 100px;">
                     </div>
                 </div>
@@ -166,7 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 </div>
                 <?php $user=myFetchOne("select * from user where userid='huangrui1019';"); ?>
-                <small class="text-muted"> <?php echo $user['email'] ?></small>
+                <small class="text-muted"> <?php echo $user['email'] ?>  京ICP备18046047号</small>
                 <p class="text-muted">© 2018 <?php echo $user['name'] ?></p>
             </div>
         </div>
@@ -180,6 +187,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 
 <script>
+
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+
     hljs.initHighlightingOnLoad();
 </script>
 <script>
@@ -229,7 +250,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </script>
 
 
-<script src="https://cdn.bootcss.com/wangEditor/10.0.13/wangEditor.js"></script>
+<script src="https://cdn.bootcss.com/wangEditor/3.1.1/wangEditor.min.js"></script>
     <script type="text/javascript">
     let E = window.wangEditor;
     let editor = new E('#div1');
