@@ -1,12 +1,5 @@
-<?php include 'navBar.php';
+<?php
 header("Content-Type: text/html;charset=utf-8");
-/**
- * Created by PhpStorm.
- * User: huangrui10191180
- * Date: 2018/8/11
- * Time: 12:35
- */
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -16,13 +9,15 @@ header("Content-Type: text/html;charset=utf-8");
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>豆瓣影讯</title>
-<link href="static/assets/vendors/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <link href="static/assets/vendors/animate/animate.min.css" rel="stylesheet">
+<link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
     <link rel="stylesheet" href="static/assets/css/main.css">
     <link rel="stylesheet" href="static/assets/css/footer.css">
     <link rel="stylesheet" href="static/assets/css/theater.css">
+    <link rel="icon" href="/favicon.ico">
 </head>
 <body>
+<?php include 'navBar.php'; ?>
 <div class="page">
     <main>
         <h1 class="display-5">正在热映:</h1>
@@ -40,7 +35,7 @@ header("Content-Type: text/html;charset=utf-8");
         </div>
         <h1 class="display-5">排行榜:</h1>
         <hr>
-
+<div class="container-fluid">
             <div class="row">
                 <div class=" weekly col-lg-6 col-xs-12 wow animated fadeIn">
                     <h4>一周口碑榜</h4>
@@ -114,6 +109,7 @@ header("Content-Type: text/html;charset=utf-8");
 
                 </div>
             </div>
+</div>
             <div class="footer ">
                 <div class="footerItem text-center">
 
@@ -121,33 +117,20 @@ header("Content-Type: text/html;charset=utf-8");
                         <div class="QR"><img src="static/assets/img/微信图片_20180815234204.jpg" alt="" class="img-fluid"></div>
                         <a href="#" class="icon1 wechat"><span></span></a>
                         <a href="https://blog.csdn.net/Slartibartfast" class="icon1 csdn"><span></span></a>
-                        <a href="https://github.com/Slartbartfast1" class="icon1 github"><span></span></a>
+                        <a href="https://github.com/Slartbartfast1/Myblog" class="icon1 github"><span></span></a>
 
                     </div>
-
-                    <small class="text-muted">15212068@bjtu.edu.cn</small>
-                    <p class="text-muted">© 2018 泛银河系含漱爆破液</p>
+                    <?php $user=myFetchOne("select * from user where userid='huangrui1019';"); ?>
+                    <small class="text-muted"> <?php echo $user['email'] ?>  京ICP备18046047号</small>
+                    <p class="text-muted">©2018 <?php echo $user['name'] ?></p>
                 </div>
             </div>
 
     </main>
 
 </div>
-<script src="static/assets/vendors/jQuery/jQuery.js"></script>
-<script src="static/assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
-<script src="static/assets/vendors/wow/wow.min.js"></script>
-<script src="static/assets/js/navBar.js"></script>
+
 </body>
-
-
-<script>
-
-
-</script>
-
-
-<!--//jsonp跨域请求豆瓣API-->
-
 <!--//模板==========================================================================-->
 <!--//正在热映-->
 <script id="movieInTheater" type="text/myjsRender">
@@ -169,7 +152,7 @@ header("Content-Type: text/html;charset=utf-8");
 <script id="newMovies" type="text/myjsRender">
     {{for newMovies}}
     <tr>
-                       <td><a href="{{:alt}}"><img src="{{:images.small}}" alt=""></a></td>
+                    <td><a href="{{:alt}}"><img src="{{:images.small}}" alt=""></a></td>
                     <td ><a href="{{:alt}}">{{:title}}</a></td>
                     <td>{{:pubdates}}</td>
                     <td>
@@ -189,11 +172,11 @@ header("Content-Type: text/html;charset=utf-8");
 
 </script>
 
-<!--//北美票房榜-->
+<!--北美票房榜-->
 <script id="usBox" type="text/myjsRender">
     {{for usBox}}
     <tr>
-                       <td><a href="{{:subject.alt}}"><img src="{{:subject.images.small}}" alt=""></a></td>
+                    <td><a href="{{:subject.alt}}"><img src="{{:subject.images.small}}" alt=""></a></td>
                     <td><a href="{{:subject.alt}}">{{:subject.title}}</a></td>
                     <td>{{:subject.pubdates}}</td>
                     <td>
@@ -211,11 +194,11 @@ header("Content-Type: text/html;charset=utf-8");
     {{/for}}
 
 </script>
-
+<!--一周口碑榜-->
 <script id="weekly" type="text/myjsRender">
     {{for weekly}}
     <tr>
-                       <td><a href="{{:subject.alt}}"><img src="{{:subject.images.small}}" alt=""></a></td>
+                    <td><a href="{{:subject.alt}}"><img src="{{:subject.images.small}}" alt=""></a></td>
                     <td ><a href="{{:subject.alt}}">{{:subject.title}}</a></td>
                     <td>{{:subject.pubdates}}</td>
                     <td >
@@ -233,10 +216,11 @@ header("Content-Type: text/html;charset=utf-8");
     {{/for}}
 
 </script>
+<!--新片榜-->
 <script id="newMovies" type="text/myjsRender">
     {{for newMovies}}
     <tr>
-                       <td><a href="{{:alt}}"><img src="{{:images.small}}" alt=""></a></td>
+                    <td><a href="{{:alt}}"><img src="{{:images.small}}" alt=""></a></td>
                     <td><a href="{{:alt}}">{{:title}}</a></td>
                     <td>{{:pubdates}}</td>
                     <td>
@@ -255,10 +239,11 @@ header("Content-Type: text/html;charset=utf-8");
 
 
 </script>
+<!--top10-->
 <script id="top10" type="text/myjsRender">
     {{for top10}}
     <tr>
-                       <td><a href="{{:alt}}"><img src="{{:images.small}}" alt=""></a></td>
+                    <td><a href="{{:alt}}"><img src="{{:images.small}}" alt=""></a></td>
                     <td><a href="{{:alt}}">{{:title}}</a></td>
                     <td>{{:pubdates}}</td>
                     <td>
@@ -276,9 +261,12 @@ header("Content-Type: text/html;charset=utf-8");
     {{/for}}
 </script>
 <!--//模板结束=====================================================================-->
-<!---->
-<!---->
-<!--//插入文档-->
+
+<!--//jsonp跨域请求豆瓣API-->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
+<script src="static/assets/js/navBar.js"></script>
 <script src="static/assets/js/theater.js"></script>
 <script src="https://cdn.bootcss.com/jsrender/1.0.0-rc.70/jsrender.min.js"></script>
 <script src="https://douban.uieee.com/v2/movie/in_theaters?callback=inTheaterMovies"></script>
@@ -286,5 +274,6 @@ header("Content-Type: text/html;charset=utf-8");
 <script src="https://douban.uieee.com/v2/movie/us_box?callback=usBox"></script>
 <script src="https://douban.uieee.com/v2/movie/weekly?callback=weekly"></script>
 <script src="https://douban.uieee.com/v2/movie/top250?count=10&callback=top10"></script>
+
 
 </html>
