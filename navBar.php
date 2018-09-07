@@ -1,8 +1,23 @@
 <?php
 require_once 'static/function.php';
-
+require_once 'static/SEO.php';
 $user=myFetchOne("select * from user where userid='huangrui1019';");
 header("Content-Type: text/html;charset=utf-8");
+//百度推送
+$urls = array(
+    'https://www.'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']
+);
+$api = 'http://data.zz.baidu.com/urls?site=https://www.slartbartfast.cn&token=L3AmUHbHUfrPuGv9';
+$ch = curl_init();
+$options =  array(
+    CURLOPT_URL => $api,
+    CURLOPT_POST => true,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_POSTFIELDS => implode("\n", $urls),
+    CURLOPT_HTTPHEADER => array('Content-Type: text/plain'),
+);
+curl_setopt_array($ch, $options);
+$result = curl_exec($ch);
 /**
  * Created by PhpStorm.
  * User: huangrui10191180
@@ -20,7 +35,7 @@ header("Content-Type: text/html;charset=utf-8");
 <div class="sideNav sideNavSlide">
     <div class="avatarBox animated">
         <div class="avatar text-center">
-            <img src="<?php echo $user['avatarurl'] ?>" alt="" class="img-thumbnail rounded-circle">
+            <img src="<?php echo $user['avatarurl'] ?>" alt="avatar" class="img-thumbnail rounded-circle">
 
         </div>
 
