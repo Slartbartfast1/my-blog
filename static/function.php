@@ -1,6 +1,14 @@
 <?php
 header("Content-Type: text/html;charset=utf-8");
 require_once 'config.php';
+/**
+ * 跳转HTTPS
+ */
+if(!((isset($_SERVER['HTTPS'])&&$_SERVER['HTTPS']=='on')||(isset($_SERVER['HTTP_X_FORWARDED_PROTO'])&&$_SERVER['HTTP_X_FORWARDED_PROTO']=='https'))){
+    Header("HTTP/1.1 301 Moved Permanently");
+    header('Location: https://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']);
+}
+
 
 /**
  * 封装公用的函数
@@ -13,9 +21,8 @@ session_start();
  */
 function myGetCurrentUser () {
     if (empty($_SESSION['currentLoginUser'])) {
-        // 没有当前登录用户信息，意味着没有登录
-        header('Location: /Myblog/admin/login.php');
-        exit(); // 没有必要再执行之后的代码
+        header('Location: /admin/login.php');
+        exit();
     }
     return $_SESSION['currentLoginUser'];
 }
@@ -66,14 +73,15 @@ function myExecute ($sql) {
     }
     mysqli_query($conn,"set names utf8mb4");
     $query = mysqli_query($conn, $sql);
+
     if (!$query) {
         // 查询失败
         return false;
     }
         //返回受影响行数
-    $affected_rows = mysqli_affected_rows($conn);
+    $affectedRows = mysqli_affected_rows($conn);
 
     mysqli_close($conn);
 
-    return $affected_rows;
+    return $affectedRows;
 }
