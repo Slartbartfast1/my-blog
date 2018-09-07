@@ -69,7 +69,7 @@ function addslider(){
             </div>
             <div class="form-group">
                 <label for="url">网址</label>
-                <input id="url" class="form-control" name="url" type="text" placeholder="URL">
+                <input id="url" class="form-control" name="url" type="url" placeholder="URL">
             </div>
             <div class="form-group">
                 <button class="btn btn-primary" type="submit">添加</button>
