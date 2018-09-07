@@ -70,16 +70,30 @@ and articleid!=228 order by top asc, createTime desc limit {$offset},{$size} ;")
     <meta name="keywords" content="泛银河系含漱爆破液,个人博客,javascript,前端,slartbartfast,blog">
     <meta name="description" content="泛银河系含漱爆破液的个人博客,热衷于分享技术,交流思想,培养自由思想和独立精神">
     <title><?php  if($_SERVER['QUERY_STRING']){
-        if(strpos($_SERVER['QUERY_STRING'],'&')){
-            $query=explode('=',explode('&',$_SERVER['QUERY_STRING'])[0])[1];
+        $str='';
+        if(strpos($_SERVER['QUERY_STRING'],'category')!==false&&strpos($_SERVER['QUERY_STRING'],'page')!==false){
+             $query1=explode('&',$_SERVER['QUERY_STRING'])[1];
+                $query=explode('=',$query1)[1];
+                $category=myFetchOne("select categories from categories where id={$query}");
+//                $str.=$category['categories'].'分类';
+                $page1=explode('&',$_SERVER['QUERY_STRING'])[0];
+                $page=explode('=',$page1)[1];
+                $str.=$category['categories'].'分类'.'-第'.$page.'页';
+            }
+           else if(strpos($_SERVER['QUERY_STRING'],'category')!==false){
+                $query=explode('=',$_SERVER['QUERY_STRING'])[1];
+                $category=myFetchOne("select categories from categories where id={$query}");
+                $str.=$category['categories'].'分类';
+                }
+                else if(strpos($_SERVER['QUERY_STRING'],'page')!==false){
+                $page=explode('=',$_SERVER['QUERY_STRING'])[1];
+                $str.='所有文章--'.'第'.$page.'页';
+                }
 
-            }else{
-            $query=explode('=',$_SERVER['QUERY_STRING'])[1];
-        }
-        $category=myFetchOne("select categories from categories where id={$query}");
-        echo $category['categories'].'分类' .'--泛银河系含漱爆破液的个人博客';
-    }else{
-        echo '泛银河系含漱爆破液的个人博客';
+                echo $str;
+    } else{
+            echo '泛银河系含漱爆破液的个人博客';
+
 }?></title>
     <link type="icon" rel="shortcut icon" href="/favicon.ico"/>
     <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">

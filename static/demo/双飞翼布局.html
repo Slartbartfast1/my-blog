@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>双飞翼布局</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        .container{
+            height:800px;
+            width:100%;
+        }
+        .container>div{
+            float:left;
+            height:100%;
+        }
+        .main{
+            background-color: blue;
+            width:100%;
+        }
+        .left{
+            margin-left:-100%;
+            background-color: yellow;
+            width:200px;
+        }
+        .right{
+            margin-left:-200px;
+            background-color: red;
+            width:200px;
+        }
+        .content{
+            height:100%;
+            margin:0 200px 0 200px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="main"><div class="content">main</div></div>
+    <div class="left"></div>
+    <div class="right"></div>
+</div>
+</body>
+</html>
