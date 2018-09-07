@@ -1,5 +1,4 @@
 <?php
-include 'navBar.php';
 require_once 'static/function.php';
 $commentfather=myFetchAll("select * from commentfather where articleid='228'");
 
@@ -45,13 +44,14 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>留言板</title>
     <link rel="icon" href="/favicon.ico">
-    <link href="static/assets/vendors/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <link href="static/assets/vendors/animate/animate.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
     <link rel="stylesheet" href="static/assets/css/main.css">
     <link rel="stylesheet" href="static/assets/css/footer.css">
     <link rel="stylesheet" href="static/assets/css/comments.css">
 </head>
 <body>
+<?php include 'navBar.php'; ?>
 <div class="page">
 <main>
 
@@ -79,7 +79,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
             </div>
             <div class="form-group" style="display: none">
                 <label for="comment"></label>
-                <textarea class="form-control " rows="10" name="comment" id="text1" placeholder="说点什么吧" required ></textarea>
+                <textarea class="form-control " rows="10" name="comment" id="text1" placeholder="说点什么吧" required minlength="9"></textarea>
             </div>
             <div id="div1">
             </div>
@@ -137,7 +137,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
             </div>
 
             <?php $user=myFetchOne("select * from user where userid='huangrui1019';"); ?>
-            <small class="text-muted"> <?php echo $user['email'] ?></small>
+            <small class="text-muted"> <?php echo $user['email'] ?>  京ICP备18046047号</small>
             <p class="text-muted">© 2018 <?php echo $user['name'] ?></p>
         </div>
     </div>
@@ -147,11 +147,11 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 
 
 
-<script src="static/assets/vendors/jquery/jquery.js"></script>
-<script src="static/assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
-<script src="static/assets/vendors/wow/wow.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
 <script src="static/assets/js/navBar.js"></script>
-<script src="https://cdn.bootcss.com/wangEditor/3.1.1/wangEditor.js"></script>
+<script src="https://cdn.bootcss.com/wangEditor/3.1.1/wangEditor.min.js"></script>
 <script type="text/javascript">
     var E = window.wangEditor;
     var editor = new E('#div1');
