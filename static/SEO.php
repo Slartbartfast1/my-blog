@@ -10,7 +10,54 @@
 $urls = array(
     'https://www.'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']
 );
+$api = 'http://data.zz.baidu.com/urls?appid=1610839708288465&token=RDNHf7JX3GgEPp2H&type=batch';
+$ch = curl_init();
+$options =  array(
+    CURLOPT_URL => $api,
+    CURLOPT_POST => true,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_POSTFIELDS => implode("\n", $urls),
+    CURLOPT_HTTPHEADER => array('Content-Type: text/plain'),
+);
+curl_setopt_array($ch, $options);
+$result = curl_exec($ch);
+
+
+$urls = array(
+    'https://www.'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']
+);
 $api = 'http://data.zz.baidu.com/urls?site=https://www.slartbartfast.cn&token=L3AmUHbHUfrPuGv9';
+$ch = curl_init();
+$options =  array(
+    CURLOPT_URL => $api,
+    CURLOPT_POST => true,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_POSTFIELDS => implode("\n", $urls),
+    CURLOPT_HTTPHEADER => array('Content-Type: text/plain'),
+);
+curl_setopt_array($ch, $options);
+$result = curl_exec($ch);
+//百度推送
+//$urls = array(
+//    'https://www.'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']
+//);
+//$api = 'http://data.zz.baidu.com/urls?site=https://www.slartbartfast.cn&token=L3AmUHbHUfrPuGv9';
+//$ch = curl_init();
+//$options =  array(
+//    CURLOPT_URL => $api,
+//    CURLOPT_POST => true,
+//    CURLOPT_RETURNTRANSFER => true,
+//    CURLOPT_POSTFIELDS => implode("\n", $urls),
+//    CURLOPT_HTTPHEADER => array('Content-Type: text/plain'),
+//);
+//curl_setopt_array($ch, $options);
+//$result = curl_exec($ch);
+
+//mip
+$urls = array(
+    'https://www.'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']
+);
+$api = 'http://data.zz.baidu.com/urls?site=https://www.slartbartfast.cn&token=L3AmUHbHUfrPuGv9&type=mip';
 $ch = curl_init();
 $options =  array(
     CURLOPT_URL => $api,
